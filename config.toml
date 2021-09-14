@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://hayabusa58.github.io/heiki-hecchara.net/'
 languageCode = 'ja-jp'
 title = 'やぶさ家'
 theme = 'erblog'
@@ -54,4 +54,3 @@ publishDir = "docs"
 #[taxonomies]
 #tag = "タグ"
 #category = "カテゴリー"
-

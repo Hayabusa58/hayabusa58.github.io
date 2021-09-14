@@ -36,7 +36,7 @@ https://opensource.org/licenses/mit-license.php
 ## Windows Application
 ### GetNowplayingfromiTunes
 * 制作: 2017年12月
-* iTunesで再生中の曲情報を取得し，ウィンドウ上に表示した上で，クリップボードにコピーするボタンを表示するアプリです。
+* C#製。iTunesで再生中の曲情報を取得し，ウィンドウ上に表示した上で，クリップボードにコピーするボタンを表示するアプリです。
 * 対応環境
   * iTunes 12.6.0.100
 * https://github.com/Hayabusa58/GetNowplayingfromiTunes
