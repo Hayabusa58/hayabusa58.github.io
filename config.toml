@@ -1,0 +1,57 @@
+baseURL = 'http://example.org/'
+languageCode = 'ja-jp'
+title = 'やぶさ家'
+theme = 'erblog'
+DefaultContentLanguage = "ja"
+publishDir = "docs"
+
+[params]
+  author = "Hayabusa"
+  badge = "red"
+  index_posts_num = 5
+  google_search = true
+  bio = "<p>はやぶさ(@Hayabusa)のホームページです。「やぶさ家」と書いて「やぶさか」と読みます(そのまんま)。</p> <p><br>ブログ記事：Works <br>私について：About me<br> 制作物について：Works<br> <br>サイト名の由来：「はやぶさ」→「やぶさか」→「やぶさ家」</p><br> This site is Japanese only, sorry!"
+  logo = "/icon.jpg"
+  portrait = "/icon.jpg"
+  customCSS = ["/css/custom.css"]
+  description = "Undergraduate student on infomatics"
+
+[[menu.main]]
+  identifier = "about"
+  name = "About me"
+  url = "/about/"
+  weight = 15
+
+[[menu.main]]
+  identifier = "works"
+  name = "Works"
+  url = "/works/"
+  weight = 15
+#[[menu.main]]
+#   identifier = "zone"
+#   name = "Career"
+#   url = "/career/"
+#   weight = 10
+
+[[menu.icon]]
+  url = "mailto:hayabusa3430@gmail.com"
+  name = "envelope-o"
+  weight = 1
+
+[[menu.icon]]
+  url = "https://twitter.com/h_ya58"
+  name = "twitter"
+  weight = 1
+
+[[menu.icon]]
+  url = "https://github.com/hayabusa58"
+  name = "github"
+  weight = 1
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+#[taxonomies]
+#tag = "タグ"
+#category = "カテゴリー"
+

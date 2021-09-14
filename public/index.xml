@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>やぶさ家</title>
+    <link>http://example.org/</link>
+    <description>Recent content on やぶさ家</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Tue, 14 Sep 2021 04:39:10 +0900</lastBuildDate>
+    
+	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ブログ移転しました</title>
+      <link>http://example.org/post/new-blog-aisatsu/</link>
+      <pubDate>Tue, 14 Sep 2021 06:28:41 +0900</pubDate>
+      
+      <guid>http://example.org/post/new-blog-aisatsu/</guid>
+      <description>概要 ブログを移転した挨拶＆前のブログの記事の扱いについて
+お久しぶりです 心機一転，ブログを移転しました。 ついでに色々とプロフィールページを作り込んでしまいました。
+なんで移行したかという話ですが，理由としては
+ はてブロで独自ドメイン使えないのがモヤっとした はてブロをWebから編集するのが地味に面倒 任意のページをメニューバーに固定してアクセスしやすくしたかった もちっと軽量なページにしたかった  などがあります。
+移行先は，前から気になっていた静的サイトジェネレーターHugoを使いました。 Go言語製ということで，Goｾﾞﾝｾﾞﾝﾜｶﾗﾝのに大丈夫か？と思っていたんですが結構なんとかなりました。
+テーマはertuil氏のerblogを一部改変したものを使用させていただいています。主にフォント周りと，一部見出しのバランスの調整，適宜項目名の和訳などをしています。
+Hugoですが，使い慣れたエディタ＋Markdownでサクサク書けるのと，コマンド一発でデプロイできるのが本当助かりますね。めちゃくちゃ快適。
+前のブログの記事について 前のブログの記事ですが，できるだけ元の公開日時を変えないようにしつつ移動を(大した数ないしコピペかな……)していきたいと思います。
+今度はサボらずちょっとずつ記事をかけるといいなぁ。
+こういうのは一気にやらないとすぐやる気なくなると思い， 徹夜して一晩で完成させた結果めちゃくちゃ眠いです。 ではまた……。</description>
+    </item>
+    
+    <item>
+      <title>制作物</title>
+      <link>http://example.org/works/</link>
+      <pubDate>Tue, 14 Sep 2021 04:39:10 +0900</pubDate>
+      
+      <guid>http://example.org/works/</guid>
+      <description>概要 飽きっぽい性格なので，ほとんど公開できるクオリティになる前に終わっていますが， いくつか制作したソフトウェア等を掲載しておきます。
+Discord Bot CraftCord Bot  制作: 2020年12月 Python製のDiscord Botで，MinecraftサーバとDiscordを連携させる (Discordにコマンドを入力するとMinecraftのサーバコマンドが送られるようにする等) 機能を実装しています。 バニラサーバ，またはMinecraft Forge製のサーバで動作確認済みです。 CraftBukkitやSpigotサーバでの動作は未テストです。 諸事情により現在ソースを公開していないのですが，必要であればお渡ししますので お気軽にご連絡ください。  [紹介記事リンク]→準備中
+Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジェネレーターHugoを使用して作成したWebサイトです。 テーマとしてertuil氏のerblogを一部改変したものを使用させていただいています。  Copyright (c) 2021 Hayabusa Released under the MIT license https://opensource.org/licenses/mit-license.php Minecraft MOD はるか昔に作った物たちです。改めて見ると習作レベルのものしかなくてかなり恥ずかしいですが， 製作者の責任として，現在ソースを公開していて，一応完成しているものは載せておきます。
+剣を持っていると歩行速度が上昇するMOD  制作: 2016年9月 対応環境  Minecraft 1.7.10 Minecraft Forge #1558   名前のとおりです。 https://github.com/Hayabusa58/RunSpeedUpWithSwordMod  導入しているMOD一覧をテキストファイルで出力するMOD  制作: 2016年5月 対応環境  Minecraft 1.7.10 Minecraft Forge #1558   こちらも名前の通りです。 他の方の制作物の更新を引き継がせていただいたMODになります。 https://github.</description>
+    </item>
+    
+    <item>
+      <title>私について</title>
+      <link>http://example.org/about/</link>
+      <pubDate>Tue, 14 Sep 2021 01:07:35 +0900</pubDate>
+      
+      <guid>http://example.org/about/</guid>
+      <description>最終更新日: 2021年9月14日
+名前 Hayabusa(@Hayabusa58)
+ 呼び名：はやぶさ，やぶさか，ややぶさ，ぶぶぶさ，ややささ，など  基本プロフィール 出身地 兵庫県神戸市
+生年月日 2000年 10月 14日
+居住地  2000年から2008年まで: 兵庫県神戸市 2000年から2018年まで: 東京都内 2019年以降: 茨城県つくば市  学歴  2016年3月: 都内某公立中学卒 2019年3月: 都内某私立高校普通科卒 2020年4月: 筑波大学入学  職歴 アルバイト  2019年3月: 物流倉庫内ピッキング業務に従事 2019年11月以降: 筑波大学内某研究室にて研究補助業務に従事  インターン  2021年9月: ニフティ株式会社 1dayインターン エンジニアコース  現主所属 筑波大学 情報学群 知識情報・図書館学類
+その他活動歴  2016年-2019年: Minecraft非公式日本ユーザーフォーラム 管理チーム(モデレータ)  現在は閉鎖されています。    趣味など 興味・関心 コンピューター関連全般，情報セキュリティ，情報教育 など
+趣味 読書，ゲーム，アニメ，ドライブ，旅行，自宅サーバ運用，機械いじり，iPhoneの修理，など
+学習中の技術  Python Java C言語 Linux(主にUbuntu) Proxmox VM ネットワーク全般  資格  2016年: 実用英語技能検定 2級 2016年: ITパスポート 2021年: 普通自動車免許(MT)  好きな作品 「～シリーズ」と書いてるものは概ね履修済みです。 単体の作品名を書いてあるものはそれ以外の作品をまだ履修していないことが多いです。</description>
+    </item>
+    
+    <item>
+      <title>Career</title>
+      <link>http://example.org/career/career/</link>
+      <pubDate>Tue, 14 Sep 2021 00:51:14 +0900</pubDate>
+      
+      <guid>http://example.org/career/career/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
