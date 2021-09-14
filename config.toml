@@ -4,6 +4,7 @@ title = 'やぶさ家'
 theme = 'erblog'
 DefaultContentLanguage = "ja"
 publishDir = "docs"
+canonifyurls = true
 
 [params]
   author = "Hayabusa"

@@ -62,7 +62,7 @@
 
     <!-- import custom css -->
     {{ range .Site.Params.customCSS }}
-    <link rel="stylesheet" href="{{ . | absURL }}">
+    <link rel="stylesheet" href="{{ . | relURL }}">
     {{ end }}
 
     <!-- <link rel="stylesheet" async href="/font-awesome-4.7.0/css/font-awesome.min.css"> -->
