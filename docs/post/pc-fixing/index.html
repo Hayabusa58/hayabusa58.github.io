@@ -1,0 +1,395 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>やぶさ家 - 【旧ブログ記事】パソコン壊れたと思ったらメモリの差し込みが甘かっただけという話 </title>
+
+    
+    <meta content="旧ブログ記事, PC, 自作PC" name="keywords">
+    
+    <meta content="やぶさ家 - ※この記事は旧ブログからの移行記事です。 一部を除き，投稿当時からほぼ内容は改変していません。 ひとまずホッとしたので、反省を込めて経緯をメモっておきます。
+パソコンが起動しなーい なんだかPCの調子が悪くなったのが7/25の19時頃でした。
+前日にシャットダウンするのを忘れてスリーブのままだったことを思い出し、起動しようとしたら急にフリーズしてしまいました。 あれ？おかしいな？と思いながら仕方なく電源を電源ボタン長押しで切って入れ直しましたが、電源ランプは付いているしファンもちゃんと回っているのに画面に何も出ない。
+夏休みだというのに予定に追われてやっと帰ってきてPCを立ち上げようとしたら起動しない、この時点でかなりぷんぷん。 とりあえずケースを開けて、焦ったままメモリの挿し直し（ココ重要）やグラボの挿し直しを試し、電源の配線も確かめましたが問題なし。 スマホで色々検索してみると、「マザボの故障では…？」という説が浮上してきて冷や汗たらたら。
+どうも簡単に手に負えるような問題じゃ無さそうで、かなりがっくりきてTwitterにぼやいてました。
+試したこと 25日から31日まで、ネットで調べて出てきた方法やフォロワーさんに教えてもらった方法などとにかく片っ端から試してみました。
+ CMOSクリア: マザーボード上の専用ジャンパをショートさせ、CMOS用のボタン電池を交換 →変化なし 電源ユニットの簡易テスト： 電源ユニットの配線を全て外し、ATX24ピンコネクタの緑のケーブルと黒のケーブルをピンで繋ぎ(ここ参考)、その状態で電源を入れてみる →電源ユニット問題なし 最小構成で起動： マザーボード、CPU、電源ユニット、メモリ一枚、モニター一枚で起動 →変化なし 外部モニタ出力： いつも使っているモニターの故障やケーブルの断線を考えテレビにHDMI出力させる →変化なし バックアップBIOSで起動： AsRock H170PerformanceにはバックアップBIOSという機能があります。マザーボード上のジャンパでバックアップ用の予備BIOSを選択し起動 →変化なし PC本体に貯まっている電気を放電： 電源を切りしばらく放置して起動 →変化なし  …こりゃマザーボード壊れたかな…。 ケースの影響を考えケースから最小構成を取り出し絶縁体の上で起動してみる、という方法もあるらしいですが気力が尽きた上取り出すのが死ぬほど面倒くさかったので試しませんでした…。
+ダメ元でメモリ清掃… 7/31の夜7時頃、ぼくは買い替え先のマザーボードを価◯.comで検索して選びつつ、いつ秋葉原に行こうか悩んでいる真っ最中でした。
+えーっとフォームファクタはATXで、ソケットがLGA1151。お、これ良さそう。ん？口コミに「BIOSが立ち上がらなくなりました」って書いてあるな…。いやな感じ…。
+どうせ買い替えました、って結論で終わるんだろうなー。とそのスレを流し読みしていると… 「BIOSが立ち上がらなくなる例はよく聞くけど、大体は組み立てミスだね。本当に部品が壊れているのは1割位でしょ。」という回答が。
+何だ偉そうな文面だなとは思いましたが、そのユーザーの口コミ投稿数が2万を超えていることもあって、なんとなく心に引っかかりました。 もう一度だけ調べてみるか、と何度も使い古したキーワード「自作PC BIOS 起動しない」でGoogle検索、二つ目に出てきたサイトを見ていると…
+BIOSが起動しない - PCと解
+お、何かしっかりした感じのサイト。頼りになるかも…。
+ 以上、CMOS用電池について書いてきましたが、これ以外の原因でBIOSが起動しなくなることもあります。 頻度として高いのは、メモリの接触不良です。 こちらの場合は、ハードディスクのアクセスランプも無反応だったりします。
+  メモリの端子は非常に密集しているうえ、露出していることも多く、 また構造上、メモリスロットはCPUの近くに位置するため、CPUファンの風によってホコリを集めやすいです。 従って、メモリ端子に付着した汚れが原因でBIOSが起動しなくなることがあります。
+ おお、うちの症状と一緒だ！そうかメモリやスロットが汚れていると接触不良を起こすんだな。最後に掃除をしたのは去年の冬だけど、まあ買い直す前に掃除くらいしてもいいか。.
+メモリを外して、エアダスターが無かったのでとりあえず綿棒でメモリ本体の端子を清掃。大した汚れは出てきませんでしたが、結果としてこれがいい結果を生むことになりました。
+一本だけつけて…起動…変化なし。やっぱダメかなぁ…。
+あれ？なんかメモリガタついてない？これじゃマザボ故障関係なくなっちゃう、しっかり刺し直して…
+おわーッ！ダメ元でメモリ刺し直したらパソコン起動したッ！ pic.twitter.com/j5GVQ818lW
+&mdash; はやぶさ (@h_ya58) July 30, 2017  ！？起動した～！！！" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/layui/css/layui.css">
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/self/css/default.css">
+    <script src=" /layui/layui.js"></script>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" async href="https://www.heiki-hecchara.net/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="https://www.heiki-hecchara.net/self/css/gallery.css">
+
+    
+    
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/css/custom.css">
+    
+
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js" integrity="sha256-h2tMEmhemR2IN4wbbdNjj9LaDIjzwk2hralQwfJmBOE=" crossorigin="anonymous"></script></head>
+
+<body>
+    
+    <header class="layui-header layui-bg-cyan">
+
+    
+        <a href=""><img src="https://www.heiki-hecchara.net/icon.jpg" class="layui-nav-img" style="margin-left:10px;margin-top:-10px"></a>
+    
+    
+    <a class="nav-self-logo" href="https://www.heiki-hecchara.net/">
+        やぶさ家
+    </a>
+
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/post/">Posts</a></li>
+        
+
+        
+            
+                <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/about/">About me</a></li>
+            
+                <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/works/">Works</a></li>
+            
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                
+                <dd><a href="https://www.heiki-hecchara.net/post/">Posts</a></dd>
+                
+
+                
+                    
+                        <dd><a href="https://www.heiki-hecchara.net/about/">About me</a></dd>
+                    
+                        <dd><a href="https://www.heiki-hecchara.net/works/">Works</a></dd>
+                    
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    
+
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="self-elem-quote  markdown-body single-title" >
+                    <h1>【旧ブログ記事】パソコン壊れたと思ったらメモリの差し込みが甘かっただけという話</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2017-07-31</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/pc/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">PC</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e8%87%aa%e4%bd%9cpc/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">自作PC</span>
+        </a>
+    
+    
+</h3>
+
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <pre><code>※この記事は旧ブログからの移行記事です。
+一部を除き，投稿当時からほぼ内容は改変していません。
+</code></pre><p>ひとまずホッとしたので、反省を込めて経緯をメモっておきます。</p>
+<h2 id="パソコンが起動しなーい">パソコンが起動しなーい</h2>
+<p>なんだかPCの調子が悪くなったのが7/25の19時頃でした。</p>
+<p>前日にシャットダウンするのを忘れてスリーブのままだったことを思い出し、起動しようとしたら急にフリーズしてしまいました。 あれ？おかしいな？と思いながら仕方なく電源を電源ボタン長押しで切って入れ直しましたが、電源ランプは付いているしファンもちゃんと回っているのに画面に何も出ない。</p>
+<p>夏休みだというのに予定に追われてやっと帰ってきてPCを立ち上げようとしたら起動しない、この時点でかなりぷんぷん。 とりあえずケースを開けて、焦ったままメモリの挿し直し（ココ重要）やグラボの挿し直しを試し、電源の配線も確かめましたが問題なし。
+スマホで色々検索してみると、「マザボの故障では…？」という説が浮上してきて冷や汗たらたら。</p>
+<p>どうも簡単に手に負えるような問題じゃ無さそうで、かなりがっくりきてTwitterにぼやいてました。</p>
+<h2 id="試したこと">試したこと</h2>
+<p>25日から31日まで、ネットで調べて出てきた方法やフォロワーさんに教えてもらった方法などとにかく片っ端から試してみました。</p>
+<ul>
+<li>CMOSクリア: マザーボード上の専用ジャンパをショートさせ、CMOS用のボタン電池を交換 →変化なし</li>
+<li>電源ユニットの簡易テスト： 電源ユニットの配線を全て外し、ATX24ピンコネクタの緑のケーブルと黒のケーブルをピンで繋ぎ(ここ参考)、その状態で電源を入れてみる →電源ユニット問題なし</li>
+<li>最小構成で起動： マザーボード、CPU、電源ユニット、メモリ一枚、モニター一枚で起動 →変化なし</li>
+<li>外部モニタ出力： いつも使っているモニターの故障やケーブルの断線を考えテレビにHDMI出力させる →変化なし</li>
+<li>バックアップBIOSで起動： AsRock H170PerformanceにはバックアップBIOSという機能があります。マザーボード上のジャンパでバックアップ用の予備BIOSを選択し起動 →変化なし
+PC本体に貯まっている電気を放電： 電源を切りしばらく放置して起動 →変化なし</li>
+</ul>
+<p>…こりゃマザーボード壊れたかな…。
+ケースの影響を考えケースから最小構成を取り出し絶縁体の上で起動してみる、という方法もあるらしいですが気力が尽きた上取り出すのが死ぬほど面倒くさかったので試しませんでした…。</p>
+<h2 id="ダメ元でメモリ清掃">ダメ元でメモリ清掃…</h2>
+<p>7/31の夜7時頃、ぼくは買い替え先のマザーボードを価◯.comで検索して選びつつ、いつ秋葉原に行こうか悩んでいる真っ最中でした。</p>
+<p>えーっとフォームファクタはATXで、ソケットがLGA1151。お、これ良さそう。ん？口コミに「BIOSが立ち上がらなくなりました」って書いてあるな…。いやな感じ…。</p>
+<p>どうせ買い替えました、って結論で終わるんだろうなー。とそのスレを流し読みしていると…
+「BIOSが立ち上がらなくなる例はよく聞くけど、大体は組み立てミスだね。本当に部品が壊れているのは1割位でしょ。」という回答が。</p>
+<p>何だ偉そうな文面だなとは思いましたが、そのユーザーの口コミ投稿数が2万を超えていることもあって、なんとなく心に引っかかりました。 もう一度だけ調べてみるか、と何度も使い古したキーワード「自作PC BIOS 起動しない」でGoogle検索、二つ目に出てきたサイトを見ていると…</p>
+<p><a href="https://pctrouble.net/boot/bios_not_boot.html">BIOSが起動しない - PCと解</a></p>
+<p>お、何かしっかりした感じのサイト。頼りになるかも…。</p>
+<blockquote>
+<p>以上、CMOS用電池について書いてきましたが、これ以外の原因でBIOSが起動しなくなることもあります。 頻度として高いのは、メモリの接触不良です。 こちらの場合は、ハードディスクのアクセスランプも無反応だったりします。</p>
+</blockquote>
+<blockquote>
+<p>メモリの端子は非常に密集しているうえ、露出していることも多く、 また構造上、メモリスロットはCPUの近くに位置するため、CPUファンの風によってホコリを集めやすいです。 従って、メモリ端子に付着した汚れが原因でBIOSが起動しなくなることがあります。</p>
+</blockquote>
+<p>おお、うちの症状と一緒だ！そうかメモリやスロットが汚れていると接触不良を起こすんだな。最後に掃除をしたのは去年の冬だけど、まあ買い直す前に掃除くらいしてもいいか。.</p>
+<p>メモリを外して、エアダスターが無かったのでとりあえず綿棒でメモリ本体の端子を清掃。大した汚れは出てきませんでしたが、結果としてこれがいい結果を生むことになりました。</p>
+<p>一本だけつけて…起動…変化なし。やっぱダメかなぁ…。</p>
+<p>あれ？なんかメモリガタついてない？これじゃマザボ故障関係なくなっちゃう、しっかり刺し直して…</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">おわーッ！ダメ元でメモリ刺し直したらパソコン起動したッ！ <a href="https://t.co/j5GVQ818lW">pic.twitter.com/j5GVQ818lW</a></p>&mdash; はやぶさ (@h_ya58) <a href="https://twitter.com/h_ya58/status/891648663793029120?ref_src=twsrc%5Etfw">July 30, 2017</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>！？起動した～！！！</p>
+<p>はい、メモリの差し込みが甘かっただけでした。
+「こりゃマザボが死んでるな」なんて訳知り顔でドヤってた自分を殴りたい…恥ずかしい…</p>
+<h2 id="ここからは想像">ここからは想像</h2>
+<p>恐らくですがこういう経過を辿ったものと思われます。</p>
+<p>元々差し込みが甘かったメモリが時間が立って外れてくる。→ 起動しなくなる。 → 焦ってメモリを抜き差しする。 → 中途半端な差し込みで起動しない → マザボへの対処が効かないので、マザボが死んだものと思いこむ …</p>
+<p>今回の反省ポイントですが、</p>
+<ul>
+<li>メモリはきっちり差し込もう： しっかり入っているものと思いがちですが意外と固いんですねアレ。貧弱なオタクには厳しい機構。</li>
+<li>ビープ音スピーカーをつけよう： 治ってから指摘されたのですが、マザボのビープ音スピーカーで大体の異常を判別できるそうです。当然メモリ抜けもそうで、これが出力されたらこんなに悩むことも無かったということ…。今度買ってきます。</li>
+</ul>
+<p>まあ治って良かったです。母艦が動いてホッとしました。</p>
+</div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+
+            <div class="layui-card single-card">
+                <h2 class="single-title">Recent Posts</h2>
+            
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/new-blog-aisatsu/">
+                        <h3 class="">ブログ移転しました</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-09-14</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">お知らせ</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/hugo/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Hugo</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/minecraft-forge-server-conoha-without-template/">
+                        <h3 class="">【旧ブログ記事】Conoha VPSでテンプレートを使わずにMinecraft Forge Serverを建ててみる</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2020-12-24</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/minecraft/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Minecraft</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/conoha/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Conoha</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/ubuntu/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Ubuntu</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/university-examination/">
+                        <h3 class="">【旧ブログ記事】某国立大公募推薦入試を受験した話</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2018-12-15</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e5%a4%a7%e5%ad%a6/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">大学</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/pc-fixing/">
+                        <h3 class="">【旧ブログ記事】パソコン壊れたと思ったらメモリの差し込みが甘かっただけという話</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2017-07-31</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/pc/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">PC</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e8%87%aa%e4%bd%9cpc/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">自作PC</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+            
+            <br />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+        </div><footer>
+    
+    
+    <div class="layui-container">
+        <p class="copyright">&copy; All rights reserved. Powered by <a href='https://gohugo.io' style='color:#FFFFFF'>Hugo</a> and <a href='https://github.com/ertuil/erblog' style='color:#FFFFFF'>Erblog</a>.</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,617 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>やぶさ家 - 【旧ブログ記事】Conoha VPSでテンプレートを使わずにMinecraft Forge Serverを建ててみる </title>
+
+    
+    <meta content="旧ブログ記事, Minecraft, Conoha, Ubuntu" name="keywords">
+    
+    <meta content="やぶさ家 - この記事はConoha Advent Calender 2020 12/22の記事です． (12/22に登録された方が投稿されなかったため，この枠を使用させていただきました)
+はじめに お久しぶりです． このブログを更新するのもかなり久しぶりですね．最後の記事投稿が2年前ということに気づいてびっくりしています．
+さて，Twitterをフォローしていただいている方はご存知かもしれませんが，最近身内でMinecraftのマルチプレイサーバーを運用しています．
+このときにサーバーを動かすVPSとしてConohaを使用させていただいたので，今回アドカレにサーバーの構築手順を投稿することにしました．
+前提とする環境 サーバー側の詳細な環境は以下のとおりです．
+ Minecraft 1.16.4 Minecraft Forge 1.16.4-35.1.0 Conoha VPS 2Gプラン  Ubuntu 20.04    Forgeを前提とするModについては，詳細は割愛しますが，サーバー側にCutallなどの一括破壊系と便利系MOD数個程度を導入しました．なお導入するModは，テスト環境にてクライアント側では導入しなくてもログインできることを確認した(=クライアントではForgeだけ導入したら大丈夫)なものだけにしてあります1.
+サーバーの操作には主にWindows 10 HomeでPowershell 7を使っています．
+本記事の特徴 Conohaを始めとするVPSを使ってマイクラ鯖を立てる記事はたくさんありますが，その中でも本記事の特徴は
+ 2020/12現在の最新ver.であるMinecraft 1.16.4を使用していること マルチサーバーでは珍しくMinecraft Forgeを使用していること Conoha VPSに最初から用意されているテンプレートを使用していないこと  以上3点だと考えています。
+ちなみにどうしてマルチ鯖界隈で人気のSpigotを使わずForgeを選んだかというと，マルチ鯖を建てるのは未経験の自分はSpigotよりもForgeの操作に慣れているということが一番大きな理由です．(まぁSpigotもそんなに難しいものでもないので，次の機会があればやってみようかなと思っています)
+多少なりとも読んでいる方のお役に立てる記事となっていましたら幸いです．
+なおこの記事はマイクラ鯖の運用について技術的な部分から紹介したものです．実際に運用して全体的に感じたことなどはまた別記事に書きたいと思います．
+前準備 では，早速マイクラ鯖構築の手順を紹介しますが，この項では前準備としてConoha VPSのコントロールパネルから設定する項目を書いていきます．
+前準備として，Conoha VPSのアカウントを取得し，コントロールパネルにログインしておきます．
+ログインできたら，左上の「サーバー追加」ボタンからサーバーを追加します．
+サーバーの設定画面では，次のように設定しました．
+f:id:hayabusa58:20201224182653p:plain サーバー追加時の設定
+テンプレートイメージについて 「サービス」タブでMinecraftテンプレートイメージを選ぶと，比較的ラクにマイクラ鯖の構築ができますが，ここではあえて使用せずに構築することにします．
+実を言うと一瞬テンプレートイメージ使うことも考えたのですが，結局やめました．せっかくなのでCLIでの操作を通してLinux力を高めたいということ，(おそらく)テンプレートイメージを使うとMODを導入するのがめんどくさくなりそう，などの理由です．
+なおテンプレートイメージを使った構築方法は，Conoha 公式サポートで解説されていますので，そちらをご参照ください．
+契約プランについて Conohaでは数カ月分をまとめて契約すると「VPS割引きっぷ」が適用でき，料金が安くなる制度があります．
+ただ，今回はあえてこれも使用せず，1ヶ月単位の契約としました．
+そもそもこのマイクラ鯖は身内コミュニティで運用する程度のもので，発案にあたっても(言い方は悪いですが)ある意味「その場のノリ」で立てたような感じがありました．つまりそんなに長期間運用し続けるものではなさそう，と思ったので，気軽に建てて気軽に止められる1ヶ月契約としました2．他の方も書いておられましたが，Conohaは軽率に借りて軽率に爆破できるお手頃なVPSで，こういうときは本当に助かります．
+メモリの設定について サーバーの設定で一番迷ったのはここでした． マルチ鯖未経験の自分にはどのくらいのメモリがあれば快適に遊べるのかさっぱりわかりませんでした……
+結論から言うと，「身内と」「数個のModを導入して」プレイする程度であれば2GBで十分だと感じました． ここでいう「身内」とは，最大ログイン人数6人くらいを指します．6人はそれぞれ回線の良し悪しもまちまちで，おのおののPCスペックにもかなり差がありましたが3，概ね快適に遊べています． Modは前述の通りサーバー側にいくつか軽いものを入れただけです．" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/layui/css/layui.css">
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/self/css/default.css">
+    <script src=" /layui/layui.js"></script>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" async href="https://www.heiki-hecchara.net/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="https://www.heiki-hecchara.net/self/css/gallery.css">
+
+    
+    
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/css/custom.css">
+    
+
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js" integrity="sha256-h2tMEmhemR2IN4wbbdNjj9LaDIjzwk2hralQwfJmBOE=" crossorigin="anonymous"></script></head>
+
+<body>
+    
+    <header class="layui-header layui-bg-cyan">
+
+    
+        <a href=""><img src="https://www.heiki-hecchara.net/icon.jpg" class="layui-nav-img" style="margin-left:10px;margin-top:-10px"></a>
+    
+    
+    <a class="nav-self-logo" href="https://www.heiki-hecchara.net/">
+        やぶさ家
+    </a>
+
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/post/">Posts</a></li>
+        
+
+        
+            
+                <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/about/">About me</a></li>
+            
+                <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/works/">Works</a></li>
+            
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                
+                <dd><a href="https://www.heiki-hecchara.net/post/">Posts</a></dd>
+                
+
+                
+                    
+                        <dd><a href="https://www.heiki-hecchara.net/about/">About me</a></dd>
+                    
+                        <dd><a href="https://www.heiki-hecchara.net/works/">Works</a></dd>
+                    
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    
+
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="self-elem-quote  markdown-body single-title" >
+                    <h1>【旧ブログ記事】Conoha VPSでテンプレートを使わずにMinecraft Forge Serverを建ててみる</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2020-12-24</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/minecraft/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Minecraft</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/conoha/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Conoha</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/ubuntu/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Ubuntu</span>
+        </a>
+    
+    
+</h3>
+
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <p>この記事は<a href="https://qiita.com/advent-calendar/2020/conoha">Conoha Advent Calender 2020 12/22</a>の記事です．
+(12/22に登録された方が投稿されなかったため，この枠を使用させていただきました)</p>
+<h2 id="はじめに">はじめに</h2>
+<p>お久しぶりです． このブログを更新するのもかなり久しぶりですね．最後の記事投稿が2年前ということに気づいてびっくりしています．</p>
+<p>さて，Twitterをフォローしていただいている方はご存知かもしれませんが，最近身内でMinecraftのマルチプレイサーバーを運用しています．<br>
+このときにサーバーを動かすVPSとしてConohaを使用させていただいたので，今回アドカレにサーバーの構築手順を投稿することにしました．</p>
+<h2 id="前提とする環境">前提とする環境</h2>
+<p>サーバー側の詳細な環境は以下のとおりです．</p>
+<ul>
+<li>Minecraft 1.16.4</li>
+<li>Minecraft Forge 1.16.4-35.1.0</li>
+<li>Conoha VPS 2Gプラン
+<ul>
+<li>Ubuntu 20.04</li>
+</ul>
+</li>
+</ul>
+<p>Forgeを前提とするModについては，詳細は割愛しますが，サーバー側にCutallなどの一括破壊系と便利系MOD数個程度を導入しました．なお導入するModは，テスト環境にてクライアント側では導入しなくてもログインできることを確認した(=クライアントではForgeだけ導入したら大丈夫)なものだけにしてあります<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>サーバーの操作には主にWindows 10 HomeでPowershell 7を使っています．</p>
+<h2 id="本記事の特徴">本記事の特徴</h2>
+<p>Conohaを始めとするVPSを使ってマイクラ鯖を立てる記事はたくさんありますが，その中でも本記事の特徴は</p>
+<ul>
+<li>2020/12現在の最新ver.であるMinecraft 1.16.4を使用していること</li>
+<li>マルチサーバーでは珍しくMinecraft Forgeを使用していること</li>
+<li>Conoha VPSに最初から用意されているテンプレートを使用していないこと</li>
+</ul>
+<p>以上3点だと考えています。</p>
+<p>ちなみにどうしてマルチ鯖界隈で人気のSpigotを使わずForgeを選んだかというと，マルチ鯖を建てるのは未経験の自分はSpigotよりもForgeの操作に慣れているということが一番大きな理由です．(まぁSpigotもそんなに難しいものでもないので，次の機会があればやってみようかなと思っています)</p>
+<p>多少なりとも読んでいる方のお役に立てる記事となっていましたら幸いです．</p>
+<p>なおこの記事はマイクラ鯖の運用について技術的な部分から紹介したものです．実際に運用して全体的に感じたことなどはまた別記事に書きたいと思います．</p>
+<h2 id="前準備">前準備</h2>
+<p>では，早速マイクラ鯖構築の手順を紹介しますが，この項では前準備としてConoha VPSのコントロールパネルから設定する項目を書いていきます．</p>
+<p>前準備として，Conoha VPSのアカウントを取得し，コントロールパネルにログインしておきます．</p>
+<p>ログインできたら，左上の「サーバー追加」ボタンからサーバーを追加します．</p>
+<p>サーバーの設定画面では，次のように設定しました．</p>
+<p>f:id:hayabusa58:20201224182653p:plain
+サーバー追加時の設定</p>
+<h3 id="テンプレートイメージについて">テンプレートイメージについて</h3>
+<p>「サービス」タブでMinecraftテンプレートイメージを選ぶと，比較的ラクにマイクラ鯖の構築ができますが，ここではあえて使用せずに構築することにします．</p>
+<p>実を言うと一瞬テンプレートイメージ使うことも考えたのですが，結局やめました．せっかくなのでCLIでの操作を通してLinux力を高めたいということ，(おそらく)テンプレートイメージを使うとMODを導入するのがめんどくさくなりそう，などの理由です．</p>
+<p>なおテンプレートイメージを使った構築方法は，Conoha 公式サポートで解説されていますので，そちらをご参照ください．</p>
+<h3 id="契約プランについて">契約プランについて</h3>
+<p>Conohaでは数カ月分をまとめて契約すると「VPS割引きっぷ」が適用でき，料金が安くなる制度があります．<br>
+ただ，今回はあえてこれも使用せず，1ヶ月単位の契約としました．</p>
+<p>そもそもこのマイクラ鯖は身内コミュニティで運用する程度のもので，発案にあたっても(言い方は悪いですが)ある意味「その場のノリ」で立てたような感じがありました．つまりそんなに長期間運用し続けるものではなさそう，と思ったので，気軽に建てて気軽に止められる1ヶ月契約としました<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>．他の方も書いておられましたが，Conohaは軽率に借りて軽率に爆破できるお手頃なVPSで，こういうときは本当に助かります．</p>
+<h3 id="メモリの設定について">メモリの設定について</h3>
+<p>サーバーの設定で一番迷ったのはここでした．
+マルチ鯖未経験の自分にはどのくらいのメモリがあれば快適に遊べるのかさっぱりわかりませんでした……</p>
+<p>結論から言うと，「身内と」「数個のModを導入して」プレイする程度であれば2GBで十分だと感じました．
+ここでいう「身内」とは，最大ログイン人数6人くらいを指します．6人はそれぞれ回線の良し悪しもまちまちで，おのおののPCスペックにもかなり差がありましたが<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>，概ね快適に遊べています． Modは前述の通りサーバー側にいくつか軽いものを入れただけです．</p>
+<p>ただし，ワールドマップが徐々に開拓され，トラップタワーなどのMobが多く負荷の高い施設がワールドに作られていくと，同時ログイン数が多いときには多少のラグが起こるようになりました．具体的には，食べ物を食べても満腹度が回復しない，突然移動がリセットされる，チェストやかまどなどのGUIが開けない，などの症状です．<br>
+これらのラグについて，メモリの不足が原因であるのかはまだわかっていません．現状耐えられないようなものではないので，しばらく様子見しています．もしこれ以上ひどくなるようであればメモリの増量も検討します．</p>
+<h3 id="イメージタイプについて">イメージタイプについて</h3>
+<p>OSはUbuntu 20.04にしました．理由は一番好きだからです．</p>
+<h3 id="その他">その他</h3>
+<p>rootパスワードはしっかりしたものを設定してください．失念するとかなりめんどくさくなるのでメモを忘れずに．</p>
+<h2 id="vps導入後のマイクラ鯖の構築">VPS導入後のマイクラ鯖の構築</h2>
+<p>それでは，実際にVPSにログインして鯖を構築していきます．</p>
+<p>Conohaのコントロールパネルから起動できるWebコンソールでも良いのですが，何かと便利なので自分はPowershellからssh接続して操作しています．sshについてはWeb上にたくさん情報がありますのでここでは省略します．</p>
+<p>なおここでは省略していますが，作業はUbuntuに専用のユーザーを追加して行うことをおすすめします．<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<h3 id="必要なソフトウェアのダウンロードインストール">必要なソフトウェアのダウンロード&amp;インストール</h3>
+<p>マイクラ鯖に必要なソフトウェアをインストールしていきます．といっても，必要なものはOpenJDKと，MinecraftForgeの本体，セッション永続化のためのscreenくらいです．</p>
+<p>まずOpenJDKをインストールしました．</p>
+<pre><code>$ sudo apt install openjdk-1.8.0-jre
+</code></pre><p>これでOK．</p>
+<p>続いてForge本体をダウンロードしていきます．マイクラ鯖を設置するディレクトリを作成し，そこに移動します．<br>
+自分は~/Minecraft/ForgeSV/&lt;バージョン別のディレクトリ&gt;/に設置しました<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>．</p>
+<p>予め，操作しているPCのブラウザを開き，Minecraft Forgeの公式サイトに移動します．<br>
+ダウンロードしたいバージョンの「Installer」をクリックすると，ファイルが落ちてくる前に広告が表示されます．ここで，右上に出てくる「Skip」ボタンを右クリックして，リンクをコピーしておきます．これがForge本体の直リンクになります．</p>
+<p>続いてssh接続をしているコンソールに戻り，以下のコマンドを入力して実行します．</p>
+<pre><code>$ wget https://files.minecraftforge.net/.../&lt;ダウンロードしたいバージョン&gt;
+</code></pre><p>しばらく待つと，Forgeのインストーラーがダウンロードされます．「Forge-&lt;バージョン&gt;-installer.jar」というファイル名になるようです．</p>
+<p>次にForgeサーバーをインストールします．</p>
+<pre><code>$ java -jar Forge-&lt;バージョン&gt;-installer.jar --installServer
+</code></pre><p>カレントディレクトリに，サーバーに必要な様々なフォルダやファイルが生成されます．インストールが終わったら，サーバーファイル本体(「forge-&lt;バージョン&gt;-.jar」の名前のファイル」が存在することを確認しましょう．</p>
+<p>インストール完了後，インストーラーとそのログファイルは削除しても大丈夫です．</p>
+<p>最後に，セッション永続化のためのscreenコマンドをインストールしておきます．</p>
+<pre><code>$ sudo apt install screen
+</code></pre><p>サーバーの起動
+インストールが終わったら，サーバーを起動します．まず，以下のコマンドを適当なテキストエディタでスクリプトファイルに書き込みます．</p>
+<pre><code>java -Xmx2000M -Xms2000M -jar forge-&lt;バージョン&gt;-.jar
+</code></pre><p>自分はこれをstart.shとして保存しました．
+起動スクリプトができたら，これを叩いてみます．</p>
+<p>すると，初回起動なのでeula.txtに同意してくださいというメッセージとともにサーバーが終了します．
+eula.txtを熟読し，同意できればfalseをtrueと書き換えて保存します．</p>
+<p>再び起動スクリプトを叩いてみて，無事サーバーが起動すればひとまず構築は完了です．</p>
+<h3 id="ポートの開放設定">ポートの開放設定</h3>
+<p>サーバーは起動できましたが，このままでは外部からログインできません．ポートを開放してあげる必要があります． Ubuntuの場合，以下のコマンドでポートを開放できます．<br>
+Minecraftが使用するポートは25565です．後述の，rconを有効にするには25575も開放する必要がありますが，通常は必要ありません．</p>
+<p>まず，ファイアウォールを起動します．</p>
+<pre><code>$ sudo ufw enable
+</code></pre><p>続いてポートの開放と再読み込み．</p>
+<pre><code>$ sudo ufw allow 25565
+$ sudo ufw reload
+$ sudo ufw status
+</code></pre><p>ポート番号25565が許可されていたら成功です．</p>
+<h3 id="セッションの永続化">セッションの永続化</h3>
+<p>このままではターミナルを終了するとサーバーも落ちてしまうので，起動スクリプトを少し改造してセッションを永続化します．自分は以下のように設定しました．</p>
+<pre><code>$ screen -AmdS mc java -Xmx2000M -Xms2000M -jar forge-&lt;バージョン&gt;-.jar
+</code></pre><p>このスクリプトを実行すると，一見なにも起こりませんが，裏でマイクラ鯖(mcと名付けられたセッション)が起動しています．セッションに移動するためには</p>
+<pre><code>$ screen -r mc
+</code></pre><p>とします．これでマイクラ鯖のセッションにアタッチできるので，自由にコマンド等も実行できます．</p>
+<p>セッションから離れる(デタッチする)には，単に</p>
+<pre><code>$ screen -r
+</code></pre><p>とします．</p>
+<p>ここまでできたら，自分でクライアントを立ち上げて接続できるかテストします．</p>
+<h3 id="modの導入">Modの導入</h3>
+<p>最後にサーバー側Modの導入です．といってもこれは簡単で，サーバーディレクトリにあるmodsディレクトリに導入したいModのjarを追加するだけです．ただし，クライアントMod(Optifineなど)を導入しても意味がないので注意してください．</p>
+<p>これでひとまずサーバー構築完了です．サーバーIP(Conohaのコントロールパネルで確認できます)を参加者に伝えて接続してもらいましょう．</p>
+<h2 id="その他の設定">その他の設定</h2>
+<p>ここからは，運用中に変更した細かい設定等を紹介します．余談に当たるので，必要ない方は読み飛ばしていただいて大丈夫です．</p>
+<h3 id="serverpropertiesの編集">server.propertiesの編集</h3>
+<p>サーバーディレクトリに生成される，server.propertiesを編集することで，マイクラの設定の変更ができます．
+実際に変更した項目は以下の通り．</p>
+<pre><code># rconの許可(詳細は後述します)
+enable-rcon=true
+
+# rconパスワードの設定
+rcon.password=&lt;パスワード&gt;
+
+# ワールド名の変更
+level-name=&lt;ワールド名&gt;
+
+# シード値の変更
+level-seed=&lt;シード値&gt;
+
+# エンティティ描画距離の変更(ラグ軽減)
+entity-broadcast-range-percentage=50
+
+# サーバーが応答しない場合，自動でサーバーが終了するまでの時間(ミリ秒)
+max-tick-time=12000
+
+# 独自サーバーリソースパックの指定
+resource-pack=&lt;サーバーリソースパックのURI&gt;
+
+# 初期スポーン付近の保護の解除
+spawn-protection=0
+</code></pre><p>ここでrconとは，リモートコンソールプロトコルのことで，これを有効にすることでマイクラ鯖のコンソールにインターネットを経由してリモートで接続できるようになります<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>．なぜこれを有効にしたかというと，Discord経由でマイクラ鯖にコマンドを送信して操作したかったためです．</p>
+<h3 id="discord経由でのマイクラ鯖の操作">Discord経由でのマイクラ鯖の操作</h3>
+<p>実際に運用を開始してみると，</p>
+<ul>
+<li>自分がバイトや授業などで手が離せないときでも/reloadや/stopといった基本的なコマンドを送信できるようにしたい</li>
+<li>今誰がログインしているのか確認したい</li>
+<li>ワールドデータのバックアップがめんどくさい</li>
+</ul>
+<p>といった課題が浮かびました．
+そこで，まずDiscordとマイクラを連携する手段を探しましたが，適当なものがありませんでした．そこで，Pythonで簡単にDiscord Botが作れるdiscord.pyというライブラリを用いて，自前でBotを作ってみました．</p>
+<p>……本当はここでBotの詳細を紹介する予定だったのですが，まだ公開できるほど完成度が高くないのでここでは概要の紹介にとどめます．</p>
+<p>動作イメージはこんな感じ．</p>
+<p>今実装しているのは，現在の鯖の状況を確認する$statusコマンド，リロードができる$reload'コマンド，サーバーを停止できる'$stop'コマンドなどです</p>
+<p>今後，自動バックアップ機能やロギング機能等も実装する予定です．</p>
+<h2 id="終わりに">終わりに</h2>
+<p>軽めの記事にしようと思っていたのに，予想以上に長くなってしまいました．</p>
+<p>突貫工事で書いたので，内容にミス等ありましたらごめんなさい．できればコメントやTwitter等で教えていただけると大変助かります．</p>
+<p>それでは．</p>
+<h2 id="参考ページ">参考ページ</h2>
+<p>OpenJDK（Java）を最新のUbuntuにインストール - Qiita <a href="https://qiita.com/terappy/items/537c069923144a9d9755">https://qiita.com/terappy/items/537c069923144a9d9755</a></p>
+<p>Ubuntu ServerにMinecraft forge入れた - Spica* <a href="https://esperia.hatenablog.com/entry/2015/07/10/002752">https://esperia.hatenablog.com/entry/2015/07/10/002752</a></p>
+<p>server.properties - Minecraft Wiki <a href="https://minecraft-ja.gamepedia.com/Server.properties">https://minecraft-ja.gamepedia.com/Server.properties</a></p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>参加者全員にModの導入方法をレクチャーするのが面倒だったため． <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>もちろん最初から長期契約にして，使わなくなったら別用途に転用，でもいいと思います <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>上はRTX2000番台を積んだn十万円のゲーミングPC，下は普通のノーパソとかなりの幅 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>とかいいながら最初めんどくさくてずっとrootでやってました．ごめんなさい…… <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p>適当に作ったけど，これが適切な場所なのかはわからないです． <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p>rconで使用するポートは25575なので，別途開放する必要あり <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+</div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+            <div class="layui-card single-card">
+                <h2 class="single-title">Relevant Topics</h2>
+                
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="https://www.heiki-hecchara.net/post/university-examination/">
+                                <h3 class="">【旧ブログ記事】某国立大公募推薦入試を受験した話</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2018-12-15</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e5%a4%a7%e5%ad%a6/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">大学</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="https://www.heiki-hecchara.net/post/pc-fixing/">
+                                <h3 class="">【旧ブログ記事】パソコン壊れたと思ったらメモリの差し込みが甘かっただけという話</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2017-07-31</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/pc/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">PC</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e8%87%aa%e4%bd%9cpc/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">自作PC</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                
+                <br />
+            </div>
+            
+
+            <div class="layui-card single-card">
+                <h2 class="single-title">Recent Posts</h2>
+            
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/new-blog-aisatsu/">
+                        <h3 class="">ブログ移転しました</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-09-14</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">お知らせ</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/hugo/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Hugo</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/minecraft-forge-server-conoha-without-template/">
+                        <h3 class="">【旧ブログ記事】Conoha VPSでテンプレートを使わずにMinecraft Forge Serverを建ててみる</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2020-12-24</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/minecraft/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Minecraft</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/conoha/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Conoha</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/ubuntu/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Ubuntu</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/university-examination/">
+                        <h3 class="">【旧ブログ記事】某国立大公募推薦入試を受験した話</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2018-12-15</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e5%a4%a7%e5%ad%a6/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">大学</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/pc-fixing/">
+                        <h3 class="">【旧ブログ記事】パソコン壊れたと思ったらメモリの差し込みが甘かっただけという話</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2017-07-31</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/pc/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">PC</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e8%87%aa%e4%bd%9cpc/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">自作PC</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+            
+            <br />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+        </div><footer>
+    
+    
+    <div class="layui-container">
+        <p class="copyright">&copy; All rights reserved. Powered by <a href='https://gohugo.io' style='color:#FFFFFF'>Hugo</a> and <a href='https://github.com/ertuil/erblog' style='color:#FFFFFF'>Erblog</a>.</p>
+    </div>
+</footer>
+
+</body>
+</html>
