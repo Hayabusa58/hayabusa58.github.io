@@ -1,4 +1,4 @@
-baseURL = 'https://hayabusa58.github.io/heiki-hecchara.net/'
+baseURL = 'https://www.heiki-hecchara.net'
 languageCode = 'ja-jp'
 title = 'やぶさ家'
 theme = 'erblog'

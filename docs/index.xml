@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>やぶさ家</title>
-    <link>https://hayabusa58.github.io/heiki-hecchara.net/</link>
+    <link>https://www.heiki-hecchara.net/</link>
     <description>Recent content on やぶさ家</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Tue, 14 Sep 2021 04:39:10 +0900</lastBuildDate>
     
-	<atom:link href="https://hayabusa58.github.io/heiki-hecchara.net/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.heiki-hecchara.net/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ブログ移転しました</title>
-      <link>https://hayabusa58.github.io/heiki-hecchara.net/post/new-blog-aisatsu/</link>
+      <link>https://www.heiki-hecchara.net/post/new-blog-aisatsu/</link>
       <pubDate>Tue, 14 Sep 2021 06:28:41 +0900</pubDate>
       
-      <guid>https://hayabusa58.github.io/heiki-hecchara.net/post/new-blog-aisatsu/</guid>
+      <guid>https://www.heiki-hecchara.net/post/new-blog-aisatsu/</guid>
       <description>概要 ブログを移転した挨拶＆前のブログの記事の扱いについて
 お久しぶりです 心機一転，ブログを移転しました。 ついでに色々とプロフィールページを作り込んでしまいました。
 なんで移行したかという話ですが，理由としては
@@ -31,10 +31,10 @@ Hugoですが，使い慣れたエディタ＋Markdownでサクサク書ける�
     
     <item>
       <title>制作物</title>
-      <link>https://hayabusa58.github.io/heiki-hecchara.net/works/</link>
+      <link>https://www.heiki-hecchara.net/works/</link>
       <pubDate>Tue, 14 Sep 2021 04:39:10 +0900</pubDate>
       
-      <guid>https://hayabusa58.github.io/heiki-hecchara.net/works/</guid>
+      <guid>https://www.heiki-hecchara.net/works/</guid>
       <description>概要 飽きっぽい性格なので，ほとんど公開できるクオリティになる前に終わっていますが， いくつか制作したソフトウェア等を掲載しておきます。
 Discord Bot CraftCord Bot  制作: 2020年12月 Python製のDiscord Botで，MinecraftサーバとDiscordを連携させる (Discordにコマンドを入力するとMinecraftのサーバコマンドが送られるようにする等) 機能を実装しています。 バニラサーバ，またはMinecraft Forge製のサーバで動作確認済みです。 CraftBukkitやSpigotサーバでの動作は未テストです。 諸事情により現在ソースを公開していないのですが，必要であればお渡ししますので お気軽にご連絡ください。  [紹介記事リンク]→準備中
 Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジェネレーターHugoを使用して作成したWebサイトです。 テーマとしてertuil氏のerblogを一部改変したものを使用させていただいています。  Copyright (c) 2021 Hayabusa Released under the MIT license https://opensource.org/licenses/mit-license.php Windows Application GetNowplayingfromiTunes  制作: 2017年12月 C#製。iTunesで再生中の曲情報を取得し，ウィンドウ上に表示した上で，クリップボードにコピーするボタンを表示するアプリです。 対応環境  iTunes 12.6.0.100   https://github.com/Hayabusa58/GetNowplayingfromiTunes  Minecraft MOD はるか昔に作った物たちです。改めて見ると習作レベルのものしかなくてかなり恥ずかしいですが， 製作者の責任として，現在ソースを公開していて，一応完成しているものは載せておきます。
@@ -43,10 +43,10 @@ Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジ�
     
     <item>
       <title>私について</title>
-      <link>https://hayabusa58.github.io/heiki-hecchara.net/about/</link>
+      <link>https://www.heiki-hecchara.net/about/</link>
       <pubDate>Tue, 14 Sep 2021 01:07:35 +0900</pubDate>
       
-      <guid>https://hayabusa58.github.io/heiki-hecchara.net/about/</guid>
+      <guid>https://www.heiki-hecchara.net/about/</guid>
       <description>最終更新日: 2021年9月14日
 名前 Hayabusa(@Hayabusa58)
  呼び名：はやぶさ，やぶさか，ややぶさ，ぶぶぶさ，ややささ，など  基本プロフィール 出身地 兵庫県神戸市
@@ -57,10 +57,10 @@ Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジ�
     
     <item>
       <title>Career</title>
-      <link>https://hayabusa58.github.io/heiki-hecchara.net/career/career/</link>
+      <link>https://www.heiki-hecchara.net/career/career/</link>
       <pubDate>Tue, 14 Sep 2021 00:51:14 +0900</pubDate>
       
-      <guid>https://hayabusa58.github.io/heiki-hecchara.net/career/career/</guid>
+      <guid>https://www.heiki-hecchara.net/career/career/</guid>
       <description></description>
     </item>
     
