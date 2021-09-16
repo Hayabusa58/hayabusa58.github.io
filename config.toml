@@ -51,12 +51,24 @@ googleAnalytics = ""
   weight = 3
 
 [[menu.icon]]
-  url = "http://www.heiki-hecchara.net/index.xml"
+  url = "/index.xml"
   name = "rss"
   weight = 4
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[[menu.footer]]
+  identifier = "privacy_policy"
+  name = "プライバシーポリシー"
+  url = "/privacy-policy/"
+  weight = 1
+
+[[menu.footer]]
+  identifier = "disclaimer"
+  name = "免責事項"
+  url = "/disclaimer/"
+  weight = 2
 
 #[taxonomies]
 #tag = "タグ"
