@@ -43,12 +43,17 @@ googleAnalytics = ""
 [[menu.icon]]
   url = "https://twitter.com/h_ya58"
   name = "twitter"
-  weight = 1
+  weight = 2
 
 [[menu.icon]]
   url = "https://github.com/hayabusa58"
   name = "github"
-  weight = 1
+  weight = 3
+
+[[menu.icon]]
+  url = "http://www.heiki-hecchara.net/index.xml"
+  name = "rss"
+  weight = 4
 
 [markup.goldmark.renderer]
   unsafe = true
