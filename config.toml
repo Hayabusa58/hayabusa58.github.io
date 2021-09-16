@@ -6,6 +6,7 @@ DefaultContentLanguage = "ja"
 publishDir = "docs"
 canonifyurls = true
 
+googleAnalytics = ""
 [params]
   author = "Hayabusa"
   badge = "red"

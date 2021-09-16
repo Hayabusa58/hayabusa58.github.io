@@ -31,6 +31,13 @@
         </script>
     {{ end }}
 
+    <!-- new google analytics tag
+    <!-- Analytics -->
+    {{ if not .Site.IsServer }}
+      {{ partial "google/analytics" . }}
+    {{ end }}
+    -->
+
     {{ if or .Page.Params.math .Site.Params.math }}
     <!-- adds MathJax support -->
     <script type="text/x-mathjax-config">
