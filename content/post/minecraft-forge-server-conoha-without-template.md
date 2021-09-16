@@ -4,6 +4,10 @@ date: 2020-12-24
 draft: true
 tags: ["旧ブログ記事", "Minecraft", "Conoha", "Ubuntu"]
 ---
+```
+※この記事は旧ブログからの移行記事です。
+一部を除き，投稿当時からほぼ内容は改変していません。
+```
 
 
 この記事は[Conoha Advent Calender 2020 12/22](https://qiita.com/advent-calendar/2020/conoha)の記事です．
