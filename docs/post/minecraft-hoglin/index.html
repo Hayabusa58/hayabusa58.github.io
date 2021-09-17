@@ -3,22 +3,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>やぶさ家 - 【旧ブログ記事】2017年の誕生日を迎えました </title>
+    <title>やぶさ家 - Minecraft ホグリン/ピグリンをオーバーワールドで生存させる方法 </title>
 
     
-    <meta content="雑記, 誕生日" name="keywords">
+    <meta content="Minecraft" name="keywords">
     
-    <meta content="やぶさ家 - ※この記事は旧ブログからの移行記事です。 一部を除き，投稿当時からほぼ内容は改変していません。 実は中間考査四日前だったりするので、手短に書きます。
-たくさんのおめでとうに感謝 ふと気づいたらまた一年年齢を重ねてました。ぱちぱちぱち
-&mdash; はやぶさ (@h_ya58) October 13, 2017  本当はこんな記事を投稿するつもりはなかったのでもう日付は変わっちゃってますが、実は昨日10月14日が誕生日でした。
-ぱちぱちぱち！🤣🤣🤣
-&mdash; カ (@8_8cm_FlaK) October 13, 2017  @h_ya58 誕生日おめでとう！！！！！
-&mdash; ittekikun🌔 (@ittekikun) October 13, 2017  おめでとうございます🎉🎉🎊🎈
-&mdash; Zen (@zen_proust) October 13, 2017  👏
-&mdash; なおり (@bwiroan) October 14, 2017  おめでとうございます! 🎊
-&mdash; カエルさん (@unicroak) October 14, 2017  おめぽよだよぉ！なでなでごしごし
-&mdash; つてと (@tsuteto) October 14, 2017  @h_ya58 誕生日おめでとう
-&mdash; れもん(スク水杏bot (@_lem0n_) October 14, 2017  ツイートを投稿してからわずか一日の間に、これだけの方々からおめでとうの言葉をいただきました。取るに足らない人間の自分ですが、こんなにたくさんの方から祝っていただけたのには感謝しかありません。本当にありがとうございました。" name="description">
+    <meta content="やぶさ家 - 概要 最近身内でMinecraftのマルチサーバーを立ててちょこちょこ遊んでいます。
+住民の某Hくんが「怪しい研究所」みたいな施設を建てたので，中にホグリンやピグリンを閉じ込めて「こっそり飼育してる風」にしたら面白いんじゃね？ということで，オーバーワールドで彼らを生存させる方法について調べてみました。
+特殊な生物学的手法によりオーバーワールドでもゾグリンに変化しなくなったホグリン pic.twitter.com/kv0dMLfGsy
+&mdash; はやぶさ (@h_ya58) September 9, 2021  これを実現するだけです。
+前提環境  Minecraft Java Edition 1.16.4 Minecraft内でコマンドが自由に使用できること  マルチではOP権限を保持していること シングルではワールド生成時に「チートを許可する」がオンになっていること    ※今回はMinecraft Forge導入下で検証しましたが，バニラ環境でも問題なく使用できるかと思います。
+ホグリンとピグリン ホグリンは，Minecraft JavaEdition 1.16から追加された敵対的MOBです。ネザーにのみスポーンし，プレイヤーを攻撃します。ダメージはさほどでもないのですが，特に足場の頼りないネザーではノックバック攻撃で溶岩ダイブしがちであり，なかなか手ごわい敵になっています。
+なおホグリンは敵対的MOBではありますがピースフルでもスポーンします(攻撃はしない)。
+ピグリンもホグリンと同じく1.16から追加されたMOBですが，こちらは一応「友好的」MOBとなっています。ただし，友好的なのはプレイヤーが金関連のアイテムを持っている時のみで，そうでなければ問答無用で攻撃してきます。
+ホグリンとピグリンのゾンビ化 ホグリン/ピグリンは，どちらもピースフルで生存可能です。ただし，オーバーワールドに連行してくると，15秒後に「ゾンビ化」(ホグリンはゾグリンに，ピグリンはゾンビピグリンになる)してしまい，いずれも元の姿をとどめません。
+この性質はオーバーワールドで彼らを展示(?)する上では厄介です。ですが，コマンドを使用すればこの仕様を回避することができます。
+Minecraftではエンティティ(生物)を召喚するための /summon というコマンドがあります。
+また，ゲーム内の様々なメタデータを扱うNBTタグというシステムがあります。 NBTタグはMOBひとつひとつに付与されており，当然ホグリン/ピグリンにも存在します。
+ホグリン/ピグリンに付与されているNBTタグで特徴的なものとして，IsImmuneToZombificationというものがあります。直訳すると「ゾンビ化耐性」のような感じでしょうか。 /summon  コマンドの実行時に，召喚するホグリン/ピグリンのIsImmuneToZombificationをTrue(ゲーム内では1)に設定してあげることにより，そのホグリン/ピグリンはオーバーワールドでもゾンビ化しなくなります。
+具体的には以下のようなコマンドとなります。
+/summon minecraft:hoglin ^ ^ ^ {IsImmuneToZombification:1} 弊鯖の生物学研究所では、安全なネザー生物（ストライダー、真紅の木、歪んだ木など）の研究の名目で予算を獲得し、地下では密かにホグリンのような危険なネザー生物を飼育している
+&mdash; 狭間有事 (@Hazama_Yuji) September 9, 2021  このわるい研究はこういう研究所のこういう地下で行なわれています pic.twitter.com/joIrKLWqay
+&mdash; 狭間有事 (@Hazama_Yuji) September 9, 2021  無事に邪悪な研究所の内装を飾ることができました。" name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
@@ -132,10 +138,10 @@ layui.use('element', function(){
             <div class="layui-card single-card">
                 <br />
                 <blockquote class="self-elem-quote  markdown-body single-title" >
-                    <h1>【旧ブログ記事】2017年の誕生日を迎えました</h1>
+                    <h1>Minecraft ホグリン/ピグリンをオーバーワールドで生存させる方法</h1>
                     <h3 style="margin-top:10px; margin-bottom:10px"> 
     <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
-    <span>2017-10-15</span>
+    <span>2021-09-18</span>
 
     
     
@@ -147,12 +153,8 @@ layui.use('element', function(){
     
 
     
-        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
-        </a>
-    
-        <a href="https://www.heiki-hecchara.net/tags/%e8%aa%95%e7%94%9f%e6%97%a5/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">誕生日</span>
+        <a href="https://www.heiki-hecchara.net/tags/minecraft/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Minecraft</span>
         </a>
     
     
@@ -160,59 +162,102 @@ layui.use('element', function(){
 
                 </blockquote>
                 <div class="layui-card-body markdown-body single-content">
-                    <pre><code>※この記事は旧ブログからの移行記事です。
-一部を除き，投稿当時からほぼ内容は改変していません。
-</code></pre><p>実は中間考査四日前だったりするので、手短に書きます。</p>
-<h2 id="たくさんのおめでとうに感謝">たくさんのおめでとうに感謝</h2>
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ふと気づいたらまた一年年齢を重ねてました。ぱちぱちぱち</p>&mdash; はやぶさ (@h_ya58) <a href="https://twitter.com/h_ya58/status/918885370074349568?ref_src=twsrc%5Etfw">October 13, 2017</a></blockquote>
+                    <h2 id="概要">概要</h2>
+<p>最近身内でMinecraftのマルチサーバーを立ててちょこちょこ遊んでいます。<br>
+住民の某Hくんが「怪しい研究所」みたいな施設を建てたので，中にホグリンやピグリンを閉じ込めて「こっそり飼育してる風」にしたら面白いんじゃね？ということで，オーバーワールドで彼らを生存させる方法について調べてみました。</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">特殊な生物学的手法によりオーバーワールドでもゾグリンに変化しなくなったホグリン <a href="https://t.co/kv0dMLfGsy">pic.twitter.com/kv0dMLfGsy</a></p>&mdash; はやぶさ (@h_ya58) <a href="https://twitter.com/h_ya58/status/1435993161675907073?ref_src=twsrc%5Etfw">September 9, 2021</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<p>本当はこんな記事を投稿するつもりはなかったのでもう日付は変わっちゃってますが、実は昨日10月14日が誕生日でした。</p>
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ぱちぱちぱち！🤣🤣🤣</p>&mdash; カ (@8_8cm_FlaK) <a href="https://twitter.com/8_8cm_FlaK/status/918970983062441984?ref_src=twsrc%5Etfw">October 13, 2017</a></blockquote>
+<p>これを実現するだけです。</p>
+<h2 id="前提環境">前提環境</h2>
+<ul>
+<li>Minecraft Java Edition 1.16.4</li>
+<li>Minecraft内でコマンドが自由に使用できること
+<ul>
+<li>マルチではOP権限を保持していること</li>
+<li>シングルではワールド生成時に「チートを許可する」がオンになっていること</li>
+</ul>
+</li>
+</ul>
+<p>※今回はMinecraft Forge導入下で検証しましたが，バニラ環境でも問題なく使用できるかと思います。</p>
+<h2 id="ホグリンとピグリン">ホグリンとピグリン</h2>
+<p><a href="https://minecraft.fandom.com/ja/wiki/%E3%83%9B%E3%82%B0%E3%83%AA%E3%83%B3">ホグリン</a>は，Minecraft JavaEdition 1.16から追加された敵対的MOBです。ネザーにのみスポーンし，プレイヤーを攻撃します。ダメージはさほどでもないのですが，特に足場の頼りないネザーではノックバック攻撃で溶岩ダイブしがちであり，なかなか手ごわい敵になっています。<br>
+なおホグリンは敵対的MOBではありますがピースフルでもスポーンします(攻撃はしない)。</p>
+<p><a href="https://minecraft.fandom.com/ja/wiki/%E3%83%94%E3%82%B0%E3%83%AA%E3%83%B3">ピグリン</a>もホグリンと同じく1.16から追加されたMOBですが，こちらは一応「友好的」MOBとなっています。ただし，友好的なのはプレイヤーが金関連のアイテムを持っている時のみで，そうでなければ問答無用で攻撃してきます。</p>
+<h2 id="ホグリンとピグリンのゾンビ化">ホグリンとピグリンのゾンビ化</h2>
+<p>ホグリン/ピグリンは，どちらもピースフルで生存可能です。ただし，オーバーワールドに連行してくると，15秒後に「ゾンビ化」(ホグリンはゾグリンに，ピグリンはゾンビピグリンになる)してしまい，いずれも元の姿をとどめません。</p>
+<p>この性質はオーバーワールドで彼らを展示(?)する上では厄介です。ですが，コマンドを使用すればこの仕様を回避することができます。</p>
+<p>Minecraftではエンティティ(生物)を召喚するための <code>/summon</code> というコマンドがあります。<br>
+また，ゲーム内の様々なメタデータを扱うNBTタグというシステムがあります。
+NBTタグはMOBひとつひとつに付与されており，当然ホグリン/ピグリンにも存在します。<br>
+ホグリン/ピグリンに付与されているNBTタグで特徴的なものとして，<code>IsImmuneToZombification</code>というものがあります。直訳すると「ゾンビ化耐性」のような感じでしょうか。   <code>/summon </code> コマンドの実行時に，召喚するホグリン/ピグリンの<code>IsImmuneToZombification</code>をTrue(ゲーム内では1)に設定してあげることにより，そのホグリン/ピグリンはオーバーワールドでもゾンビ化しなくなります。</p>
+<p>具体的には以下のようなコマンドとなります。</p>
+<pre><code>/summon minecraft:hoglin ^ ^ ^ {IsImmuneToZombification:1}
+</code></pre><blockquote class="twitter-tweet"><p lang="ja" dir="ltr">弊鯖の生物学研究所では、安全なネザー生物（ストライダー、真紅の木、歪んだ木など）の研究の名目で予算を獲得し、地下では密かにホグリンのような危険なネザー生物を飼育している</p>&mdash; 狭間有事 (@Hazama_Yuji) <a href="https://twitter.com/Hazama_Yuji/status/1435996494587252738?ref_src=twsrc%5Etfw">September 9, 2021</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/h_ya58?ref_src=twsrc%5Etfw">@h_ya58</a> 誕生日おめでとう！！！！！</p>&mdash; ittekikun🌔 (@ittekikun) <a href="https://twitter.com/ittekikun/status/918974038138957825?ref_src=twsrc%5Etfw">October 13, 2017</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">このわるい研究はこういう研究所のこういう地下で行なわれています <a href="https://t.co/joIrKLWqay">pic.twitter.com/joIrKLWqay</a></p>&mdash; 狭間有事 (@Hazama_Yuji) <a href="https://twitter.com/Hazama_Yuji/status/1435995416986898438?ref_src=twsrc%5Etfw">September 9, 2021</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">おめでとうございます🎉🎉🎊🎈</p>&mdash; Zen (@zen_proust) <a href="https://twitter.com/zen_proust/status/918978482687713280?ref_src=twsrc%5Etfw">October 13, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<blockquote class="twitter-tweet"><p lang="und" dir="ltr">👏</p>&mdash; なおり (@bwiroan) <a href="https://twitter.com/bwiroan/status/919069064500088832?ref_src=twsrc%5Etfw">October 14, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">おめでとうございます! 🎊</p>&mdash; カエルさん (@unicroak) <a href="https://twitter.com/unicroak/status/919071485536362496?ref_src=twsrc%5Etfw">October 14, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">おめぽよだよぉ！なでなでごしごし</p>&mdash; つてと (@tsuteto) <a href="https://twitter.com/tsuteto/status/919076604424286208?ref_src=twsrc%5Etfw">October 14, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/h_ya58?ref_src=twsrc%5Etfw">@h_ya58</a> 誕生日おめでとう</p>&mdash; れもん(スク水杏bot (@_lem0n_) <a href="https://twitter.com/_lem0n_/status/919124224219873280?ref_src=twsrc%5Etfw">October 14, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p>ツイートを投稿してからわずか一日の間に、これだけの方々からおめでとうの言葉をいただきました。取るに足らない人間の自分ですが、こんなにたくさんの方から祝っていただけたのには感謝しかありません。本当にありがとうございました。</p>
-<p>肝心の年齢ですが、この辺から察してください……。</p>
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">まだみたいですね…</p>&mdash; はやぶさ (@h_ya58) <a href="https://twitter.com/h_ya58/status/919072466789572609?ref_src=twsrc%5Etfw">October 14, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">まだみたいですね…</p>&mdash; はやぶさ (@h_ya58) <a href="https://twitter.com/h_ya58/status/919072466789572609?ref_src=twsrc%5Etfw">October 14, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<h2 id="今までを振り返っていろいろ">今までを振り返っていろいろ</h2>
-<p>今まで、というと大変なスペースが必要になってくるので、ちょっと早いですがせっかくなので今年一年について思ったことなどを並べてみます。</p>
-<p>今年は夏にHelloMCのイベント運営に参加させていただいたことが印象深いです。当日は至らぬ点も多くたくさんご迷惑をおかけしましたが、ぼくにとってはとても有意義な経験となりました。具体的に言えば、主催を始めとするイベント企画の方々の熱意に直接触れられたことが、すごく良い刺激となりました。またこのような機会があるかは分かりませんが、どの道に進んでも活かせるものを学ばせてもらえたかなとは思います。ありがとうございました。（焼き肉楽しみにしています！）</p>
-<p>楽しかったイベントという意味では、4月の歌姫庭園12もメッチャ楽しかったです。実はオンリーイベントはこれが初参加だったのですが、コミケにはない会場内の和気あいあいとした雰囲気と運営との距離のほどよい近さが、とても良い空気だと感じました。コミュ障オタクなので特に誰々さんと交流したとかいうことはありませんが、参加者の皆さんの「アイマスが好き」という気持ちが各所に現れていて終日楽しんで回ることができました。<br>
-あ、もちろん夏コミも楽しかったよ！相変わらず戦場だったけど！</p>
-<p>振り返ってみると、なんだかんだと忙しかったけどその分得るものも大きかった年だったんじゃないでしょうか。夏休み明けからはリアルがメチャクチャ忙しく、かなりしんどかったですが、どうにか乗り切って生きています。来年には落ち着くといいな……。</p>
-<h2 id="次に向けていろいろ">次に向けていろいろ</h2>
-<p>来年一年は一旦ネットから離れて、きっちりリアルと向き合う時間が取りたいなと思っています。というのも、ちょっと今進路的にかなり不安定でありまして、そろそろ本腰を入れて頑張らないとヤバイなとうっすらと危機感を抱きつつある状態なのです。とはいえTwitterはいつものようにやります。呼吸です。</p>
-<p>来年以降については、正直全くイメージがわかないのですが、コツコツ技術力を高めていければなぁとはぼんやり思っているところです。今年一年で何人かの”つよい”方とお話させていただける機会がありましたが、やはり技術力がある程度ないと話にならないなと痛感しました。周りの環境頼りでは何も進まないということも念頭に置きつつ、自分でコレだと思える道を見つけられたら良いなと考えています。</p>
-<h2 id="まとめて">まとめて</h2>
-<p>もうちょっといろいろ書きたいことはあるんですが、うまくまとまらない上に、あんまり時間をかけていると中間考査が赤く染まってしまうのでこの辺にしておきます。</p>
+<p>無事に邪悪な研究所の内装を飾ることができました。</p>
+<h2 id="参考">参考</h2>
+<p>コマンド/データタグ - Minecraft Japan Wiki
+<a href="https://minecraftjapan.miraheze.org/wiki/%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BF%E3%82%B0">https://minecraftjapan.miraheze.org/wiki/%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BF%E3%82%B0</a></p>
 </div>
             </div>
         </div>
 
         <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+            <div class="layui-card single-card">
+                <h2 class="single-title">Relevant Topics</h2>
+                
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="https://www.heiki-hecchara.net/post/minecraft-forge-server-conoha-without-template/">
+                                <h3 class="">【旧ブログ記事】Conoha VPSでテンプレートを使わずにMinecraft Forge Serverを建ててみる</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2020-12-24</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/minecraft/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Minecraft</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/conoha/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Conoha</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/ubuntu/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Ubuntu</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                
+                <br />
+            </div>
             
 
             <div class="layui-card single-card">

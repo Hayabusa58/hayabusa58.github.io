@@ -6,10 +6,35 @@
     <description>Recent content in Posts on やぶさ家</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 14 Sep 2021 06:28:41 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 18 Sep 2021 01:08:13 +0900</lastBuildDate>
     
 	<atom:link href="https://www.heiki-hecchara.net/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Minecraft ホグリン/ピグリンをオーバーワールドで生存させる方法</title>
+      <link>https://www.heiki-hecchara.net/post/minecraft-hoglin/</link>
+      <pubDate>Sat, 18 Sep 2021 01:08:13 +0900</pubDate>
+      
+      <guid>https://www.heiki-hecchara.net/post/minecraft-hoglin/</guid>
+      <description>概要 最近身内でMinecraftのマルチサーバーを立ててちょこちょこ遊んでいます。
+住民の某Hくんが「怪しい研究所」みたいな施設を建てたので，中にホグリンやピグリンを閉じ込めて「こっそり飼育してる風」にしたら面白いんじゃね？ということで，オーバーワールドで彼らを生存させる方法について調べてみました。
+特殊な生物学的手法によりオーバーワールドでもゾグリンに変化しなくなったホグリン pic.twitter.com/kv0dMLfGsy
+&amp;mdash; はやぶさ (@h_ya58) September 9, 2021  これを実現するだけです。
+前提環境  Minecraft Java Edition 1.16.4 Minecraft内でコマンドが自由に使用できること  マルチではOP権限を保持していること シングルではワールド生成時に「チートを許可する」がオンになっていること    ※今回はMinecraft Forge導入下で検証しましたが，バニラ環境でも問題なく使用できるかと思います。
+ホグリンとピグリン ホグリンは，Minecraft JavaEdition 1.16から追加された敵対的MOBです。ネザーにのみスポーンし，プレイヤーを攻撃します。ダメージはさほどでもないのですが，特に足場の頼りないネザーではノックバック攻撃で溶岩ダイブしがちであり，なかなか手ごわい敵になっています。
+なおホグリンは敵対的MOBではありますがピースフルでもスポーンします(攻撃はしない)。
+ピグリンもホグリンと同じく1.16から追加されたMOBですが，こちらは一応「友好的」MOBとなっています。ただし，友好的なのはプレイヤーが金関連のアイテムを持っている時のみで，そうでなければ問答無用で攻撃してきます。
+ホグリンとピグリンのゾンビ化 ホグリン/ピグリンは，どちらもピースフルで生存可能です。ただし，オーバーワールドに連行してくると，15秒後に「ゾンビ化」(ホグリンはゾグリンに，ピグリンはゾンビピグリンになる)してしまい，いずれも元の姿をとどめません。
+この性質はオーバーワールドで彼らを展示(?)する上では厄介です。ですが，コマンドを使用すればこの仕様を回避することができます。
+Minecraftではエンティティ(生物)を召喚するための /summon というコマンドがあります。
+また，ゲーム内の様々なメタデータを扱うNBTタグというシステムがあります。 NBTタグはMOBひとつひとつに付与されており，当然ホグリン/ピグリンにも存在します。
+ホグリン/ピグリンに付与されているNBTタグで特徴的なものとして，IsImmuneToZombificationというものがあります。直訳すると「ゾンビ化耐性」のような感じでしょうか。 /summon  コマンドの実行時に，召喚するホグリン/ピグリンのIsImmuneToZombificationをTrue(ゲーム内では1)に設定してあげることにより，そのホグリン/ピグリンはオーバーワールドでもゾンビ化しなくなります。
+具体的には以下のようなコマンドとなります。
+/summon minecraft:hoglin ^ ^ ^ {IsImmuneToZombification:1} 弊鯖の生物学研究所では、安全なネザー生物（ストライダー、真紅の木、歪んだ木など）の研究の名目で予算を獲得し、地下では密かにホグリンのような危険なネザー生物を飼育している
+&amp;mdash; 狭間有事 (@Hazama_Yuji) September 9, 2021  このわるい研究はこういう研究所のこういう地下で行なわれています pic.twitter.com/joIrKLWqay
+&amp;mdash; 狭間有事 (@Hazama_Yuji) September 9, 2021  無事に邪悪な研究所の内装を飾ることができました。</description>
+    </item>
     
     <item>
       <title>ブログ移転しました</title>
