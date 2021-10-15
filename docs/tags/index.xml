@@ -6,11 +6,15 @@
     <description>Recent content in Tags on やぶさ家</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
+<<<<<<< HEAD
     <lastBuildDate>Tue, 21 Sep 2021 18:18:25 +0900</lastBuildDate>
+=======
+>>>>>>> aa7976bfbdb0fddf3638aba665b852c2cf32d4f5
     
 	<atom:link href="https://www.heiki-hecchara.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
+<<<<<<< HEAD
     <item>
       <title>DE3FS</title>
       <link>https://www.heiki-hecchara.net/tags/de3fs/</link>
@@ -128,5 +132,7 @@
       <description></description>
     </item>
     
+=======
+>>>>>>> aa7976bfbdb0fddf3638aba665b852c2cf32d4f5
   </channel>
 </rss>

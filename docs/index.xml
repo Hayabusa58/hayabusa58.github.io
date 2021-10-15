@@ -6,11 +6,11 @@
     <description>Recent content on やぶさ家</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 16 Sep 2021 21:44:06 +0900</lastBuildDate>
     
 	<atom:link href="https://www.heiki-hecchara.net/index.xml" rel="self" type="application/rss+xml" />
     
     
+<<<<<<< HEAD
     <item>
       <title>DEデミオの純正ナビにUSB/AUX端子を生やす</title>
       <link>https://www.heiki-hecchara.net/post/de3fs-aux/</link>
@@ -289,5 +289,7 @@ BIOSが起動しない - PCと解
 &amp;mdash; はやぶさ (@h_ya58) July 30, 2017  ！？起動した～！！！</description>
     </item>
     
+=======
+>>>>>>> aa7976bfbdb0fddf3638aba665b852c2cf32d4f5
   </channel>
 </rss>
