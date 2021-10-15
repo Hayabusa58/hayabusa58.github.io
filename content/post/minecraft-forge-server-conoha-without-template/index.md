@@ -1,7 +1,7 @@
 ---
 title: "【旧ブログ記事】Conoha VPSでテンプレートを使わずにMinecraft Forge Serverを建ててみる"
 date: 2020-12-24
-draft: true
+draft: false
 tags: ["旧ブログ記事", "Minecraft", "Conoha", "Ubuntu"]
 ---
 ```

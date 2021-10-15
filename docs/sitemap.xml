@@ -1,51 +1,44 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
+
   <url>
-<<<<<<< HEAD
     <loc>https://www.heiki-hecchara.net/tags/de3fs/</loc>
     <lastmod>2021-09-21T18:18:25+09:00</lastmod>
   </url>
-  
+
   <url>
     <loc>https://www.heiki-hecchara.net/post/de3fs-aux/</loc>
     <lastmod>2021-09-21T18:18:25+09:00</lastmod>
   </url>
-  
+
   <url>
     <loc>https://www.heiki-hecchara.net/post/</loc>
     <lastmod>2021-09-21T18:18:25+09:00</lastmod>
-=======
-    <loc>https://www.heiki-hecchara.net/categories/</loc>
->>>>>>> aa7976bfbdb0fddf3638aba665b852c2cf32d4f5
   </url>
-  
+
   <url>
     <loc>https://www.heiki-hecchara.net/tags/</loc>
-<<<<<<< HEAD
     <lastmod>2021-09-21T18:18:25+09:00</lastmod>
   </url>
-  
+
   <url>
     <loc>https://www.heiki-hecchara.net/tags/%E8%87%AA%E5%8B%95%E8%BB%8A/</loc>
     <lastmod>2021-09-21T18:18:25+09:00</lastmod>
   </url>
-  
+
   <url>
     <loc>https://www.heiki-hecchara.net/tags/minecraft/</loc>
     <lastmod>2021-09-18T01:08:13+09:00</lastmod>
   </url>
-  
+
   <url>
     <loc>https://www.heiki-hecchara.net/post/minecraft-hoglin/</loc>
     <lastmod>2021-09-18T01:08:13+09:00</lastmod>
-=======
->>>>>>> aa7976bfbdb0fddf3638aba665b852c2cf32d4f5
   </url>
-  
+
   <url>
     <loc>https://www.heiki-hecchara.net/</loc>
   </url>
-  
+
 </urlset>

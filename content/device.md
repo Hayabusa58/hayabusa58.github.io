@@ -1,7 +1,7 @@
 ---
 title: "使用端末"
 date: 2021-09-16T02:37:47+09:00
-draft: true
+draft: false
 ---
 
 ## 端末

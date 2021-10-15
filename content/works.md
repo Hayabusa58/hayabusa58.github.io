@@ -1,7 +1,7 @@
 ---
 title: "制作物"
 date: 2021-09-14T04:39:10+09:00
-draft: true
+draft: false
 ---
 
 ## 概要

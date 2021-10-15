@@ -1,7 +1,7 @@
 ---
 title: "ブログ移転しました"
 date: 2021-09-14T06:28:41+09:00
-draft: true
+draft: false
 tags: ["お知らせ", "雑記", "Hugo" ]
 ---
 

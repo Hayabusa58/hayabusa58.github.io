@@ -1,7 +1,7 @@
 ---
 title: "Minecraft ホグリン/ピグリンをオーバーワールドで生存させる方法"
 date: 2021-09-18T01:08:13+09:00
-draft: true
+draft: false
 tags: ["Minecraft"]
 ---
 

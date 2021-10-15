@@ -1,7 +1,7 @@
 ---
 title: "【旧ブログ記事】2017年の誕生日を迎えました"
 date: 2017-10-15
-draft: true
+draft: false
 tags: ["雑記","誕生日"]
 ---
 

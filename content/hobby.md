@@ -1,7 +1,7 @@
 ---
 title: "趣味"
 date: 2021-09-16T02:36:08+09:00
-draft: true
+draft: false
 ---
 
 ## 趣味

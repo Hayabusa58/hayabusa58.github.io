@@ -6,16 +6,15 @@
     <description>Recent content on やぶさ家</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    
+
 	<atom:link href="https://www.heiki-hecchara.net/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-<<<<<<< HEAD
+
+
     <item>
       <title>DEデミオの純正ナビにUSB/AUX端子を生やす</title>
       <link>https://www.heiki-hecchara.net/post/de3fs-aux/</link>
       <pubDate>Tue, 21 Sep 2021 18:18:25 +0900</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/post/de3fs-aux/</guid>
       <description>概要 私のデミオ(DE3FS型)には購入時から純正ナビがついていたのですが，AUX入力端子はついていませんでした。ただ，純正ナビ背面にUSB/AUX接続ケーブルを接続することで，割と簡単にAUX端子を増やせるとのこと。
 取付作業自体はそんなに難しくなさそうだったので，自分でつけてみました。
@@ -43,12 +42,12 @@ USB/AUXケーブルの接続先について DEデミオの純正ナビ(パイオ
 3. シフトコンソールカバーの取り外し シフトカバーが外れたら，その側面のシフトコンソールカバーを取り外します。
 まずシフトコンソールを留めている2つの両側のネジを外します。</description>
     </item>
-    
+
     <item>
       <title>Minecraft ホグリン/ピグリンをオーバーワールドで生存させる方法</title>
       <link>https://www.heiki-hecchara.net/post/minecraft-hoglin/</link>
       <pubDate>Sat, 18 Sep 2021 01:08:13 +0900</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/post/minecraft-hoglin/</guid>
       <description>概要 最近身内でMinecraftのマルチサーバーを立ててちょこちょこ遊んでいます。
 住民の某Hくんが「怪しい研究所」みたいな施設を建てたので，中にホグリンやピグリンを閉じ込めて「こっそり飼育してる風」にしたら面白いんじゃね？ということで，オーバーワールドで彼らを生存させる方法について調べてみました。
@@ -68,57 +67,57 @@ Minecraftではエンティティ(生物)を召喚するための /summon とい
 &amp;mdash; 狭間有事 (@Hazama_Yuji) September 9, 2021  このわるい研究はこういう研究所のこういう地下で行なわれています pic.twitter.com/joIrKLWqay
 &amp;mdash; 狭間有事 (@Hazama_Yuji) September 9, 2021  無事に邪悪な研究所の内装を飾ることができました。</description>
     </item>
-    
+
     <item>
       <title>免責事項</title>
       <link>https://www.heiki-hecchara.net/disclaimer/</link>
       <pubDate>Thu, 16 Sep 2021 21:44:06 +0900</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/disclaimer/</guid>
       <description>免責事項 本ブログに掲載された内容によって生じた損害に対する一切の責任を負いません。
 本サイトではできる限り正確な情報を提供するように心がけていますが，掲載した情報の正確性や 安全性を保証するものではありません。
 また，本サイトに掲載したリンクの他サイトで提供される情報やサービスについても責任を負いません。</description>
     </item>
-    
+
     <item>
       <title>プライバシーポリシー</title>
       <link>https://www.heiki-hecchara.net/privacy-policy/</link>
       <pubDate>Thu, 16 Sep 2021 21:43:47 +0900</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/privacy-policy/</guid>
       <description>本サイトにおける個人情報の取扱について記載します。
 アクセス解析ツールについて 本サイトでは，Googleアナリティクスによりアクセス情報を解析しています。
 アクセス情報の解析にはCookieを使用していますが，アクセス情報の収集はCookieを無効にすることで拒否できま す。
 Google社のデータ収集・処理の仕組みについては，こちらをご覧ください。</description>
     </item>
-    
+
     <item>
       <title>使用端末</title>
       <link>https://www.heiki-hecchara.net/device/</link>
       <pubDate>Thu, 16 Sep 2021 02:37:47 +0900</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/device/</guid>
       <description>端末 私が現在使用している端末の紹介ページです。
 メインPC(自作PC) 2021年1月頃に旧PCから一部パーツを流用して自作しました。
  スペック(長いので折りたたみ)  CPU: AMD Ryzen 5 3600 MB: ASUS B550 TUF GAMING PLUS RAM: Silicon Power DDR4-2133 SP008GBLFU213B02 8GBx2 GPU: 玄人志向 GTX960-E2GB SSD: Kingston SSD KLEVV NEO 240GB HDD: Western Digital HDD WD30EZRZ 3TB PSU: Corsair CX650M 80PLUS ODD: LITEON IHAS324-17 Case: Fractal Design Focus G White CS6819FD-CA-FOCUS-WT-W Case Fan: Cooler Master SickleFlow 120 White MFX-B2DN-18NPW-R1 FN1411 OS: Microsoft Windows 10 Education(大学からの貸与ライセンス)  明らかにGPUだけ時代遅れでボトルネックになってるので早く買い換えなきゃ……と思いつつ， そこまでハードなゲームしないからいいか～と放置し続けてきたものの， 最近明らかにグラフィック性能不足を感じることが増えてきたのでいよいよ潮時か。 でもなかなかグラボの値段が下がらないんですよね。  サブPC(ノート)  スペック(長いので折りたたみ)  Vendor: Lenovo Model Number: ThinkPad X13 Gen 1 CPU: AMD Ryzen 5 Pro 4650U RAM: 16GB OS: Windows10 Home  事務作業から軽い開発まで色々こなせる万能マシン。 薄くて軽いので持ち運び用途に大活躍しています。  サブサブPC(ノート)  スペック(長いので折りたたみ)  Vendor: Lenovo Model Number: ThinkPad X220 CPU: intel COre i5-2540M RAM: 8GB OS: Xubuntu  先代のサブノートのOSを入れ替えました。 ちょっとLinuxの実機が使いたくなったときに便利です。 動作はサクサクですが物理的に割と重いので主に自宅用。  サーバー機(自作PC) Minecraftサーバー・ファイルサーバ・VPNサーバーなどとして使用中。</description>
     </item>
-    
+
     <item>
       <title>趣味</title>
       <link>https://www.heiki-hecchara.net/hobby/</link>
       <pubDate>Thu, 16 Sep 2021 02:36:08 +0900</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/hobby/</guid>
       <description>趣味 好きなコンテンツ 「～シリーズ」と書いてるものは概ね履修済みです。 単体の作品名を書いてあるものはそれ以外の作品をまだ履修していないことが多いです。
 思いついたまま記入しているので順不同です。
 アニメ  『戦姫絶唱シンフォギア』シリーズ 『魔法少女リリカルなのは』・『魔法少女リリカルなのはA&amp;rsquo;s』 『ガールズ＆パンツァー』シリーズ 『三ツ星カラーズ』 『ステラのまほう』 『NEW GAME!』 『終末のイゼッタ』 『ブラック・ブレット』 『Angel Beats!』 『Charlotte』 『ハイスクール・フリート』 『ストライクウィッチーズ』シリーズ 『ログ・ホライズン』シリーズ 『涼宮ハルヒの憂鬱』  ゲーム  『ウィッチャー3 ワイルドハント』 『Civilization Ⅴ』 『RimWorld』 『Minecraft』 『Papers, Please』 『龍が如く Zero』 『Euro Track Simulator』 『Just Cause 3』 『Grand Theft Auto Ⅴ』 『Golf it!』  小説  『ウィッチャー』シリーズ 『キノの旅』シリーズ 『涼宮ハルヒの憂鬱』シリーズ 『翡翠城市』  漫画  『現実もたまには嘘を付く』 『迷惑メールで出会えたら』 『今日から始める幼なじみ』 『ひとり暮らし、熱を出す。恋を知る。』 『好きな子が眼鏡を忘れた』 『三ツ星カラーズ』 『ブラック・ジャック』シリーズ  推しキャラクター  花譜(VSinger) 天神子兎音(VTuber) 立花響(『戦姫絶唱シンフォギア』) 青山琴葉(『三ツ星カラーズ』) 秋山優花里(『ガールズ＆パンツァー』) 響/ヴェールヌイ(『艦隊これくしょん』)  </description>
     </item>
-    
+
     <item>
       <title>ブログ移転しました</title>
       <link>https://www.heiki-hecchara.net/post/new-blog-aisatsu/</link>
       <pubDate>Tue, 14 Sep 2021 06:28:41 +0900</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/post/new-blog-aisatsu/</guid>
       <description>概要 ブログを移転した挨拶＆前のブログの記事の扱いについて
 お久しぶりです 心機一転，ブログを移転しました。 ついでに色々とプロフィールページを作り込んでしまいました。
@@ -133,24 +132,24 @@ Hugoですが，使い慣れたエディタ＋Markdownでサクサク書ける�
 今度はサボらずちょっとずつ記事をかけるといいなぁ。
 こういうのは一気にやらないとすぐやる気なくなると思い， 徹夜して一晩で完成させた結果めちゃくちゃ眠いです。 ではまた……。</description>
     </item>
-    
+
     <item>
       <title>制作物</title>
       <link>https://www.heiki-hecchara.net/works/</link>
       <pubDate>Tue, 14 Sep 2021 04:39:10 +0900</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/works/</guid>
       <description>概要 飽きっぽい性格なので，ほとんど公開できるクオリティになる前に終わっていますが， いくつか制作したソフトウェア等を掲載しておきます。
 Discord Bot CraftCord Bot  制作: 2020年12月 Python製のDiscord Botで，MinecraftサーバとDiscordを連携させる (Discordにコマンドを入力するとMinecraftのサーバコマンドが送られるようにする等) 機能を実装しています。 バニラサーバ，またはMinecraft Forge製のサーバで動作確認済みです。 CraftBukkitやSpigotサーバでの動作は未テストです。 諸事情により現在ソースを公開していないのですが，必要であればお渡ししますので お気軽にご連絡ください。  [紹介記事リンク]→準備中
 Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジェネレーターHugoを使用して作成したWebサイトです。 テーマとしてertuil氏のerblogを一部改変したものを使用させていただいています。  Copyright (c) 2021 Hayabusa Released under the MIT license https://opensource.org/licenses/mit-license.php Windows Application GetNowplayingfromiTunes  制作: 2017年12月 C#製。iTunesで再生中の曲情報を取得し，ウィンドウ上に表示した上で，クリップボードにコピーするボタンを表示するアプリです。 対応環境  iTunes 12.6.0.100   https://github.com/Hayabusa58/GetNowplayingfromiTunes  Minecraft MOD はるか昔に作った物たちです。改めて見ると習作レベルのものしかなくてかなり恥ずかしいですが， 製作者の責任として，現在ソースを公開していて，一応完成しているものは載せておきます。
 剣を持っていると歩行速度が上昇するMOD  制作: 2016年9月 対応環境  Minecraft 1.7.10 Minecraft Forge #1558   名前のとおりです。 https://github.</description>
     </item>
-    
+
     <item>
       <title>私について</title>
       <link>https://www.heiki-hecchara.net/about/</link>
       <pubDate>Tue, 14 Sep 2021 01:07:35 +0900</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/about/</guid>
       <description>最終更新日: 2021年9月14日
 名前 Hayabusa(@Hayabusa58)
@@ -159,21 +158,21 @@ Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジ�
 居住地  2000年から2008年まで: 兵庫県神戸市 2000年から2018年まで: 東京都狛江市 2019年以降: 茨城県つくば市  学歴  2016年3月: 都内某公立中学卒 2019年3月: 都内某私立高校普通科卒 2019年4月: 筑波大学入学  職歴 アルバイト  2019年3月: 物流倉庫内ピッキング業務に従事 2019年11月以降: 筑波大学内某研究室にて研究補助業務に従事  インターン  2021年9月: ニフティ株式会社 1dayインターン エンジニアコース  資格  2016年: 実用英語技能検定 2級 2016年: ITパスポート 2021年: 普通自動車免許(MT)  現主所属 筑波大学 情報学群 知識情報・図書館学類
 その他活動歴  2016年-2019年: Minecraft非公式日本ユーザーフォーラム 管理チーム(モデレータ)  現在は閉鎖されています。    技術的関心 興味・関心 コンピューター関連全般，情報セキュリティ，情報教育 など</description>
     </item>
-    
+
     <item>
       <title>Career</title>
       <link>https://www.heiki-hecchara.net/career/career/</link>
       <pubDate>Tue, 14 Sep 2021 00:51:14 +0900</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/career/career/</guid>
       <description></description>
     </item>
-    
+
     <item>
       <title>【旧ブログ記事】Conoha VPSでテンプレートを使わずにMinecraft Forge Serverを建ててみる</title>
       <link>https://www.heiki-hecchara.net/post/minecraft-forge-server-conoha-without-template/</link>
       <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/post/minecraft-forge-server-conoha-without-template/</guid>
       <description>※この記事は旧ブログからの移行記事です。 一部を除き，投稿当時からほぼ内容は改変していません。 この記事はConoha Advent Calender 2020 12/22の記事です． (12/22に登録された方が投稿されなかったため，この枠を使用させていただきました)
 はじめに お久しぶりです． このブログを更新するのもかなり久しぶりですね．最後の記事投稿が2年前ということに気づいてびっくりしています．
@@ -200,12 +199,12 @@ Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジ�
 メモリの設定について サーバーの設定で一番迷ったのはここでした． マルチ鯖未経験の自分にはどのくらいのメモリがあれば快適に遊べるのかさっぱりわかりませんでした……
 結論から言うと，「身内と」「数個のModを導入して」プレイする程度であれば2GBで十分だと感じました． ここでいう「身内」とは，最大ログイン人数6人くらいを指します．6人はそれぞれ回線の良し悪しもまちまちで，おのおののPCスペックにもかなり差がありましたが3，概ね快適に遊べています． Modは前述の通りサーバー側にいくつか軽いものを入れただけです．</description>
     </item>
-    
+
     <item>
       <title>【旧ブログ記事】某国立大公募推薦入試を受験した話</title>
       <link>https://www.heiki-hecchara.net/post/university-examination/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/post/university-examination/</guid>
       <description>※この記事は旧ブログからの移行記事です。 一部を除き，投稿当時からほぼ内容は改変していません。 この記事は 受験生AdventCalendar 15日目の記事となります。
 どうも、お久しぶりです。大学に合格した当日にTwitterアカウントを凍結された男です。
@@ -240,12 +239,12 @@ Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジ�
 別に高校1年、2年のときに入試を考えてこれらのことをやっていたわけではないのですが、結果的に「自分の研究を社会に還元するための活動を行っていた」というふうに繋げて大学にアピールすることができました。そして何よりも、大学に入ってこういうことをしたい、そのためにこうしてきた、ということを素直な気持ちで伝えることができたこと、これが最も大きい勝因だったのではないかと考えています。
 まとめ とあるAO入試で合格した先輩が「AOとか推薦とかって基本は見せ方が大事なんだよな」と言っていました。合格した今になって、この言葉をまさにそうだなと痛感しているところです。17～18年間、普通に生きてきた人なら、誰でもいろいろな経験や取り柄を持っています。大切なのはいかにそういう散らばったピースを集め、加工し、大学に「この子を取りたいな」と思わせるところまで持っていくか、ということなのだと思います。</description>
     </item>
-    
+
     <item>
       <title>【旧ブログ記事】2017年の誕生日を迎えました</title>
       <link>https://www.heiki-hecchara.net/post/2017-birthday/</link>
       <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/post/2017-birthday/</guid>
       <description>※この記事は旧ブログからの移行記事です。 一部を除き，投稿当時からほぼ内容は改変していません。 実は中間考査四日前だったりするので、手短に書きます。
 たくさんのおめでとうに感謝 ふと気づいたらまた一年年齢を重ねてました。ぱちぱちぱち
@@ -259,12 +258,12 @@ Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジ�
 &amp;mdash; つてと (@tsuteto) October 14, 2017  @h_ya58 誕生日おめでとう
 &amp;mdash; れもん(スク水杏bot (@_lem0n_) October 14, 2017  ツイートを投稿してからわずか一日の間に、これだけの方々からおめでとうの言葉をいただきました。取るに足らない人間の自分ですが、こんなにたくさんの方から祝っていただけたのには感謝しかありません。本当にありがとうございました。</description>
     </item>
-    
+
     <item>
       <title>【旧ブログ記事】パソコン壊れたと思ったらメモリの差し込みが甘かっただけという話</title>
       <link>https://www.heiki-hecchara.net/post/pc-fixing/</link>
       <pubDate>Mon, 31 Jul 2017 00:00:00 +0000</pubDate>
-      
+
       <guid>https://www.heiki-hecchara.net/post/pc-fixing/</guid>
       <description>※この記事は旧ブログからの移行記事です。 一部を除き，投稿当時からほぼ内容は改変していません。 ひとまずホッとしたので、反省を込めて経緯をメモっておきます。
 パソコンが起動しなーい なんだかPCの調子が悪くなったのが7/25の19時頃でした。
@@ -288,8 +287,6 @@ BIOSが起動しない - PCと解
 おわーッ！ダメ元でメモリ刺し直したらパソコン起動したッ！ pic.twitter.com/j5GVQ818lW
 &amp;mdash; はやぶさ (@h_ya58) July 30, 2017  ！？起動した～！！！</description>
     </item>
-    
-=======
->>>>>>> aa7976bfbdb0fddf3638aba665b852c2cf32d4f5
+
   </channel>
 </rss>
