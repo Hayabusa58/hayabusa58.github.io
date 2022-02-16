@@ -101,7 +101,7 @@
 
         
             
-                <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/about/">About me</a></li>
+                <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/about/">About</a></li>
             
                 <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/works/">Works</a></li>
             
@@ -120,7 +120,7 @@
 
                 
                     
-                        <dd><a href="https://www.heiki-hecchara.net/about/">About me</a></dd>
+                        <dd><a href="https://www.heiki-hecchara.net/about/">About</a></dd>
                     
                         <dd><a href="https://www.heiki-hecchara.net/works/">Works</a></dd>
                     
@@ -181,7 +181,7 @@ layui.use('element', function(){
 
                 </blockquote>
                 <div class="layui-card-body markdown-body single-content">
-                    <pre><code>※この記事は旧ブログからの移行記事です。
+                    <pre tabindex="0"><code>※この記事は旧ブログからの移行記事です。
 一部を除き，投稿当時からほぼ内容は改変していません。
 </code></pre><p>この記事は<a href="https://qiita.com/advent-calendar/2020/conoha">Conoha Advent Calender 2020 12/22</a>の記事です．
 (12/22に登録された方が投稿されなかったため，この枠を使用させていただきました)</p>
@@ -245,24 +245,24 @@ layui.use('element', function(){
 <h3 id="必要なソフトウェアのダウンロードインストール">必要なソフトウェアのダウンロード&amp;インストール</h3>
 <p>マイクラ鯖に必要なソフトウェアをインストールしていきます．といっても，必要なものはOpenJDKと，MinecraftForgeの本体，セッション永続化のためのscreenくらいです．</p>
 <p>まずOpenJDKをインストールしました．</p>
-<pre><code>$ sudo apt install openjdk-1.8.0-jre
+<pre tabindex="0"><code>$ sudo apt install openjdk-1.8.0-jre
 </code></pre><p>これでOK．</p>
 <p>続いてForge本体をダウンロードしていきます．マイクラ鯖を設置するディレクトリを作成し，そこに移動します．<br>
 自分は~/Minecraft/ForgeSV/&lt;バージョン別のディレクトリ&gt;/に設置しました<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>．</p>
 <p>予め，操作しているPCのブラウザを開き，Minecraft Forgeの公式サイトに移動します．<br>
 ダウンロードしたいバージョンの「Installer」をクリックすると，ファイルが落ちてくる前に広告が表示されます．ここで，右上に出てくる「Skip」ボタンを右クリックして，リンクをコピーしておきます．これがForge本体の直リンクになります．</p>
 <p>続いてssh接続をしているコンソールに戻り，以下のコマンドを入力して実行します．</p>
-<pre><code>$ wget https://files.minecraftforge.net/.../&lt;ダウンロードしたいバージョン&gt;
+<pre tabindex="0"><code>$ wget https://files.minecraftforge.net/.../&lt;ダウンロードしたいバージョン&gt;
 </code></pre><p>しばらく待つと，Forgeのインストーラーがダウンロードされます．「Forge-&lt;バージョン&gt;-installer.jar」というファイル名になるようです．</p>
 <p>次にForgeサーバーをインストールします．</p>
-<pre><code>$ java -jar Forge-&lt;バージョン&gt;-installer.jar --installServer
+<pre tabindex="0"><code>$ java -jar Forge-&lt;バージョン&gt;-installer.jar --installServer
 </code></pre><p>カレントディレクトリに，サーバーに必要な様々なフォルダやファイルが生成されます．インストールが終わったら，サーバーファイル本体(「forge-&lt;バージョン&gt;-.jar」の名前のファイル」が存在することを確認しましょう．</p>
 <p>インストール完了後，インストーラーとそのログファイルは削除しても大丈夫です．</p>
 <p>最後に，セッション永続化のためのscreenコマンドをインストールしておきます．</p>
-<pre><code>$ sudo apt install screen
+<pre tabindex="0"><code>$ sudo apt install screen
 </code></pre><p>サーバーの起動
 インストールが終わったら，サーバーを起動します．まず，以下のコマンドを適当なテキストエディタでスクリプトファイルに書き込みます．</p>
-<pre><code>java -Xmx2000M -Xms2000M -jar forge-&lt;バージョン&gt;-.jar
+<pre tabindex="0"><code>java -Xmx2000M -Xms2000M -jar forge-&lt;バージョン&gt;-.jar
 </code></pre><p>自分はこれをstart.shとして保存しました．
 起動スクリプトができたら，これを叩いてみます．</p>
 <p>すると，初回起動なのでeula.txtに同意してくださいというメッセージとともにサーバーが終了します．
@@ -272,20 +272,20 @@ eula.txtを熟読し，同意できればfalseをtrueと書き換えて保存し
 <p>サーバーは起動できましたが，このままでは外部からログインできません．ポートを開放してあげる必要があります． Ubuntuの場合，以下のコマンドでポートを開放できます．<br>
 Minecraftが使用するポートは25565です．後述の，rconを有効にするには25575も開放する必要がありますが，通常は必要ありません．</p>
 <p>まず，ファイアウォールを起動します．</p>
-<pre><code>$ sudo ufw enable
+<pre tabindex="0"><code>$ sudo ufw enable
 </code></pre><p>続いてポートの開放と再読み込み．</p>
-<pre><code>$ sudo ufw allow 25565
+<pre tabindex="0"><code>$ sudo ufw allow 25565
 $ sudo ufw reload
 $ sudo ufw status
 </code></pre><p>ポート番号25565が許可されていたら成功です．</p>
 <h3 id="セッションの永続化">セッションの永続化</h3>
 <p>このままではターミナルを終了するとサーバーも落ちてしまうので，起動スクリプトを少し改造してセッションを永続化します．自分は以下のように設定しました．</p>
-<pre><code>$ screen -AmdS mc java -Xmx2000M -Xms2000M -jar forge-&lt;バージョン&gt;-.jar
+<pre tabindex="0"><code>$ screen -AmdS mc java -Xmx2000M -Xms2000M -jar forge-&lt;バージョン&gt;-.jar
 </code></pre><p>このスクリプトを実行すると，一見なにも起こりませんが，裏でマイクラ鯖(mcと名付けられたセッション)が起動しています．セッションに移動するためには</p>
-<pre><code>$ screen -r mc
+<pre tabindex="0"><code>$ screen -r mc
 </code></pre><p>とします．これでマイクラ鯖のセッションにアタッチできるので，自由にコマンド等も実行できます．</p>
 <p>セッションから離れる(デタッチする)には，単に</p>
-<pre><code>$ screen -r
+<pre tabindex="0"><code>$ screen -r
 </code></pre><p>とします．</p>
 <p>ここまでできたら，自分でクライアントを立ち上げて接続できるかテストします．</p>
 <h3 id="modの導入">Modの導入</h3>
@@ -296,7 +296,7 @@ $ sudo ufw status
 <h3 id="serverpropertiesの編集">server.propertiesの編集</h3>
 <p>サーバーディレクトリに生成される，server.propertiesを編集することで，マイクラの設定の変更ができます．
 実際に変更した項目は以下の通り．</p>
-<pre><code># rconの許可(詳細は後述します)
+<pre tabindex="0"><code># rconの許可(詳細は後述します)
 enable-rcon=true
 
 # rconパスワードの設定
@@ -331,7 +331,7 @@ spawn-protection=0
 そこで，まずDiscordとマイクラを連携する手段を探しましたが，適当なものがありませんでした．そこで，Pythonで簡単にDiscord Botが作れるdiscord.pyというライブラリを用いて，自前でBotを作ってみました．</p>
 <p>……本当はここでBotの詳細を紹介する予定だったのですが，まだ公開できるほど完成度が高くないのでここでは概要の紹介にとどめます．</p>
 <p>動作イメージはこんな感じ．</p>
-<p>今実装しているのは，現在の鯖の状況を確認する$statusコマンド，リロードができる$reload'コマンド，サーバーを停止できる'$stop'コマンドなどです</p>
+<p>今実装しているのは，現在の鯖の状況を確認する$statusコマンド，リロードができる$reload&rsquo;コマンド，サーバーを停止できる'$stop&rsquo;コマンドなどです</p>
 <p>今後，自動バックアップ機能やロギング機能等も実装する予定です．</p>
 <h2 id="終わりに">終わりに</h2>
 <p>軽めの記事にしようと思っていたのに，予想以上に長くなってしまいました．</p>
@@ -345,22 +345,22 @@ spawn-protection=0
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>参加者全員にModの導入方法をレクチャーするのが面倒だったため． <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>参加者全員にModの導入方法をレクチャーするのが面倒だったため．&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>もちろん最初から長期契約にして，使わなくなったら別用途に転用，でもいいと思います <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>もちろん最初から長期契約にして，使わなくなったら別用途に転用，でもいいと思います&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>上はRTX2000番台を積んだn十万円のゲーミングPC，下は普通のノーパソとかなりの幅 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>上はRTX2000番台を積んだn十万円のゲーミングPC，下は普通のノーパソとかなりの幅&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
-<p>とかいいながら最初めんどくさくてずっとrootでやってました．ごめんなさい…… <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>とかいいながら最初めんどくさくてずっとrootでやってました．ごめんなさい……&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:5" role="doc-endnote">
-<p>適当に作ったけど，これが適切な場所なのかはわからないです． <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>適当に作ったけど，これが適切な場所なのかはわからないです．&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:6" role="doc-endnote">
-<p>rconで使用するポートは25575なので，別途開放する必要あり <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>rconで使用するポートは25575なので，別途開放する必要あり&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -458,6 +458,39 @@ spawn-protection=0
             <div class="layui-card single-card">
                 <h2 class="single-title">Recent Posts</h2>
             
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/de3fs-mount-dashboard/">
+                        <h3 class="">DEデミオのダッシュボードにスマホホルダーをマウントする</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-10-16</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e8%87%aa%e5%8b%95%e8%bb%8a/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">自動車</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/de3fs/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">DE3FS</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
                 
                 <div style="margin-left: 10px;">
                     <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
@@ -591,43 +624,6 @@ spawn-protection=0
     
         <a href="https://www.heiki-hecchara.net/tags/ubuntu/">
             <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Ubuntu</span>
-        </a>
-    
-    
-</h3>
-
-                    </blockquote>
-                </div>
-                
-                <div style="margin-left: 10px;">
-                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
-                    <a href="https://www.heiki-hecchara.net/post/university-examination/">
-                        <h3 class="">【旧ブログ記事】某国立大公募推薦入試を受験した話</h3>
-                    </a>
-                    <h3 style="margin-top:10px; margin-bottom:10px"> 
-    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
-    <span>2018-12-15</span>
-
-    
-    
-
-    
-
-    
-    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
-    
-
-    
-        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
-        </a>
-    
-        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
-        </a>
-    
-        <a href="https://www.heiki-hecchara.net/tags/%e5%a4%a7%e5%ad%a6/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">大学</span>
         </a>
     
     

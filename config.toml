@@ -5,6 +5,7 @@ theme = 'erblog'
 DefaultContentLanguage = "ja"
 publishDir = "docs"
 canonifyurls = true
+ignoreErrors = ["error-remote-getjson"]
 
 googleAnalytics = ""
 [params]
@@ -12,15 +13,16 @@ googleAnalytics = ""
   badge = "red"
   index_posts_num = 5
   google_search = true
-  bio = "<p>はやぶさ(@Hayabusa)のホームページです。「やぶさ家」と書いて「やぶさか」と読みます(そのまんま)。</p> <p><br>ブログ記事：Posts <br>私について：About me<br> 制作物について：Works<br> <br>サイト名の由来：「はやぶさ」→「やぶさか」→「やぶさ家」</p><br> This site is Japanese only, sorry!"
+  bio = "<p>はやぶさ(@Hayabusa)のブログ兼ホームページです。「やぶさ家」と書いて「やぶさか」と読みます。</p> <p><br>ブログ記事：Posts <br>私について：About<br> 制作物について：Works<br> <br>サイト名の由来：「はやぶさ」→「やぶさか」→「やぶさ家」</p><br> This site is Japanese only, sorry!"
   logo = "/icon.jpg"
   portrait = "/icon.jpg"
   customCSS = ["/css/custom.css"]
   description = "Undergraduate student on infomatics"
+  amazonJpAffiliate = "heikihecchara-22"
 
 [[menu.main]]
   identifier = "about"
-  name = "About me"
+  name = "About"
   url = "/about/"
   weight = 15
 
@@ -69,6 +71,7 @@ googleAnalytics = ""
   name = "免責事項"
   url = "/disclaimer/"
   weight = 2
+
 
 #[taxonomies]
 #tag = "タグ"

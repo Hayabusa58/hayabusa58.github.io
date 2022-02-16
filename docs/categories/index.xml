@@ -5,10 +5,6 @@
     <link>https://www.heiki-hecchara.net/categories/</link>
     <description>Recent content in Categories on やぶさ家</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-jp</language>
-    
-	<atom:link href="https://www.heiki-hecchara.net/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>ja-jp</language><atom:link href="https://www.heiki-hecchara.net/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
