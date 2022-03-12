@@ -3,23 +3,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>やぶさ家 - ブログ移転しました </title>
+    <title>やぶさ家 - Github Pagesに変更をpushしても反映されないときの対処法 </title>
 
     
-    <meta content="お知らせ, 雑記, Hugo" name="keywords">
+    <meta content="Github Pages, Hugo, サイト運営" name="keywords">
     
-    <meta content="やぶさ家 - 概要 ブログを移転した挨拶＆前のブログの記事の扱いについて
-お久しぶりです 心機一転，ブログを移転しました。 ついでに色々とプロフィールページを作り込んでしまいました。
-なんで移行したかという話ですが，理由としては
- はてブロで独自ドメイン使えないのがモヤっとした はてブロをWebから編集するのが地味に面倒 任意のページをメニューバーに固定してアクセスしやすくしたかった もちっと軽量なページにしたかった  などがあります。
-移行先は，前から気になっていた静的サイトジェネレーターHugoを使いました。 Go言語製ということで，Goｾﾞﾝｾﾞﾝﾜｶﾗﾝのに大丈夫か？と思っていたんですが結構なんとかなりました。
-テーマはertuil氏のerblogを一部改変したものを使用させていただいています。主にフォント周りと，一部見出しのバランスの調整，適宜項目名の和訳などをしています。
-Hugoですが，使い慣れたエディタ＋Markdownでサクサク書けるのと，コマンド一発でデプロイできるのが本当助かりますね。めちゃくちゃ快適。
-ホスティング場所はGithub Pagesにしました。簡単に独自ドメインも割り当てられていい感じです。
-前のブログの記事について 前のブログの記事ですが，できるだけ元の公開日時を変えないようにしつつ移動を(大した数ないしコピペかな……)していきたいと思います。
-前ブログから移行した記事については分かりやすいようにタイトルに「【旧ブログ記事】」とつける予定です。
-今度はサボらずちょっとずつ記事をかけるといいなぁ。
-こういうのは一気にやらないとすぐやる気なくなると思い， 徹夜して一晩で完成させた結果めちゃくちゃ眠いです。 ではまた……。" name="description">
+    <meta content="やぶさ家 - 概要 このサイトは静的サイトジェネレータであるHugoとGithub Pagesを組み合わせて公開しています。 普段はHugoで生成されたファイルを公開リポジトリにpushするだけで変更内容がすぐに反映されるのですが， 先日なぜかpushした内容が公開サイトに反映されないという現象が起きたため，その対処法をまとめました。
+結論から言うとGithubサポートに反映されない旨を送信するとすぐに対応してくれます。
+参考: このサイトのリポジトリ
+問題の詳細 上記のリポジトリを見ていただければ分かる通り，masterブランチにGithub Pagesを紐付けて使用しています。
+通常であればmasterに生成されたファイルをpushするだけですぐにサイトに更新が反映されます。 ところが，コミットはリポジトリに反映されているのに，Github Pagesの方に反映されていないという 問題が起きました。
+Github Pagesを適用させたリポジトリでは，リポジトリトップページの右下「Environment」の 「Github Pages」というボタンをクリックすると，どのコミットが現在適用されているかが 確認できます。
+今回の場合，リポジトリトップページから確認できるコミット履歴は最新のものになっているのに， このGithub PagesのHistoryには一つ前のコミットが適用されているままになっている， という状況でした。
+カスタムドメインの問題？ 私はこのサイトにGithub Pagesの設定で独自ドメインを適用しているので，最初はその問題を疑ったのですが， 独自ドメイン適用前のURL(https://***.github.io)を確認しても最新版が反映されていなかったので， どうやら独自ドメインは関係なさそうです。
+単純にビルドに時間がかかっているだけの可能性もありそうなので，とりあえず丸一日放置してみました。
+Githubサポートへ問い合わせる 丸一日放置してみたものの，反映される気配はありません。
+Webで検索してみたところ，やや古い情報ですがGithubサポートへ連絡したら改善したという 記事を見つけました。
+この方の場合，連絡しなくても数時間待てば反映されたということなので自分が遭遇している問題と 少し違うような気がしましたが，一応サポートへ投げてみることにしました。
+サポート画面は割と深い階層にあり探すのに多少苦労しました。
+右上のユーザーアイコンからヘルプをクリックし，
+一番下の「サポートへ連絡」をクリック。
+トピックを選択する画面になるので，Help with Github Pagesをクリック。
+さらに詳細な内容を選ぶ必要があるのですが，この問題に適用できそうなカテゴリはありません。 一番近そうな「Help with a custom domain」を選んでおきました。
+やっとここで問い合わせ内容を入力できます。 機械翻訳を使いつつ以下のような英文を送りました。
+ Hello.
+I have built a site on Github pages using the static site generator Hugo. I committed some changes to the site yesterday, but the changes are not reflected in the site." name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
@@ -133,8 +141,132 @@ layui.use('element', function(){
             <div class="layui-card single-card">
                 <br />
                 <blockquote class="self-elem-quote  markdown-body single-title" >
-                    <h1>ブログ移転しました</h1>
+                    <h1>Github Pagesに変更をpushしても反映されないときの対処法</h1>
                     <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-12</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/github-pages/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Github Pages</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/hugo/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Hugo</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e3%82%b5%e3%82%a4%e3%83%88%e9%81%8b%e5%96%b6/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">サイト運営</span>
+        </a>
+    
+    
+</h3>
+
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <h2 id="概要">概要</h2>
+<p>このサイトは静的サイトジェネレータであるHugoとGithub Pagesを組み合わせて公開しています。
+普段はHugoで生成されたファイルを公開リポジトリにpushするだけで変更内容がすぐに反映されるのですが，
+先日なぜかpushした内容が公開サイトに反映されないという現象が起きたため，その対処法をまとめました。</p>
+<p>結論から言うとGithubサポートに反映されない旨を送信するとすぐに対応してくれます。</p>
+<p>参考: <a href="https://github.com/Hayabusa58/hayabusa58.github.io">このサイトのリポジトリ</a></p>
+<h2 id="問題の詳細">問題の詳細</h2>
+<p>上記のリポジトリを見ていただければ分かる通り，masterブランチにGithub Pagesを紐付けて使用しています。</p>
+<p>通常であればmasterに生成されたファイルをpushするだけですぐにサイトに更新が反映されます。
+ところが，コミットはリポジトリに反映されているのに，Github Pagesの方に反映されていないという
+問題が起きました。</p>
+<p>Github Pagesを適用させたリポジトリでは，リポジトリトップページの右下「Environment」の
+「Github Pages」というボタンをクリックすると，どのコミットが現在適用されているかが
+確認できます。</p>
+<p><img src="./github-pages-1.png" alt=""></p>
+<p><img src="./github-pages-2.png" alt=""></p>
+<p>今回の場合，リポジトリトップページから確認できるコミット履歴は最新のものになっているのに，
+このGithub PagesのHistoryには一つ前のコミットが適用されているままになっている，
+という状況でした。</p>
+<h3 id="カスタムドメインの問題">カスタムドメインの問題？</h3>
+<p>私はこのサイトにGithub Pagesの設定で独自ドメインを適用しているので，最初はその問題を疑ったのですが，
+独自ドメイン適用前のURL(<code>https://***.github.io</code>)を確認しても最新版が反映されていなかったので，
+どうやら独自ドメインは関係なさそうです。</p>
+<p>単純にビルドに時間がかかっているだけの可能性もありそうなので，とりあえず丸一日放置してみました。</p>
+<h3 id="githubサポートへ問い合わせる">Githubサポートへ問い合わせる</h3>
+<p>丸一日放置してみたものの，反映される気配はありません。</p>
+<p>Webで検索してみたところ，やや古い情報ですがGithubサポートへ連絡したら改善したという
+<a href="https://qiita.com/kaba_U1/items/9627c58da9d66c6c1388">記事</a>を見つけました。</p>
+<p>この方の場合，連絡しなくても数時間待てば反映されたということなので自分が遭遇している問題と
+少し違うような気がしましたが，一応サポートへ投げてみることにしました。</p>
+<p>サポート画面は割と深い階層にあり探すのに多少苦労しました。</p>
+<p><img src="./github-pages-3.png" alt=""></p>
+<p>右上のユーザーアイコンからヘルプをクリックし，</p>
+<p><img src="./github-pages-4.jpg" alt=""></p>
+<p>一番下の「サポートへ連絡」をクリック。</p>
+<p><img src="./github-pages-5.jpg" alt=""></p>
+<p>トピックを選択する画面になるので，Help with Github Pagesをクリック。</p>
+<p><img src="./github-pages-6.jpg" alt=""></p>
+<p>さらに詳細な内容を選ぶ必要があるのですが，この問題に適用できそうなカテゴリはありません。
+一番近そうな「Help with a custom domain」を選んでおきました。</p>
+<p><img src="./github-pages-7.jpg" alt=""></p>
+<p>やっとここで問い合わせ内容を入力できます。
+機械翻訳を使いつつ以下のような英文を送りました。</p>
+<blockquote>
+<p>Hello.</p>
+<p>I have built a site on Github pages using the static site generator Hugo.
+I committed some changes to the site yesterday, but the changes are not reflected in the site.</p>
+<p>I have a custom domain set up, so at first I suspected it was a DNS problem with the domain. However, when I access the URL of the domain
+before the change, the change is not reflected, so I think it is probably not a domain problem.</p>
+<p>My site is here.</p>
+<p><a href="https://hayabusa58.github.io">https://hayabusa58.github.io</a></p>
+<p>The repository is here.</p>
+<p><a href="https://github.com/Hayabusa58/hayabusa58.github.io">https://github.com/Hayabusa58/hayabusa58.github.io</a></p>
+<p>I&rsquo;d be happy to help.</p>
+</blockquote>
+<p>要約:</p>
+<blockquote>
+<p>Github Pagesを使ってHugoで作ったサイトをホストしてるんですが，昨日コミットした内容が反映されないんです。</p>
+<p>カスタムドメインも使っているのでその問題かと思ったけど違うみたい。</p>
+<p>確認お願いします。(リンク略)</p>
+</blockquote>
+<h3 id="サポートからの返信と対応">サポートからの返信と対応</h3>
+<p>翌日の夕方頃，メールでこんな返信が返ってきました。</p>
+<blockquote>
+<p>Taking a look I do see where your latest build got stuck and did not complete.</p>
+<p>I have taken care of triggering a rebuild of your site, and verified that it completed and that your published website is reflecting the changes in our latest commit.</p>
+</blockquote>
+<p>意訳:</p>
+<blockquote>
+<p>君のサイトのビルドがスタックして完了しなかったみたい。</p>
+<p>手動でリビルドしたら最新のコミットが反映されたみたいだから確認してみてくれる？</p>
+</blockquote>
+<p>その言葉通り，ちゃんとサイトへの更新が反映されておりました。よかったよかった。</p>
+<p>「Thank you very much!」的な文を送っておきました。</p>
+<h2 id="おわりに">おわりに</h2>
+<p>Github Pagesのリポジトリはおそらく星の数ほどあるでしょうに，すぐにこんな丁寧な対応をしてくれて
+正直びっくりしています。Github，すごい。</p>
+</div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+            <div class="layui-card single-card">
+                <h2 class="single-title">Relevant Topics</h2>
+                
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="https://www.heiki-hecchara.net/post/new-blog-aisatsu/">
+                                <h3 class="">ブログ移転しました</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
     <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
     <span>2021-09-14</span>
 
@@ -158,112 +290,6 @@ layui.use('element', function(){
     
         <a href="https://www.heiki-hecchara.net/tags/hugo/">
             <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Hugo</span>
-        </a>
-    
-    
-</h3>
-
-                </blockquote>
-                <div class="layui-card-body markdown-body single-content">
-                    <h2 id="概要">概要</h2>
-<p>ブログを移転した挨拶＆前のブログの記事の扱いについて</p>
-<h2 id="お久しぶりです">お久しぶりです</h2>
-<p>心機一転，ブログを移転しました。
-ついでに色々とプロフィールページを作り込んでしまいました。</p>
-<p>なんで移行したかという話ですが，理由としては</p>
-<ul>
-<li>はてブロで独自ドメイン使えないのがモヤっとした</li>
-<li>はてブロをWebから編集するのが地味に面倒</li>
-<li>任意のページをメニューバーに固定してアクセスしやすくしたかった</li>
-<li>もちっと軽量なページにしたかった</li>
-</ul>
-<p>などがあります。</p>
-<p>移行先は，前から気になっていた静的サイトジェネレーターHugoを使いました。
-Go言語製ということで，Goｾﾞﾝｾﾞﾝﾜｶﾗﾝのに大丈夫か？と思っていたんですが結構なんとかなりました。</p>
-<p>テーマはertuil氏の<a href="https://github.com/ertuil/erblog/blob/master/LICENSE.md">erblog</a>を一部改変したものを使用させていただいています。主にフォント周りと，一部見出しのバランスの調整，適宜項目名の和訳などをしています。</p>
-<p>Hugoですが，使い慣れたエディタ＋Markdownでサクサク書けるのと，コマンド一発でデプロイできるのが本当助かりますね。めちゃくちゃ快適。</p>
-<p>ホスティング場所はGithub Pagesにしました。簡単に独自ドメインも割り当てられていい感じです。</p>
-<h2 id="前のブログの記事について">前のブログの記事について</h2>
-<p>前のブログの記事ですが，できるだけ元の公開日時を変えないようにしつつ移動を(大した数ないしコピペかな……)していきたいと思います。</p>
-<p>前ブログから移行した記事については分かりやすいようにタイトルに「【旧ブログ記事】」とつける予定です。</p>
-<p>今度はサボらずちょっとずつ記事をかけるといいなぁ。</p>
-<pre tabindex="0"><code>こういうのは一気にやらないとすぐやる気なくなると思い，
-徹夜して一晩で完成させた結果めちゃくちゃ眠いです。
-</code></pre><p>ではまた……。</p>
-</div>
-            </div>
-        </div>
-
-        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
-            
-            <div class="layui-card single-card">
-                <h2 class="single-title">Relevant Topics</h2>
-                
-                	
-                    <div style="margin-left: 10px;">
-                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
-                            <a href="https://www.heiki-hecchara.net/post/university-examination/">
-                                <h3 class="">【旧ブログ記事】某国立大公募推薦入試を受験した話</h3>
-                            </a>
-                            
-                            <h3 style="margin-top:10px; margin-bottom:10px"> 
-    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
-    <span>2018-12-15</span>
-
-    
-    
-
-    
-
-    
-    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
-    
-
-    
-        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
-        </a>
-    
-        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
-        </a>
-    
-        <a href="https://www.heiki-hecchara.net/tags/%e5%a4%a7%e5%ad%a6/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">大学</span>
-        </a>
-    
-    
-</h3>
-
-                        </blockquote>
-                    </div>
-                	
-                    <div style="margin-left: 10px;">
-                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
-                            <a href="https://www.heiki-hecchara.net/post/2017-birthday/">
-                                <h3 class="">【旧ブログ記事】2017年の誕生日を迎えました</h3>
-                            </a>
-                            
-                            <h3 style="margin-top:10px; margin-bottom:10px"> 
-    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
-    <span>2017-10-15</span>
-
-    
-    
-
-    
-
-    
-    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
-    
-
-    
-        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
-        </a>
-    
-        <a href="https://www.heiki-hecchara.net/tags/%e8%aa%95%e7%94%9f%e6%97%a5/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">誕生日</span>
         </a>
     
     

@@ -6,7 +6,35 @@
     <description>Recent content on やぶさ家</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sat, 16 Oct 2021 07:45:03 +0900</lastBuildDate><atom:link href="https://www.heiki-hecchara.net/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Mar 2022 18:53:43 +0900</lastBuildDate><atom:link href="https://www.heiki-hecchara.net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Github Pagesに変更をpushしても反映されないときの対処法</title>
+      <link>https://www.heiki-hecchara.net/post/github-pages-sync-problem/</link>
+      <pubDate>Sat, 12 Mar 2022 18:53:43 +0900</pubDate>
+      
+      <guid>https://www.heiki-hecchara.net/post/github-pages-sync-problem/</guid>
+      <description>概要 このサイトは静的サイトジェネレータであるHugoとGithub Pagesを組み合わせて公開しています。 普段はHugoで生成されたファイルを公開リポジトリにpushするだけで変更内容がすぐに反映されるのですが， 先日なぜかpushした内容が公開サイトに反映されないという現象が起きたため，その対処法をまとめました。
+結論から言うとGithubサポートに反映されない旨を送信するとすぐに対応してくれます。
+参考: このサイトのリポジトリ
+問題の詳細 上記のリポジトリを見ていただければ分かる通り，masterブランチにGithub Pagesを紐付けて使用しています。
+通常であればmasterに生成されたファイルをpushするだけですぐにサイトに更新が反映されます。 ところが，コミットはリポジトリに反映されているのに，Github Pagesの方に反映されていないという 問題が起きました。
+Github Pagesを適用させたリポジトリでは，リポジトリトップページの右下「Environment」の 「Github Pages」というボタンをクリックすると，どのコミットが現在適用されているかが 確認できます。
+今回の場合，リポジトリトップページから確認できるコミット履歴は最新のものになっているのに， このGithub PagesのHistoryには一つ前のコミットが適用されているままになっている， という状況でした。
+カスタムドメインの問題？ 私はこのサイトにGithub Pagesの設定で独自ドメインを適用しているので，最初はその問題を疑ったのですが， 独自ドメイン適用前のURL(https://***.github.io)を確認しても最新版が反映されていなかったので， どうやら独自ドメインは関係なさそうです。
+単純にビルドに時間がかかっているだけの可能性もありそうなので，とりあえず丸一日放置してみました。
+Githubサポートへ問い合わせる 丸一日放置してみたものの，反映される気配はありません。
+Webで検索してみたところ，やや古い情報ですがGithubサポートへ連絡したら改善したという 記事を見つけました。
+この方の場合，連絡しなくても数時間待てば反映されたということなので自分が遭遇している問題と 少し違うような気がしましたが，一応サポートへ投げてみることにしました。
+サポート画面は割と深い階層にあり探すのに多少苦労しました。
+右上のユーザーアイコンからヘルプをクリックし，
+一番下の「サポートへ連絡」をクリック。
+トピックを選択する画面になるので，Help with Github Pagesをクリック。
+さらに詳細な内容を選ぶ必要があるのですが，この問題に適用できそうなカテゴリはありません。 一番近そうな「Help with a custom domain」を選んでおきました。
+やっとここで問い合わせ内容を入力できます。 機械翻訳を使いつつ以下のような英文を送りました。
+ Hello.
+I have built a site on Github pages using the static site generator Hugo. I committed some changes to the site yesterday, but the changes are not reflected in the site.</description>
+    </item>
+    
     <item>
       <title>DEデミオのダッシュボードにスマホホルダーをマウントする</title>
       <link>https://www.heiki-hecchara.net/post/de3fs-mount-dashboard/</link>
@@ -88,7 +116,7 @@ USB/AUXケーブルの接続先について DEデミオの純正ナビ(パイオ
       <description>概要 最近身内でMinecraftのマルチサーバーを立ててちょこちょこ遊んでいます。
 住民の某Hくんが「怪しい研究所」みたいな施設を建てたので，中にホグリンやピグリンを閉じ込めて「こっそり飼育してる風」にしたら面白いんじゃね？ということで，オーバーワールドで彼らを生存させる方法について調べてみました。
 特殊な生物学的手法によりオーバーワールドでもゾグリンに変化しなくなったホグリン pic.twitter.com/kv0dMLfGsy
-&amp;mdash; はやぶさ (@h_ya58) September 9, 2021  これを実現するだけです。
+&amp;mdash; はやぶさ（休暇） (@h_ya58) September 9, 2021  これを実現するだけです。
 前提環境  Minecraft Java Edition 1.16.4 Minecraft内でコマンドが自由に使用できること  マルチではOP権限を保持していること シングルではワールド生成時に「チートを許可する」がオンになっていること    ※今回はMinecraft Forge導入下で検証しましたが，バニラ環境でも問題なく使用できるかと思います。
 ホグリンとピグリン ホグリンは，Minecraft JavaEdition 1.16から追加された敵対的MOBです。ネザーにのみスポーンし，プレイヤーを攻撃します。ダメージはさほどでもないのですが，特に足場の頼りないネザーではノックバック攻撃で溶岩ダイブしがちであり，なかなか手ごわい敵になっています。
 なおホグリンは敵対的MOBではありますがピースフルでもスポーンします(攻撃はしない)。
@@ -274,15 +302,15 @@ Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジ�
       <guid>https://www.heiki-hecchara.net/post/2017-birthday/</guid>
       <description>※この記事は旧ブログからの移行記事です。 一部を除き，投稿当時からほぼ内容は改変していません。 実は中間考査四日前だったりするので、手短に書きます。
 たくさんのおめでとうに感謝 ふと気づいたらまた一年年齢を重ねてました。ぱちぱちぱち
-&amp;mdash; はやぶさ (@h_ya58) October 13, 2017  本当はこんな記事を投稿するつもりはなかったのでもう日付は変わっちゃってますが、実は昨日10月14日が誕生日でした。
+&amp;mdash; はやぶさ（休暇） (@h_ya58) October 13, 2017  本当はこんな記事を投稿するつもりはなかったのでもう日付は変わっちゃってますが、実は昨日10月14日が誕生日でした。
 ぱちぱちぱち！🤣🤣🤣
 &amp;mdash; カ (@8_8cm_FlaK) October 13, 2017  @h_ya58 誕生日おめでとう！！！！！
-&amp;mdash; ittekikun🌕 (@ittekikun) October 13, 2017  おめでとうございます🎉🎉🎊🎈
+&amp;mdash; ittekikun🌓 (@ittekikun) October 13, 2017  おめでとうございます🎉🎉🎊🎈
 &amp;mdash; Zen (@zen_proust) October 13, 2017  👏
 &amp;mdash; なおり (@bwiroan) October 14, 2017  おめでとうございます! 🎊
 &amp;mdash; カエルさん (@unicroak) October 14, 2017  おめぽよだよぉ！なでなでごしごし
 &amp;mdash; つてと (@tsuteto) October 14, 2017  @h_ya58 誕生日おめでとう
-&amp;mdash; れもん(杏bot (@_lem0n_) October 14, 2017  ツイートを投稿してからわずか一日の間に、これだけの方々からおめでとうの言葉をいただきました。取るに足らない人間の自分ですが、こんなにたくさんの方から祝っていただけたのには感謝しかありません。本当にありがとうございました。</description>
+&amp;mdash; 5日目 (@_lem0n_) October 14, 2017  ツイートを投稿してからわずか一日の間に、これだけの方々からおめでとうの言葉をいただきました。取るに足らない人間の自分ですが、こんなにたくさんの方から祝っていただけたのには感謝しかありません。本当にありがとうございました。</description>
     </item>
     
     <item>

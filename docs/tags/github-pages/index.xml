@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hugo on やぶさ家</title>
-    <link>https://www.heiki-hecchara.net/tags/hugo/</link>
-    <description>Recent content in Hugo on やぶさ家</description>
+    <title>Github Pages on やぶさ家</title>
+    <link>https://www.heiki-hecchara.net/tags/github-pages/</link>
+    <description>Recent content in Github Pages on やぶさ家</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sat, 12 Mar 2022 18:53:43 +0900</lastBuildDate><atom:link href="https://www.heiki-hecchara.net/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Mar 2022 18:53:43 +0900</lastBuildDate><atom:link href="https://www.heiki-hecchara.net/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Github Pagesに変更をpushしても反映されないときの対処法</title>
       <link>https://www.heiki-hecchara.net/post/github-pages-sync-problem/</link>
@@ -33,26 +33,6 @@ Webで検索してみたところ，やや古い情報ですがGithubサポー�
 やっとここで問い合わせ内容を入力できます。 機械翻訳を使いつつ以下のような英文を送りました。
  Hello.
 I have built a site on Github pages using the static site generator Hugo. I committed some changes to the site yesterday, but the changes are not reflected in the site.</description>
-    </item>
-    
-    <item>
-      <title>ブログ移転しました</title>
-      <link>https://www.heiki-hecchara.net/post/new-blog-aisatsu/</link>
-      <pubDate>Tue, 14 Sep 2021 06:28:41 +0900</pubDate>
-      
-      <guid>https://www.heiki-hecchara.net/post/new-blog-aisatsu/</guid>
-      <description>概要 ブログを移転した挨拶＆前のブログの記事の扱いについて
-お久しぶりです 心機一転，ブログを移転しました。 ついでに色々とプロフィールページを作り込んでしまいました。
-なんで移行したかという話ですが，理由としては
- はてブロで独自ドメイン使えないのがモヤっとした はてブロをWebから編集するのが地味に面倒 任意のページをメニューバーに固定してアクセスしやすくしたかった もちっと軽量なページにしたかった  などがあります。
-移行先は，前から気になっていた静的サイトジェネレーターHugoを使いました。 Go言語製ということで，Goｾﾞﾝｾﾞﾝﾜｶﾗﾝのに大丈夫か？と思っていたんですが結構なんとかなりました。
-テーマはertuil氏のerblogを一部改変したものを使用させていただいています。主にフォント周りと，一部見出しのバランスの調整，適宜項目名の和訳などをしています。
-Hugoですが，使い慣れたエディタ＋Markdownでサクサク書けるのと，コマンド一発でデプロイできるのが本当助かりますね。めちゃくちゃ快適。
-ホスティング場所はGithub Pagesにしました。簡単に独自ドメインも割り当てられていい感じです。
-前のブログの記事について 前のブログの記事ですが，できるだけ元の公開日時を変えないようにしつつ移動を(大した数ないしコピペかな……)していきたいと思います。
-前ブログから移行した記事については分かりやすいようにタイトルに「【旧ブログ記事】」とつける予定です。
-今度はサボらずちょっとずつ記事をかけるといいなぁ。
-こういうのは一気にやらないとすぐやる気なくなると思い， 徹夜して一晩で完成させた結果めちゃくちゃ眠いです。 ではまた……。</description>
     </item>
     
   </channel>
