@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.heiki-hecchara.net/tags/obsidian/</loc>
+    <lastmod>2022-10-03T22:48:39+09:00</lastmod>
+  </url><url>
+    <loc>https://www.heiki-hecchara.net/post/obsidian-live-sync/</loc>
+    <lastmod>2022-10-03T22:48:39+09:00</lastmod>
+  </url><url>
+    <loc>https://www.heiki-hecchara.net/post/</loc>
+    <lastmod>2022-10-03T22:48:39+09:00</lastmod>
+  </url><url>
+    <loc>https://www.heiki-hecchara.net/tags/</loc>
+    <lastmod>2022-10-03T22:48:39+09:00</lastmod>
+  </url><url>
+    <loc>https://www.heiki-hecchara.net/</loc>
+    <lastmod>2022-10-03T22:48:39+09:00</lastmod>
+  </url><url>
     <loc>https://www.heiki-hecchara.net/tags/github-pages/</loc>
     <lastmod>2022-03-12T18:53:43+09:00</lastmod>
   </url><url>
@@ -9,15 +24,6 @@
     <lastmod>2022-03-12T18:53:43+09:00</lastmod>
   </url><url>
     <loc>https://www.heiki-hecchara.net/tags/hugo/</loc>
-    <lastmod>2022-03-12T18:53:43+09:00</lastmod>
-  </url><url>
-    <loc>https://www.heiki-hecchara.net/post/</loc>
-    <lastmod>2022-03-12T18:53:43+09:00</lastmod>
-  </url><url>
-    <loc>https://www.heiki-hecchara.net/tags/</loc>
-    <lastmod>2022-03-12T18:53:43+09:00</lastmod>
-  </url><url>
-    <loc>https://www.heiki-hecchara.net/</loc>
     <lastmod>2022-03-12T18:53:43+09:00</lastmod>
   </url><url>
     <loc>https://www.heiki-hecchara.net/tags/%E3%82%B5%E3%82%A4%E3%83%88%E9%81%8B%E5%96%B6/</loc>

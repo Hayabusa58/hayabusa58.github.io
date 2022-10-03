@@ -1,0 +1,565 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>やぶさ家 - ObsidianのSelf-hosted LiveSyncプラグインをVPSで使う </title>
+
+    
+    <meta content="Obsidian" name="keywords">
+    
+    <meta content="やぶさ家 - 要約 この記事では，MarkDownエディタ「Obsidian」のSelf-hosted LiveSyncプラグインのデータベースサーバーをVPS(Conoha)で使用する方法を記載しています。
+Self-hosted LiveSyncのデータベースをVPS上で構築から本題なので，そこまでは読み飛ばしていただいて大丈夫です。
+なお，こちらはあくまで趣味の範疇の記事であり，内容には十分注意していますが，誤りが含まれている可能性があります。
+このサイトにはコメント欄は設けていないので，質問やご指摘はTwitterまでお寄せいただければと思います。
+まえがき お久しぶりです。
+ブログに書きたいことはあったんですが気力がついてこず，永遠に放置していました。
+久々にちゃんと書く時間＆気力が戻ってきたので更新します。
+さて，私はしばらく前から調べたことや自分で得た知見，考えたことを積極的にメモするようにしているのですが，そこで使用するメモツールとして，以前はデバイス間同期機能が優秀なOnenoteを使用していました。
+しかし，使っていくとOnenoteの動作のもっさり感・日本語への対応が微妙感・UIに今一つ馴染めない感・Microsoftにすべてのデータを預けている不安感などなどのデメリットを感じるようになったため，今回ObsidianというMarkDownエディタに移行しました。
+Obsidianはざっくり言うとMarkDownエディタですが，ファイル間のリンクがスムーズに行えるため，ファイルの集合が一つの連結したデータベースとなるというメリットがあります。この連結は人間の脳内の思考がつながっているのをイメージしているとのこと。
+もちろんエディタとしての機能も非常に優秀で，動作も軽量なため今のところ満足して使っています。
+Obsidian本体の紹介については他に多くの方がすでに書いてくださっているのでそちらに譲りますが，その他にも多くの便利な機能がありますので，興味のある方はぜひ調べてみてください。(周りにユーザーが少なくてちょっと悲しい)
+私が導入にあたって参考にさせてもらった記事を以下に掲載しておきます。
+Obsidianは最高のマークダウン『メモ』アプリである
+https://pouhon.net/obsidian-introduction/5666/
+私は先述のメリットに加え，もともとMarkDown記法になじんでいたことや，データの実体がただの.mdファイルになるので，完全にローカルな環境にデータを保存することになるので特定の企業に依存することがないということ1に魅力を感じたため使い始めました。
+さて，Obsidianを導入したのはいいのですが，先述の通りObsidianで編集するファイルはただの.mdファイルですので，特に設定をしない場合普通にローカルストレージに保存されるだけになります。
+私はメインPCに加えてサブのノートPCやスマホやiPadでも完全に同じデータを編集したかったので，何らかの方法で端末間同期を実現する必要があります。
+端末間同期方法の調査 ObsidianはMarkdownファイルをVaultという単位で管理しているので，要はこのVault内のファイルを複数端末でうまく同期できるようになればいいみたいです。
+調べてみると，この端末間同期にはかなりいろいろやり方があるみたいでややこしくなっていました。その詳細については以下の記事に詳しくまとめてくださっているのでそちらをご覧ください。
+Obsidianの複数端末同期方法まとめ (Mac/Windows/iOS/Android)
+https://pouhon.net/obsidian-sync/6796/
+私はMacを持っていないので，同期したい端末はWindows・iOS・Andoroidになります。この3種類の端末間でVaultを同期する方法は大きく分けて
+ Obsidian Syncという公式の同期機能を利用する(有料) Self-hosted LiveSyncプラグインを利用する Gitプラグインを利用し，Githubにファイルを保管する  の3つがあります。(導入が簡単な順に並べました)
+このうち，1については1月当たり約1000円の費用が発生する他，Obsidian公式のサーバにデータを保管するので，他社のサーバに依存することになり，本末転倒な気がしたのでやめました。
+3については，Gitに対して特に抵抗があるわけではないのですが，ファイルを編集するたびにcommit &amp; pushの手間が発生するのは面倒くさく，Onenoteのようにシームレスに同期をしたいということでこちらも却下。
+残ったのは2のSelf-hosted LiveSyncプラグインを利用する方法です。
+Self-hosted LiveSync
+https://github.com/vrtmrz/obsidian-livesync/blob/main/README_ja.md
+こちらは，Obsidianのコミュニティプラグイン「Self-hosted LiveSync」を使用するもので，自分でデータベースサーバを用意し，各Markdownファイルの情報をサーバを通じて各端末と同期するという方式のようです2。
+データベースサーバを用意する手間はかかりますが，自前のサーバ上にデータを置け，かつ同期も非常にスムーズに行えるとのことで，今回はこちらの方法を採用することにしました。
+Self-hosted LiveSyncのデータベースをVPS上で構築 さて，Self-hosted LiveSyncの公式ドキュメントでは，データベースサーバを手軽に構築する方法としてIBM Cloudantをおすすめしていました3が，IBM Cloudantは無料枠では1GBまでしかデータを保存できないようです。
+MarkDownファイルにテキストだけ書いていく人ならこれで十分そうですが，私はファイルにスクショの画像ファイルを張り込む(正確には画像ファイルへのリンクを貼る)ことが多く，Self-hosted LiveSyncではVault内にあるファイルまで同期するため，将来的なIBM Cloudantの容量に不安を感じ4，別の手段を取ることに。
+そこで以前契約したVPSが余っていることを思い出し，こちらにデータベースサーバを構築することにしました。
+なお使用したVPSはConoha VPS，OSはUbuntu 20.04です。
+Couch DBのインストール Self-hosted LiveSyncはCouch DBというデータベースを使用します。
+自前のサーバにCouch DBを構築する手順は先述のSelf-hosted LiveSyncの公式ドキュメントに案内があります。" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+
+    
+
+    
+
+    
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVXNZTWGXB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KVXNZTWGXB');
+</script>
+
+    
+
+
+    
+
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/layui/css/layui.css">
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/self/css/default.css">
+    <script src=" /layui/layui.js"></script>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" async href="https://www.heiki-hecchara.net/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="https://www.heiki-hecchara.net/self/css/gallery.css">
+
+    
+    
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/css/custom.css">
+    
+
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js" integrity="sha256-h2tMEmhemR2IN4wbbdNjj9LaDIjzwk2hralQwfJmBOE=" crossorigin="anonymous"></script></head>
+
+<body>
+    
+    <header class="layui-header layui-bg-cyan">
+
+    
+        <a href=""><img src="https://www.heiki-hecchara.net/icon.jpg" class="layui-nav-img" style="margin-left:10px;margin-top:-10px"></a>
+    
+    
+    <a class="nav-self-logo" href="https://www.heiki-hecchara.net/">
+        やぶさ家
+    </a>
+
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/post/">Posts</a></li>
+        
+
+        
+            
+                <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/about/">About</a></li>
+            
+                <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/works/">Works</a></li>
+            
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                
+                <dd><a href="https://www.heiki-hecchara.net/post/">Posts</a></dd>
+                
+
+                
+                    
+                        <dd><a href="https://www.heiki-hecchara.net/about/">About</a></dd>
+                    
+                        <dd><a href="https://www.heiki-hecchara.net/works/">Works</a></dd>
+                    
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    
+
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="self-elem-quote  markdown-body single-title" >
+                    <h1>ObsidianのSelf-hosted LiveSyncプラグインをVPSで使う</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-10-03</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/obsidian/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Obsidian</span>
+        </a>
+    
+    
+</h3>
+
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <h2 id="要約">要約</h2>
+<p>この記事では，MarkDownエディタ「Obsidian」のSelf-hosted LiveSyncプラグインのデータベースサーバーをVPS(Conoha)で使用する方法を記載しています。</p>
+<p><a href="#self-hosted-livesync%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%82%92vps%E4%B8%8A%E3%81%A7%E6%A7%8B%E7%AF%89">Self-hosted LiveSyncのデータベースをVPS上で構築</a>から本題なので，そこまでは読み飛ばしていただいて大丈夫です。</p>
+<p>なお，こちらはあくまで趣味の範疇の記事であり，内容には十分注意していますが，誤りが含まれている可能性があります。</p>
+<p>このサイトにはコメント欄は設けていないので，質問やご指摘は<a href="https://twitter.com/h_ya58">Twitter</a>までお寄せいただければと思います。</p>
+<h2 id="まえがき">まえがき</h2>
+<p>お久しぶりです。</p>
+<p>ブログに書きたいことはあったんですが気力がついてこず，永遠に放置していました。</p>
+<p>久々にちゃんと書く時間＆気力が戻ってきたので更新します。</p>
+<p>さて，私はしばらく前から調べたことや自分で得た知見，考えたことを積極的にメモするようにしているのですが，そこで使用するメモツールとして，以前はデバイス間同期機能が優秀なOnenoteを使用していました。</p>
+<p>しかし，使っていくとOnenoteの動作のもっさり感・日本語への対応が微妙感・UIに今一つ馴染めない感・Microsoftにすべてのデータを預けている不安感などなどのデメリットを感じるようになったため，今回ObsidianというMarkDownエディタに移行しました。</p>
+<p>Obsidianはざっくり言うとMarkDownエディタですが，ファイル間のリンクがスムーズに行えるため，ファイルの集合が一つの連結したデータベースとなるというメリットがあります。この連結は人間の脳内の思考がつながっているのをイメージしているとのこと。</p>
+<p>もちろんエディタとしての機能も非常に優秀で，動作も軽量なため今のところ満足して使っています。</p>
+<p>Obsidian本体の紹介については他に多くの方がすでに書いてくださっているのでそちらに譲りますが，その他にも多くの便利な機能がありますので，興味のある方はぜひ調べてみてください。(周りにユーザーが少なくてちょっと悲しい)</p>
+<p>私が導入にあたって参考にさせてもらった記事を以下に掲載しておきます。</p>
+<p>Obsidianは最高のマークダウン『メモ』アプリである<br>
+<a href="https://pouhon.net/obsidian-introduction/5666/">https://pouhon.net/obsidian-introduction/5666/</a></p>
+<p>私は先述のメリットに加え，もともとMarkDown記法になじんでいたことや，データの実体がただの.mdファイルになるので，完全にローカルな環境にデータを保存することになるので特定の企業に依存することがないということ<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>に魅力を感じたため使い始めました。</p>
+<p>さて，Obsidianを導入したのはいいのですが，先述の通りObsidianで編集するファイルはただの.mdファイルですので，特に設定をしない場合普通にローカルストレージに保存されるだけになります。</p>
+<p>私はメインPCに加えてサブのノートPCやスマホやiPadでも完全に同じデータを編集したかったので，何らかの方法で端末間同期を実現する必要があります。</p>
+<h2 id="端末間同期方法の調査">端末間同期方法の調査</h2>
+<p>ObsidianはMarkdownファイルをVaultという単位で管理しているので，要はこのVault内のファイルを複数端末でうまく同期できるようになればいいみたいです。</p>
+<p>調べてみると，この端末間同期にはかなりいろいろやり方があるみたいでややこしくなっていました。その詳細については以下の記事に詳しくまとめてくださっているのでそちらをご覧ください。</p>
+<p>Obsidianの複数端末同期方法まとめ (Mac/Windows/iOS/Android)<br>
+<a href="https://pouhon.net/obsidian-sync/6796/">https://pouhon.net/obsidian-sync/6796/</a></p>
+<p>私はMacを持っていないので，同期したい端末はWindows・iOS・Andoroidになります。この3種類の端末間でVaultを同期する方法は大きく分けて</p>
+<ol>
+<li>Obsidian Syncという公式の同期機能を利用する(有料)</li>
+<li>Self-hosted LiveSyncプラグインを利用する</li>
+<li>Gitプラグインを利用し，Githubにファイルを保管する</li>
+</ol>
+<p>の3つがあります。(導入が簡単な順に並べました)</p>
+<p>このうち，1については1月当たり約1000円の費用が発生する他，Obsidian公式のサーバにデータを保管するので，他社のサーバに依存することになり，本末転倒な気がしたのでやめました。</p>
+<p>3については，Gitに対して特に抵抗があるわけではないのですが，ファイルを編集するたびにcommit &amp; pushの手間が発生するのは面倒くさく，Onenoteのようにシームレスに同期をしたいということでこちらも却下。</p>
+<p>残ったのは2のSelf-hosted LiveSyncプラグインを利用する方法です。</p>
+<p>Self-hosted LiveSync<br>
+<a href="https://github.com/vrtmrz/obsidian-livesync/blob/main/README_ja.md">https://github.com/vrtmrz/obsidian-livesync/blob/main/README_ja.md</a></p>
+<p>こちらは，Obsidianのコミュニティプラグイン「Self-hosted LiveSync」を使用するもので，自分でデータベースサーバを用意し，各Markdownファイルの情報をサーバを通じて各端末と同期するという方式のようです<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
+<p>データベースサーバを用意する手間はかかりますが，自前のサーバ上にデータを置け，かつ同期も非常にスムーズに行えるとのことで，今回はこちらの方法を採用することにしました。</p>
+<h2 id="self-hosted-livesyncのデータベースをvps上で構築">Self-hosted LiveSyncのデータベースをVPS上で構築</h2>
+<p>さて，Self-hosted LiveSyncの公式ドキュメントでは，データベースサーバを手軽に構築する方法としてIBM Cloudantをおすすめしていました<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>が，IBM Cloudantは無料枠では1GBまでしかデータを保存できないようです。</p>
+<p>MarkDownファイルにテキストだけ書いていく人ならこれで十分そうですが，私はファイルにスクショの画像ファイルを張り込む(正確には画像ファイルへのリンクを貼る)ことが多く，Self-hosted LiveSyncではVault内にあるファイルまで同期するため，将来的なIBM Cloudantの容量に不安を感じ<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>，別の手段を取ることに。</p>
+<p>そこで以前契約したVPSが余っていることを思い出し，こちらにデータベースサーバを構築することにしました。</p>
+<p>なお使用したVPSはConoha VPS，OSはUbuntu 20.04です。</p>
+<h3 id="couch-dbのインストール">Couch DBのインストール</h3>
+<p>Self-hosted LiveSyncはCouch DBというデータベースを使用します。</p>
+<p>自前のサーバにCouch DBを構築する手順は先述のSelf-hosted LiveSyncの公式ドキュメントに案内があります。</p>
+<p><a href="https://github.com/vrtmrz/obsidian-livesync/blob/main/docs/setup_own_server_ja.md">https://github.com/vrtmrz/obsidian-livesync/blob/main/docs/setup_own_server_ja.md</a></p>
+<p>今回は，ドキュメントでおすすめされていたDockerのイメージを利用してCouch DBを構築することにしました。</p>
+<p>まず，UbuntuにDockerをインストールします。</p>
+<p>Dockerをインストールするにはsnapというパッケージシステムが便利なようです。</p>
+<p><code>$ sudo apt install -y snap</code></p>
+<p>でsnapコマンドをインストールし</p>
+<p><code>$ sudo snap install docker</code></p>
+<p>でDockerをインストールします。</p>
+<p>Dockerイメージをダウンロードし実行するには，</p>
+<p><code>$ sudo docker run -d --name obsidian-sync-couchdb couchdb:latest</code></p>
+<p>この辺りのコマンドは，</p>
+<p>couchdb - Official Image | Docker Hub<br>
+<a href="https://hub.docker.com/_/couchdb">https://hub.docker.com/_/couchdb</a></p>
+<p>1.5. Installation via Docker — Apache CouchDB® 3.2 Documentation<br>
+<a href="https://docs.couchdb.org/en/3.2.2-docs/install/docker.html">https://docs.couchdb.org/en/3.2.2-docs/install/docker.html</a></p>
+<p>を参考にしました。</p>
+<h3 id="couch-dbの設定と実行">Couch DBの設定と実行</h3>
+<p>つづいて，Couch DBをSelf-hosted LiveSyncで使えるように設定を行います。</p>
+<p>適当なディレクトリに以下のlocal.iniを作成します。</p>
+<pre tabindex="0"><code>[couchdb]
+single_node=true
+
+[chttpd]
+require_valid_user = true
+
+[chttpd_auth]
+require_valid_user = true
+authentication_redirect = /_utils/session.html
+
+[httpd]
+WWW-Authenticate = Basic realm=&quot;couchdb&quot;
+enable_cors = true
+
+[cors]
+origins = app://obsidian.md,capacitor://localhost,http://localhost
+credentials = true
+headers = accept, authorization, content-type, origin, referer
+methods = GET, PUT, POST, HEAD, DELETE
+max_age = 3600
+</code></pre><p>これはSelf-hosted LiveSyncの公式ドキュメントのコピペです。</p>
+<p>以下のコマンドでCouch DBを起動します。</p>
+<p><code>$ sudo docker run --rm -it -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password -v /path/to/local.ini:/opt/couchdb/etc/local.ini -p 5984:5984 couchdb</code></p>
+<p>-eオプションで環境変数<code>COUCHDB_USER</code>と<code>COUCHDB_PASSWDを</code>指定します。この2つはデータベースの管理者ユーザー情報で，適宜自分の作成したものに置き換えてください。</p>
+<p>-vオプションはDockerのバインド・マウントという，ホスト側のディレクトリとコンテナ内のディレクトリを同期する機能だそうです。</p>
+<p>Dockerのバインド・マウントを利用する<br>
+<a href="https://noumenon-th.net/programming/2019/03/30/docker-v/">https://noumenon-th.net/programming/2019/03/30/docker-v/</a></p>
+<p>この場合，local.iniまでの絶対パスを指定します。今回のようにファイル(local.ini)のパスを指定した場合，local.iniというデータボリュームが自動的に作成され，コンテナ内のデータが保存されるとのことです。</p>
+<p>最初これを相対パスにしており，「データボリュームに相対パスは使えないよ」的なエラーが出てちょっとハマりました。</p>
+<p>Couch DBをバックグラウンドで起動するには以下のコマンドを実行します。</p>
+<p><code>$ sudo docker run --rm -it -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password -v /path/to/local.ini:/opt/couchdb/etc/local.ini -p 5984:5984 couchdb</code></p>
+<p>-pオプションで使用するポート番号を指定します。例の通り，5984番ポートを使いました。</p>
+<h3 id="リバースプロキシの設定">リバースプロキシの設定</h3>
+<p>PCからのみアクセスするならSSLの設定はいらないみたいですが，モバイルアプリからアクセスするためにはSSL証明書が必要です。</p>
+<p>今回はリバースプロキシサーバとしてCaddyというアプリケーションを利用しました。</p>
+<p>Caddy ウェブサーバー - がとらぼ<br>
+<a href="https://gato.intaa.net/archives/29698">https://gato.intaa.net/archives/29698</a></p>
+<p>Install — Caddy Documentation<br>
+<a href="https://caddyserver.com/docs/install#debian-ubuntu-raspbian">https://caddyserver.com/docs/install#debian-ubuntu-raspbian</a></p>
+<p>インストールは以上の記事を参考にしました。</p>
+<p>Caddyは簡単なリバースプロキシサーバならコマンド一つで構築できるWebサーバとのこと。</p>
+<p>リバースプロキシを設定する前にドメインとDNSの設定をしておきます。(ドメインを使用せず生のIPを使用する場合は不要です)</p>
+<p>今回は新しくドメインを取得し，DNSのAレコードにVPSのIPアドレスを設定しました。</p>
+<p>例として<code>obsidian.example.com</code>というドメインを使用します。</p>
+<p>テストのためCaddyのリバースプロキシサーバをワンライナーで実行してみます。
+<code>$ sudo caddy reverse-proxy --from obsidian.example.com --to localhost:5984</code></p>
+<p>上記コマンドで，<code>obsidian.example.com</code>から<code>localhost:5984</code>までのリバースプロキシサーバが起動します。</p>
+<p>本起動のため，<code>/etc/Caddyfile</code>という設定ファイルを作ります。</p>
+<p>今回は以下のような内容で作成しました。</p>
+<pre tabindex="0"><code>obsidian.example.com {
+  reverse_proxy {
+    to localhost:5984
+  }
+  log {
+    output file /var/log/caddy/obsidian.example.com.info-access.log
+  }
+}
+</code></pre><p>logセクションにはCaddyのアクセスログを保存する場所を指定しています。</p>
+<p><code>$ sudo caddy start --config /etc/Caddyfile</code></p>
+<p><code>caddy start</code>コマンドでCaddyをバックグラウンドで起動することができます。</p>
+<p>リバースプロキシサーバが正常に起動したら，ファイアウォールで80番ポートを開き，5984番ポートは閉じておきます。</p>
+<h3 id="couch-dbの初期設定">Couch DBの初期設定</h3>
+<p>ここで，<code>obsidian.example.com/_utils#setup</code> にブラウザからアクセスすると，データベースサーバの設定画面に入ることができます。</p>
+<p><img src="couchdb_setting.png" alt="">
+こちらのスクショはすでに設定済みですが，初期状態だと<code>_replicator</code>と<code>_users</code>の2つのシステムデータベースしかできていないはずです。</p>
+<p>Obsidian用のデータベースを左上の「Create Database」ボタンから作成します。</p>
+<p>クリックすると名前を指定するダイアログが出るので，適当な名前を入れて作成します。</p>
+<p>CouchDBの初期設定には以下のドキュメントを参考にしました。</p>
+<p>2.1. Single Node Setup — Apache CouchDB® 3.2 Documentation<br>
+<a href="https://docs.couchdb.org/en/3.2.2-docs/setup/single-node.html">https://docs.couchdb.org/en/3.2.2-docs/setup/single-node.html</a></p>
+<h3 id="obsidianの設定">Obsidianの設定</h3>
+<p>データベースサーバが立ち上がったら，同期したい端末のObsidianにコミュニティプラグインからSelf-hosted LiveSyncをインストールします。</p>
+<p>あとはObsidianの設定からSelf-hosted LiveSyncを選び，セットアップウィザードに従って設定します。</p>
+<p>手順については公式ドキュメントに詳しく解説されています。</p>
+<p>obsidian-livesync/quick_setup_ja.md at main · vrtmrz/obsidian-livesync · GitHub<br>
+<a href="https://github.com/vrtmrz/obsidian-livesync/blob/main/docs/quick_setup_ja.md">https://github.com/vrtmrz/obsidian-livesync/blob/main/docs/quick_setup_ja.md</a></p>
+<p>ここでRemote databaseの設定では，今回の例では</p>
+<pre tabindex="0"><code>URI: obsidian.example.com
+UserName: admin
+Password: passwd
+database name: obsidian
+</code></pre><p>等の値を入力します。</p>
+<p>そのままウィザードに従って設定を進め，正常にサーバと通信できれば完了です。</p>
+<h2 id="あとがき">あとがき</h2>
+<p>久々にブログを書いたら思ったより長くなってしまった……。</p>
+<p>書き出せば一気に書けるのですが，やっぱり疲れますね。</p>
+<p>また時間と気力を見つけてぼちぼち更新していきたいです。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>もちろんその分バックアップを別途確保する必要があります。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>正確なところまで理解できている自信がないので，間違っていたらすみません……&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="https://github.com/vrtmrz/obsidian-livesync/blob/main/README_ja.md">https://github.com/vrtmrz/obsidian-livesync/blob/main/README_ja.md</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>参考までに，.mdファイルが約100個，画像ファイルが約50個のVaultで概ね30MBとなっていました。容量の8割ほどを画像ファイルが占めています。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+</div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+
+            <div class="layui-card single-card">
+                <h2 class="single-title">Recent Posts</h2>
+            
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/obsidian-live-sync/">
+                        <h3 class="">ObsidianのSelf-hosted LiveSyncプラグインをVPSで使う</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-10-03</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/obsidian/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Obsidian</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/github-pages-sync-problem/">
+                        <h3 class="">Github Pagesに変更をpushしても反映されないときの対処法</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-12</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/github-pages/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Github Pages</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/hugo/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Hugo</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e3%82%b5%e3%82%a4%e3%83%88%e9%81%8b%e5%96%b6/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">サイト運営</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/de3fs-mount-dashboard/">
+                        <h3 class="">DEデミオのダッシュボードにスマホホルダーをマウントする</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-10-16</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e8%87%aa%e5%8b%95%e8%bb%8a/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">自動車</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/de3fs/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">DE3FS</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/de3fs-aux/">
+                        <h3 class="">DEデミオの純正ナビにUSB/AUX端子を生やす</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-09-21</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e8%87%aa%e5%8b%95%e8%bb%8a/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">自動車</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/de3fs/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">DE3FS</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/minecraft-hoglin/">
+                        <h3 class="">Minecraft ホグリン/ピグリンをオーバーワールドで生存させる方法</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-09-18</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/minecraft/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Minecraft</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+            
+            <br />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+        </div><footer>
+    
+
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs6">
+
+            </div>
+        </div>
+        <div class="layui-row">
+            
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs12" id="footer">
+                <a href="https://www.heiki-hecchara.net/privacy-policy/"><p class="footer-url">プライバシーポリシー</p></a>
+            </div>
+            
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs12" id="footer">
+                <a href="https://www.heiki-hecchara.net/disclaimer/"><p class="footer-url">免責事項</p></a>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="layui-container">
+        <p class="copyright">&copy; All rights reserved. Powered by <a href='https://gohugo.io' style='color:#FFFFFF'>Hugo</a> and <a href='https://github.com/ertuil/erblog' style='color:#FFFFFF'>Erblog</a>.</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -6,7 +6,52 @@
     <description>Recent content on やぶさ家</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sat, 12 Mar 2022 18:53:43 +0900</lastBuildDate><atom:link href="https://www.heiki-hecchara.net/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Oct 2022 22:48:39 +0900</lastBuildDate><atom:link href="https://www.heiki-hecchara.net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ObsidianのSelf-hosted LiveSyncプラグインをVPSで使う</title>
+      <link>https://www.heiki-hecchara.net/post/obsidian-live-sync/</link>
+      <pubDate>Mon, 03 Oct 2022 22:48:39 +0900</pubDate>
+      
+      <guid>https://www.heiki-hecchara.net/post/obsidian-live-sync/</guid>
+      <description>要約 この記事では，MarkDownエディタ「Obsidian」のSelf-hosted LiveSyncプラグインのデータベースサーバーをVPS(Conoha)で使用する方法を記載しています。
+Self-hosted LiveSyncのデータベースをVPS上で構築から本題なので，そこまでは読み飛ばしていただいて大丈夫です。
+なお，こちらはあくまで趣味の範疇の記事であり，内容には十分注意していますが，誤りが含まれている可能性があります。
+このサイトにはコメント欄は設けていないので，質問やご指摘はTwitterまでお寄せいただければと思います。
+まえがき お久しぶりです。
+ブログに書きたいことはあったんですが気力がついてこず，永遠に放置していました。
+久々にちゃんと書く時間＆気力が戻ってきたので更新します。
+さて，私はしばらく前から調べたことや自分で得た知見，考えたことを積極的にメモするようにしているのですが，そこで使用するメモツールとして，以前はデバイス間同期機能が優秀なOnenoteを使用していました。
+しかし，使っていくとOnenoteの動作のもっさり感・日本語への対応が微妙感・UIに今一つ馴染めない感・Microsoftにすべてのデータを預けている不安感などなどのデメリットを感じるようになったため，今回ObsidianというMarkDownエディタに移行しました。
+Obsidianはざっくり言うとMarkDownエディタですが，ファイル間のリンクがスムーズに行えるため，ファイルの集合が一つの連結したデータベースとなるというメリットがあります。この連結は人間の脳内の思考がつながっているのをイメージしているとのこと。
+もちろんエディタとしての機能も非常に優秀で，動作も軽量なため今のところ満足して使っています。
+Obsidian本体の紹介については他に多くの方がすでに書いてくださっているのでそちらに譲りますが，その他にも多くの便利な機能がありますので，興味のある方はぜひ調べてみてください。(周りにユーザーが少なくてちょっと悲しい)
+私が導入にあたって参考にさせてもらった記事を以下に掲載しておきます。
+Obsidianは最高のマークダウン『メモ』アプリである
+https://pouhon.net/obsidian-introduction/5666/
+私は先述のメリットに加え，もともとMarkDown記法になじんでいたことや，データの実体がただの.mdファイルになるので，完全にローカルな環境にデータを保存することになるので特定の企業に依存することがないということ1に魅力を感じたため使い始めました。
+さて，Obsidianを導入したのはいいのですが，先述の通りObsidianで編集するファイルはただの.mdファイルですので，特に設定をしない場合普通にローカルストレージに保存されるだけになります。
+私はメインPCに加えてサブのノートPCやスマホやiPadでも完全に同じデータを編集したかったので，何らかの方法で端末間同期を実現する必要があります。
+端末間同期方法の調査 ObsidianはMarkdownファイルをVaultという単位で管理しているので，要はこのVault内のファイルを複数端末でうまく同期できるようになればいいみたいです。
+調べてみると，この端末間同期にはかなりいろいろやり方があるみたいでややこしくなっていました。その詳細については以下の記事に詳しくまとめてくださっているのでそちらをご覧ください。
+Obsidianの複数端末同期方法まとめ (Mac/Windows/iOS/Android)
+https://pouhon.net/obsidian-sync/6796/
+私はMacを持っていないので，同期したい端末はWindows・iOS・Andoroidになります。この3種類の端末間でVaultを同期する方法は大きく分けて
+ Obsidian Syncという公式の同期機能を利用する(有料) Self-hosted LiveSyncプラグインを利用する Gitプラグインを利用し，Githubにファイルを保管する  の3つがあります。(導入が簡単な順に並べました)
+このうち，1については1月当たり約1000円の費用が発生する他，Obsidian公式のサーバにデータを保管するので，他社のサーバに依存することになり，本末転倒な気がしたのでやめました。
+3については，Gitに対して特に抵抗があるわけではないのですが，ファイルを編集するたびにcommit &amp;amp; pushの手間が発生するのは面倒くさく，Onenoteのようにシームレスに同期をしたいということでこちらも却下。
+残ったのは2のSelf-hosted LiveSyncプラグインを利用する方法です。
+Self-hosted LiveSync
+https://github.com/vrtmrz/obsidian-livesync/blob/main/README_ja.md
+こちらは，Obsidianのコミュニティプラグイン「Self-hosted LiveSync」を使用するもので，自分でデータベースサーバを用意し，各Markdownファイルの情報をサーバを通じて各端末と同期するという方式のようです2。
+データベースサーバを用意する手間はかかりますが，自前のサーバ上にデータを置け，かつ同期も非常にスムーズに行えるとのことで，今回はこちらの方法を採用することにしました。
+Self-hosted LiveSyncのデータベースをVPS上で構築 さて，Self-hosted LiveSyncの公式ドキュメントでは，データベースサーバを手軽に構築する方法としてIBM Cloudantをおすすめしていました3が，IBM Cloudantは無料枠では1GBまでしかデータを保存できないようです。
+MarkDownファイルにテキストだけ書いていく人ならこれで十分そうですが，私はファイルにスクショの画像ファイルを張り込む(正確には画像ファイルへのリンクを貼る)ことが多く，Self-hosted LiveSyncではVault内にあるファイルまで同期するため，将来的なIBM Cloudantの容量に不安を感じ4，別の手段を取ることに。
+そこで以前契約したVPSが余っていることを思い出し，こちらにデータベースサーバを構築することにしました。
+なお使用したVPSはConoha VPS，OSはUbuntu 20.04です。
+Couch DBのインストール Self-hosted LiveSyncはCouch DBというデータベースを使用します。
+自前のサーバにCouch DBを構築する手順は先述のSelf-hosted LiveSyncの公式ドキュメントに案内があります。</description>
+    </item>
+    
     <item>
       <title>Github Pagesに変更をpushしても反映されないときの対処法</title>
       <link>https://www.heiki-hecchara.net/post/github-pages-sync-problem/</link>
@@ -116,7 +161,7 @@ USB/AUXケーブルの接続先について DEデミオの純正ナビ(パイオ
       <description>概要 最近身内でMinecraftのマルチサーバーを立ててちょこちょこ遊んでいます。
 住民の某Hくんが「怪しい研究所」みたいな施設を建てたので，中にホグリンやピグリンを閉じ込めて「こっそり飼育してる風」にしたら面白いんじゃね？ということで，オーバーワールドで彼らを生存させる方法について調べてみました。
 特殊な生物学的手法によりオーバーワールドでもゾグリンに変化しなくなったホグリン pic.twitter.com/kv0dMLfGsy
-&amp;mdash; はやぶさ（休暇） (@h_ya58) September 9, 2021  これを実現するだけです。
+&amp;mdash; はやぶさ (@h_ya58) September 9, 2021  これを実現するだけです。
 前提環境  Minecraft Java Edition 1.16.4 Minecraft内でコマンドが自由に使用できること  マルチではOP権限を保持していること シングルではワールド生成時に「チートを許可する」がオンになっていること    ※今回はMinecraft Forge導入下で検証しましたが，バニラ環境でも問題なく使用できるかと思います。
 ホグリンとピグリン ホグリンは，Minecraft JavaEdition 1.16から追加された敵対的MOBです。ネザーにのみスポーンし，プレイヤーを攻撃します。ダメージはさほどでもないのですが，特に足場の頼りないネザーではノックバック攻撃で溶岩ダイブしがちであり，なかなか手ごわい敵になっています。
 なおホグリンは敵対的MOBではありますがピースフルでもスポーンします(攻撃はしない)。
@@ -127,8 +172,9 @@ Minecraftではエンティティ(生物)を召喚するための /summon とい
 また，ゲーム内の様々なメタデータを扱うNBTタグというシステムがあります。 NBTタグはMOBひとつひとつに付与されており，当然ホグリン/ピグリンにも存在します。
 ホグリン/ピグリンに付与されているNBTタグで特徴的なものとして，IsImmuneToZombificationというものがあります。直訳すると「ゾンビ化耐性」のような感じでしょうか。 /summon  コマンドの実行時に，召喚するホグリン/ピグリンのIsImmuneToZombificationをTrue(ゲーム内では1)に設定してあげることにより，そのホグリン/ピグリンはオーバーワールドでもゾンビ化しなくなります。
 具体的には以下のようなコマンドとなります。
-/summon minecraft:hoglin ^ ^ ^ {IsImmuneToZombification:1}  無事に邪悪な研究所の内装を飾ることができました。
-参考 コマンド/データタグ - Minecraft Japan Wiki https://minecraftjapan.miraheze.org/wiki/%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BF%E3%82%B0</description>
+/summon minecraft:hoglin ^ ^ ^ {IsImmuneToZombification:1} 弊鯖の生物学研究所では、安全なネザー生物（ストライダー、真紅の木、歪んだ木など）の研究の名目で予算を獲得し、地下では密かにホグリンのような危険なネザー生物を飼育している
+&amp;mdash; 狭間緊急時 (@Hazama_Yuji) September 9, 2021  このわるい研究はこういう研究所のこういう地下で行なわれています pic.twitter.com/joIrKLWqay
+&amp;mdash; 狭間緊急時 (@Hazama_Yuji) September 9, 2021  無事に邪悪な研究所の内装を飾ることができました。</description>
     </item>
     
     <item>
@@ -302,7 +348,7 @@ Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジ�
       <guid>https://www.heiki-hecchara.net/post/2017-birthday/</guid>
       <description>※この記事は旧ブログからの移行記事です。 一部を除き，投稿当時からほぼ内容は改変していません。 実は中間考査四日前だったりするので、手短に書きます。
 たくさんのおめでとうに感謝 ふと気づいたらまた一年年齢を重ねてました。ぱちぱちぱち
-&amp;mdash; はやぶさ（休暇） (@h_ya58) October 13, 2017  本当はこんな記事を投稿するつもりはなかったのでもう日付は変わっちゃってますが、実は昨日10月14日が誕生日でした。
+&amp;mdash; はやぶさ (@h_ya58) October 13, 2017  本当はこんな記事を投稿するつもりはなかったのでもう日付は変わっちゃってますが、実は昨日10月14日が誕生日でした。
 ぱちぱちぱち！🤣🤣🤣
 &amp;mdash; カ (@8_8cm_FlaK) October 13, 2017  @h_ya58 誕生日おめでとう！！！！！
 &amp;mdash; ittekikun🌓 (@ittekikun) October 13, 2017  おめでとうございます🎉🎉🎊🎈
@@ -310,7 +356,7 @@ Web Site やぶさ家(このサイト)  制作: 2021年9月 静的サイトジ�
 &amp;mdash; なおり (@bwiroan) October 14, 2017  おめでとうございます! 🎊
 &amp;mdash; カエルさん (@unicroak) October 14, 2017  おめぽよだよぉ！なでなでごしごし
 &amp;mdash; つてと (@tsuteto) October 14, 2017  @h_ya58 誕生日おめでとう
-&amp;mdash; 5日目 (@_lem0n_) October 14, 2017  ツイートを投稿してからわずか一日の間に、これだけの方々からおめでとうの言葉をいただきました。取るに足らない人間の自分ですが、こんなにたくさんの方から祝っていただけたのには感謝しかありません。本当にありがとうございました。</description>
+&amp;mdash; れもん(杏bot (@_lem0n_) October 14, 2017  ツイートを投稿してからわずか一日の間に、これだけの方々からおめでとうの言葉をいただきました。取るに足らない人間の自分ですが、こんなにたくさんの方から祝っていただけたのには感謝しかありません。本当にありがとうございました。</description>
     </item>
     
     <item>
