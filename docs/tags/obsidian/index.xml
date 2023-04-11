@@ -36,7 +36,7 @@ https://pouhon.net/obsidian-introduction/5666/
 Obsidianの複数端末同期方法まとめ (Mac/Windows/iOS/Android)
 https://pouhon.net/obsidian-sync/6796/
 私はMacを持っていないので，同期したい端末はWindows・iOS・Andoroidになります。この3種類の端末間でVaultを同期する方法は大きく分けて
- Obsidian Syncという公式の同期機能を利用する(有料) Self-hosted LiveSyncプラグインを利用する Gitプラグインを利用し，Githubにファイルを保管する  の3つがあります。(導入が簡単な順に並べました)
+Obsidian Syncという公式の同期機能を利用する(有料) Self-hosted LiveSyncプラグインを利用する Gitプラグインを利用し，Githubにファイルを保管する の3つがあります。(導入が簡単な順に並べました)
 このうち，1については1月当たり約1000円の費用が発生する他，Obsidian公式のサーバにデータを保管するので，他社のサーバに依存することになり，本末転倒な気がしたのでやめました。
 3については，Gitに対して特に抵抗があるわけではないのですが，ファイルを編集するたびにcommit &amp;amp; pushの手間が発生するのは面倒くさく，Onenoteのようにシームレスに同期をしたいということでこちらも却下。
 残ったのは2のSelf-hosted LiveSyncプラグインを利用する方法です。
@@ -49,7 +49,9 @@ MarkDownファイルにテキストだけ書いていく人ならこれで十分
 そこで以前契約したVPSが余っていることを思い出し，こちらにデータベースサーバを構築することにしました。
 なお使用したVPSはConoha VPS，OSはUbuntu 20.04です。
 Couch DBのインストール Self-hosted LiveSyncはCouch DBというデータベースを使用します。
-自前のサーバにCouch DBを構築する手順は先述のSelf-hosted LiveSyncの公式ドキュメントに案内があります。</description>
+自前のサーバにCouch DBを構築する手順は先述のSelf-hosted LiveSyncの公式ドキュメントに案内があります。
+https://github.com/vrtmrz/obsidian-livesync/blob/main/docs/setup_own_server_ja.md
+今回は，ドキュメントでおすすめされていたDockerのイメージを利用してCouch DBを構築することにしました。</description>
     </item>
     
   </channel>

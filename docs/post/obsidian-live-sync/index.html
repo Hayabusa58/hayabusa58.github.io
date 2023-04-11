@@ -31,7 +31,7 @@ https://pouhon.net/obsidian-introduction/5666/
 Obsidianの複数端末同期方法まとめ (Mac/Windows/iOS/Android)
 https://pouhon.net/obsidian-sync/6796/
 私はMacを持っていないので，同期したい端末はWindows・iOS・Andoroidになります。この3種類の端末間でVaultを同期する方法は大きく分けて
- Obsidian Syncという公式の同期機能を利用する(有料) Self-hosted LiveSyncプラグインを利用する Gitプラグインを利用し，Githubにファイルを保管する  の3つがあります。(導入が簡単な順に並べました)
+Obsidian Syncという公式の同期機能を利用する(有料) Self-hosted LiveSyncプラグインを利用する Gitプラグインを利用し，Githubにファイルを保管する の3つがあります。(導入が簡単な順に並べました)
 このうち，1については1月当たり約1000円の費用が発生する他，Obsidian公式のサーバにデータを保管するので，他社のサーバに依存することになり，本末転倒な気がしたのでやめました。
 3については，Gitに対して特に抵抗があるわけではないのですが，ファイルを編集するたびにcommit &amp; pushの手間が発生するのは面倒くさく，Onenoteのようにシームレスに同期をしたいということでこちらも却下。
 残ったのは2のSelf-hosted LiveSyncプラグインを利用する方法です。
@@ -44,7 +44,9 @@ MarkDownファイルにテキストだけ書いていく人ならこれで十分
 そこで以前契約したVPSが余っていることを思い出し，こちらにデータベースサーバを構築することにしました。
 なお使用したVPSはConoha VPS，OSはUbuntu 20.04です。
 Couch DBのインストール Self-hosted LiveSyncはCouch DBというデータベースを使用します。
-自前のサーバにCouch DBを構築する手順は先述のSelf-hosted LiveSyncの公式ドキュメントに案内があります。" name="description">
+自前のサーバにCouch DBを構築する手順は先述のSelf-hosted LiveSyncの公式ドキュメントに案内があります。
+https://github.com/vrtmrz/obsidian-livesync/blob/main/docs/setup_own_server_ja.md
+今回は，ドキュメントでおすすめされていたDockerのイメージを利用してCouch DBを構築することにしました。" name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
@@ -259,7 +261,7 @@ require_valid_user = true
 authentication_redirect = /_utils/session.html
 
 [httpd]
-WWW-Authenticate = Basic realm=&quot;couchdb&quot;
+WWW-Authenticate = Basic realm=&#34;couchdb&#34;
 enable_cors = true
 
 [cors]
@@ -335,23 +337,23 @@ database name: obsidian
 <p>久々にブログを書いたら思ったより長くなってしまった……。</p>
 <p>書き出せば一気に書けるのですが，やっぱり疲れますね。</p>
 <p>また時間と気力を見つけてぼちぼち更新していきたいです。</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
+<li id="fn:1">
 <p>もちろんその分バックアップを別途確保する必要があります。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
+<li id="fn:2">
 <p>正確なところまで理解できている自信がないので，間違っていたらすみません……&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
+<li id="fn:3">
 <p><a href="https://github.com/vrtmrz/obsidian-livesync/blob/main/README_ja.md">https://github.com/vrtmrz/obsidian-livesync/blob/main/README_ja.md</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:4" role="doc-endnote">
+<li id="fn:4">
 <p>参考までに，.mdファイルが約100個，画像ファイルが約50個のVaultで概ね30MBとなっていました。容量の8割ほどを画像ファイルが占めています。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 </div>
             </div>
         </div>
@@ -362,6 +364,35 @@ database name: obsidian
             <div class="layui-card single-card">
                 <h2 class="single-title">Recent Posts</h2>
             
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/youtube-community-image/">
+                        <h3 class="">Youtubeコミュニティの画像をオリジナルサイズで保存する</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2023-04-11</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e5%b0%8f%e3%83%8d%e3%82%bf/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">小ネタ</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
                 
                 <div style="margin-left: 10px;">
                     <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
@@ -487,35 +518,6 @@ database name: obsidian
     
         <a href="https://www.heiki-hecchara.net/tags/de3fs/">
             <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">DE3FS</span>
-        </a>
-    
-    
-</h3>
-
-                    </blockquote>
-                </div>
-                
-                <div style="margin-left: 10px;">
-                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
-                    <a href="https://www.heiki-hecchara.net/post/minecraft-hoglin/">
-                        <h3 class="">Minecraft ホグリン/ピグリンをオーバーワールドで生存させる方法</h3>
-                    </a>
-                    <h3 style="margin-top:10px; margin-bottom:10px"> 
-    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
-    <span>2021-09-18</span>
-
-    
-    
-
-    
-
-    
-    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
-    
-
-    
-        <a href="https://www.heiki-hecchara.net/tags/minecraft/">
-            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Minecraft</span>
         </a>
     
     
