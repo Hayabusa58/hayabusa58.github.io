@@ -8,15 +8,15 @@
     
     <meta content="旧ブログ記事, Minecraft, Conoha, Ubuntu" name="keywords">
     
-    <meta content="やぶさ家 - ※この記事は旧ブログからの移行記事です。一部を除き，投稿当時からほぼ内容は改変していません。 この記事はConoha Advent Calender 2020 12/22の記事です． (12/22に登録された方が投稿されなかったため，この枠を使用させていただきました)
+    <meta content="やぶさ家 - ※この記事は旧ブログからの移行記事です。 一部を除き，投稿当時からほぼ内容は改変していません。 この記事はConoha Advent Calender 2020 12/22の記事です． (12/22に登録された方が投稿されなかったため，この枠を使用させていただきました)
 はじめに お久しぶりです． このブログを更新するのもかなり久しぶりですね．最後の記事投稿が2年前ということに気づいてびっくりしています．
 さて，Twitterをフォローしていただいている方はご存知かもしれませんが，最近身内でMinecraftのマルチプレイサーバーを運用しています．
 このときにサーバーを動かすVPSとしてConohaを使用させていただいたので，今回アドカレにサーバーの構築手順を投稿することにしました．
 前提とする環境 サーバー側の詳細な環境は以下のとおりです．
-Minecraft 1.16.4 Minecraft Forge 1.16.4-35.1.0 Conoha VPS 2Gプラン Ubuntu 20.04 Forgeを前提とするModについては，詳細は割愛しますが，サーバー側にCutallなどの一括破壊系と便利系MOD数個程度を導入しました．なお導入するModは，テスト環境にてクライアント側では導入しなくてもログインできることを確認した(=クライアントではForgeだけ導入したら大丈夫)なものだけにしてあります1.
+ Minecraft 1.16.4 Minecraft Forge 1.16.4-35.1.0 Conoha VPS 2Gプラン  Ubuntu 20.04    Forgeを前提とするModについては，詳細は割愛しますが，サーバー側にCutallなどの一括破壊系と便利系MOD数個程度を導入しました．なお導入するModは，テスト環境にてクライアント側では導入しなくてもログインできることを確認した(=クライアントではForgeだけ導入したら大丈夫)なものだけにしてあります1.
 サーバーの操作には主にWindows 10 HomeでPowershell 7を使っています．
 本記事の特徴 Conohaを始めとするVPSを使ってマイクラ鯖を立てる記事はたくさんありますが，その中でも本記事の特徴は
-2020/12現在の最新ver.であるMinecraft 1.16.4を使用していること マルチサーバーでは珍しくMinecraft Forgeを使用していること Conoha VPSに最初から用意されているテンプレートを使用していないこと 以上3点だと考えています。
+ 2020/12現在の最新ver.であるMinecraft 1.16.4を使用していること マルチサーバーでは珍しくMinecraft Forgeを使用していること Conoha VPSに最初から用意されているテンプレートを使用していないこと  以上3点だと考えています。
 ちなみにどうしてマルチ鯖界隈で人気のSpigotを使わずForgeを選んだかというと，マルチ鯖を建てるのは未経験の自分はSpigotよりもForgeの操作に慣れているということが一番大きな理由です．(まぁSpigotもそんなに難しいものでもないので，次の機会があればやってみようかなと思っています)
 多少なりとも読んでいる方のお役に立てる記事となっていましたら幸いです．
 なおこの記事はマイクラ鯖の運用について技術的な部分から紹介したものです．実際に運用して全体的に感じたことなどはまた別記事に書きたいと思います．
@@ -31,11 +31,7 @@ Minecraft 1.16.4 Minecraft Forge 1.16.4-35.1.0 Conoha VPS 2Gプラン Ubuntu 20.
 ただ，今回はあえてこれも使用せず，1ヶ月単位の契約としました．
 そもそもこのマイクラ鯖は身内コミュニティで運用する程度のもので，発案にあたっても(言い方は悪いですが)ある意味「その場のノリ」で立てたような感じがありました．つまりそんなに長期間運用し続けるものではなさそう，と思ったので，気軽に建てて気軽に止められる1ヶ月契約としました2．他の方も書いておられましたが，Conohaは軽率に借りて軽率に爆破できるお手頃なVPSで，こういうときは本当に助かります．
 メモリの設定について サーバーの設定で一番迷ったのはここでした． マルチ鯖未経験の自分にはどのくらいのメモリがあれば快適に遊べるのかさっぱりわかりませんでした……
-結論から言うと，「身内と」「数個のModを導入して」プレイする程度であれば2GBで十分だと感じました． ここでいう「身内」とは，最大ログイン人数6人くらいを指します．6人はそれぞれ回線の良し悪しもまちまちで，おのおののPCスペックにもかなり差がありましたが3，概ね快適に遊べています． Modは前述の通りサーバー側にいくつか軽いものを入れただけです．
-ただし，ワールドマップが徐々に開拓され，トラップタワーなどのMobが多く負荷の高い施設がワールドに作られていくと，同時ログイン数が多いときには多少のラグが起こるようになりました．具体的には，食べ物を食べても満腹度が回復しない，突然移動がリセットされる，チェストやかまどなどのGUIが開けない，などの症状です．
-これらのラグについて，メモリの不足が原因であるのかはまだわかっていません．現状耐えられないようなものではないので，しばらく様子見しています．もしこれ以上ひどくなるようであればメモリの増量も検討します．
-イメージタイプについて OSはUbuntu 20.04にしました．理由は一番好きだからです．
-その他 rootパスワードはしっかりしたものを設定してください．失念するとかなりめんどくさくなるのでメモを忘れずに．" name="description">
+結論から言うと，「身内と」「数個のModを導入して」プレイする程度であれば2GBで十分だと感じました． ここでいう「身内」とは，最大ログイン人数6人くらいを指します．6人はそれぞれ回線の良し悪しもまちまちで，おのおののPCスペックにもかなり差がありましたが3，概ね快適に遊べています． Modは前述の通りサーバー側にいくつか軽いものを入れただけです．" name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
@@ -335,7 +331,7 @@ spawn-protection=0
 そこで，まずDiscordとマイクラを連携する手段を探しましたが，適当なものがありませんでした．そこで，Pythonで簡単にDiscord Botが作れるdiscord.pyというライブラリを用いて，自前でBotを作ってみました．</p>
 <p>……本当はここでBotの詳細を紹介する予定だったのですが，まだ公開できるほど完成度が高くないのでここでは概要の紹介にとどめます．</p>
 <p>動作イメージはこんな感じ．</p>
-<p>今実装しているのは，現在の鯖の状況を確認する$statusコマンド，リロードができる$reload&rsquo;コマンド，サーバーを停止できる&rsquo;$stop&rsquo;コマンドなどです</p>
+<p>今実装しているのは，現在の鯖の状況を確認する$statusコマンド，リロードができる$reload&rsquo;コマンド，サーバーを停止できる'$stop&rsquo;コマンドなどです</p>
 <p>今後，自動バックアップ機能やロギング機能等も実装する予定です．</p>
 <h2 id="終わりに">終わりに</h2>
 <p>軽めの記事にしようと思っていたのに，予想以上に長くなってしまいました．</p>
@@ -345,29 +341,29 @@ spawn-protection=0
 <p>OpenJDK（Java）を最新のUbuntuにインストール - Qiita <a href="https://qiita.com/terappy/items/537c069923144a9d9755">https://qiita.com/terappy/items/537c069923144a9d9755</a></p>
 <p>Ubuntu ServerにMinecraft forge入れた - Spica* <a href="https://esperia.hatenablog.com/entry/2015/07/10/002752">https://esperia.hatenablog.com/entry/2015/07/10/002752</a></p>
 <p>server.properties - Minecraft Wiki <a href="https://minecraft-ja.gamepedia.com/Server.properties">https://minecraft-ja.gamepedia.com/Server.properties</a></p>
-<div class="footnotes" role="doc-endnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1">
+<li id="fn:1" role="doc-endnote">
 <p>参加者全員にModの導入方法をレクチャーするのが面倒だったため．&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2">
+<li id="fn:2" role="doc-endnote">
 <p>もちろん最初から長期契約にして，使わなくなったら別用途に転用，でもいいと思います&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3">
+<li id="fn:3" role="doc-endnote">
 <p>上はRTX2000番台を積んだn十万円のゲーミングPC，下は普通のノーパソとかなりの幅&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:4">
+<li id="fn:4" role="doc-endnote">
 <p>とかいいながら最初めんどくさくてずっとrootでやってました．ごめんなさい……&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:5">
+<li id="fn:5" role="doc-endnote">
 <p>適当に作ったけど，これが適切な場所なのかはわからないです．&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:6">
+<li id="fn:6" role="doc-endnote">
 <p>rconで使用するポートは25575なので，別途開放する必要あり&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</div>
+</section>
 </div>
             </div>
         </div>

@@ -16,11 +16,11 @@
 これで無事原寸サイズの保存が表示されるので，あとは右クリックから保存すればOK。
 こちらの対処法は以下のツイートを参考にさせていただきました。
 YouTubeのコミュニティの画像をオリジナルサイズで表示する方法 pic.twitter.com/MJDWC7Ln1R
-&mdash; むふー (@4chouyou) July 8, 2020 コミュニティ投稿の例として，日テレNEWSさんの投稿をお借りしました。
+&mdash; むふー (@4chouyou) July 8, 2020 コミュニティ投稿の例として，日テレNEWSさんの投稿をお借りしました。
 URLを書き換えるブックマークレットを作った 一連の手順のうち，3のURLを書き換える処理を行うブックマークレットを作成しました。
-javascript:(function(){url=document.location.href;reg=/=s.*/;new_url=url.replace(reg, &#34;=s0&#34;);document.location.href=new_url;})(); これをブックマークに登録し，2の画像を新しいタブで開いた時点で実行すると原寸大サイズの画像が表示されます。 頑張れば画像のDLまで自動化できそうですが，そこまで頻繁にする作業ではないのでいいかなと。
+javascript:(function(){url=document.location.href;reg=/=s.*/;new_url=url.replace(reg, &quot;=s0&quot;);document.location.href=new_url;})();これをブックマークに登録し，2の画像を新しいタブで開いた時点で実行すると原寸大サイズの画像が表示されます。 頑張れば画像のDLまで自動化できそうですが，そこまで頻繁にする作業ではないのでいいかなと。
 圧縮前のコードはこちら。
-function(){url = document.location.href;reg = /=s.*/;new_url = url.replace(reg, &#34;=s0&#34;);document.location.href=new_url;} 単にURLの書き換えたい部分を正規表現でマッチして置換しているだけです。
+function(){url = document.location.href;reg = /=s.*/;new_url = url.replace(reg, &quot;=s0&quot;);document.location.href=new_url;}単にURLの書き換えたい部分を正規表現でマッチして置換しているだけです。
 あとがき 検索してもまとまった情報が見当たらなかったのですが，最近変わった仕様なんでしょうか？
 Youtubeのコミュニティは視聴者としても気軽に見られて便利ですが，壁紙のような画質が重要なコンテンツには向いていない気もします。" name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -178,14 +178,14 @@ layui.use('element', function(){
 <p>コミュニティ投稿の例として，<a href="https://www.youtube.com/channel/UCuTAXTexrhetbOe3zgskJBQ/community?lb=UgkxIgnw4kf9-mNqxENq7Tkv96FilW2q4Rpi">日テレNEWSさんの投稿</a>をお借りしました。</p>
 <h2 id="urlを書き換えるブックマークレットを作った">URLを書き換えるブックマークレットを作った</h2>
 <p>一連の手順のうち，3のURLを書き換える処理を行うブックマークレットを作成しました。</p>
-<pre tabindex="0"><code>javascript:(function(){url=document.location.href;reg=/=s.*/;new_url=url.replace(reg, &#34;=s0&#34;);document.location.href=new_url;})();
+<pre tabindex="0"><code>javascript:(function(){url=document.location.href;reg=/=s.*/;new_url=url.replace(reg, &quot;=s0&quot;);document.location.href=new_url;})();
 </code></pre><p>これをブックマークに登録し，2の画像を新しいタブで開いた時点で実行すると原寸大サイズの画像が表示されます。
 頑張れば画像のDLまで自動化できそうですが，そこまで頻繁にする作業ではないのでいいかなと。</p>
 <p>圧縮前のコードはこちら。</p>
 <pre tabindex="0"><code>function(){
     url = document.location.href;
     reg = /=s.*/;
-    new_url = url.replace(reg, &#34;=s0&#34;);
+    new_url = url.replace(reg, &quot;=s0&quot;);
     document.location.href=new_url;
     }
 </code></pre><p>単にURLの書き換えたい部分を正規表現でマッチして置換しているだけです。</p>
