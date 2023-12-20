@@ -21,11 +21,11 @@
 これで無事原寸サイズの保存が表示されるので，あとは右クリックから保存すればOK。
 こちらの対処法は以下のツイートを参考にさせていただきました。
 YouTubeのコミュニティの画像をオリジナルサイズで表示する方法 pic.twitter.com/MJDWC7Ln1R
-&amp;mdash; むふー (@4chouyou) July 8, 2020 コミュニティ投稿の例として，日テレNEWSさんの投稿をお借りしました。
+&amp;mdash; むふー (@4chouyou) July 8, 2020 コミュニティ投稿の例として，日テレNEWSさんの投稿をお借りしました。
 URLを書き換えるブックマークレットを作った 一連の手順のうち，3のURLを書き換える処理を行うブックマークレットを作成しました。
-javascript:(function(){url=document.location.href;reg=/=s.*/;new_url=url.replace(reg, &amp;quot;=s0&amp;quot;);document.location.href=new_url;})();これをブックマークに登録し，2の画像を新しいタブで開いた時点で実行すると原寸大サイズの画像が表示されます。 頑張れば画像のDLまで自動化できそうですが，そこまで頻繁にする作業ではないのでいいかなと。
+javascript:(function(){url=document.location.href;reg=/=s.*/;new_url=url.replace(reg, &amp;#34;=s0&amp;#34;);document.location.href=new_url;})(); これをブックマークに登録し，2の画像を新しいタブで開いた時点で実行すると原寸大サイズの画像が表示されます。 頑張れば画像のDLまで自動化できそうですが，そこまで頻繁にする作業ではないのでいいかなと。
 圧縮前のコードはこちら。
-function(){url = document.location.href;reg = /=s.*/;new_url = url.replace(reg, &amp;quot;=s0&amp;quot;);document.location.href=new_url;}単にURLの書き換えたい部分を正規表現でマッチして置換しているだけです。
+function(){url = document.location.href;reg = /=s.*/;new_url = url.replace(reg, &amp;#34;=s0&amp;#34;);document.location.href=new_url;} 単にURLの書き換えたい部分を正規表現でマッチして置換しているだけです。
 あとがき 検索してもまとまった情報が見当たらなかったのですが，最近変わった仕様なんでしょうか？
 Youtubeのコミュニティは視聴者としても気軽に見られて便利ですが，壁紙のような画質が重要なコンテンツには向いていない気もします。</description>
     </item>
