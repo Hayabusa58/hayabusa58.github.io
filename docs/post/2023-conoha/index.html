@@ -1,0 +1,622 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>やぶさ家 - このはちゃんに会いに行こう！ GMOインターネット 夏インターン体験レポート </title>
+
+    
+    <meta content="雑記, アドカレ" name="keywords">
+    
+    <meta content="やぶさ家 - この記事はConoHa Advent Calender 2023の21日目の記事になります。
+まずはこのはちゃん10周年，おめでとうございます！
+私は今夏，GMOインターネット株式会社 KitaQオフィスにお邪魔してこのはちゃんに会って…… ではなく，GMOさんのエンジニアインターンに参加させていただきました。
+ということでインターンの内容や様子について簡単に紹介したいと思います。
+今後同様のインターンに行かれる方や，雰囲気を知りたい方の少しでも参考になれば幸いです。
+GMO KitaQオフィスの内側から。
+オフィスエントランスに設置されていたでっかいこのはちゃんパネル。
+インターンについて 今回参加したインターンの正式名称は「5daysインターン インフラコース」といい， 主にインフラエンジニアの業務を体験するコースです。
+同時期に「Webアプリケーションコース」「セキュリティコース」も開催されていましたが， 私はインフラエンジニアに興味があったのでこちらを選びました。
+ワーク内容 インターンのテーマは「Conohaの開発工程をインフラエンジニアの立場で体験しよう」と設定されていました。 Conohaを題材にサービスの設計から運用，カスタマ対応まで一気通貫に体験するというストーリーになっています。
+また学生に達成してほしい目的として
+インフラエンジニアの仕事がとても多様であることを踏まえた上で，具体的な業務に触れて「目指したいインフラエンジニア」像をはっきりさせる GMOの働く場所やパートナー(社員)，サービスに関心を持ってもらう という2点が挙げられていました。
+1日目 1日目はインターンのオープニングということで，参加者同士の交流や概要説明，オフィスツアーなどが中心でした。 インターン期間中は4人チームでワークに取り組むので，自己紹介をしたり，チームのフラッグ(アイコン)を生成AIで作ったりといったアイスブレイク的な内容が中心です。 人見知り気味なのでちょっと緊張しましたが，同じ目的で来ている学生ばかりなので結構すぐに打ち解けられました。
+1日目午後からは早速座学です。 Conohaというサービスをどのように企画し，求められる仕様に落とし込むかという「企画」の仕事を体験しました。 また，要求仕様が決まった段階でアーキテクチャをどう設定するかという「設計」の仕事についての講義も。
+個人で小さなサービスを開発することはあっても，学生の身ではなかなか商用サービスの設計について考える機会は少ないのでとても興味深い内容でした。
+1日目最後にはハードウェアやデータセンタの選定というより低レイヤな視点での講義もありました。 これも個人では触れる機会のないお話で面白かったです。
+2日目 2日目は実際に物理サーバを構築してみよう！という実習です。
+こんな感じで，実際のラックマウントサーバのパーツを組み立て(さすがにイチからではないですが)，起動し，OSをインストールするところまで取り組みました。 できるだけ実務に即した形で，英語のマニュアルと突き合わせながら組み立てました。
+私は自作PCの制作経験があったので，正直それとどう違うんだろう？と思っていたのですが，電源が冗長化されていたり，メモリが通常と異なる指し方をしたりと 家庭用PCとサーバは全く違っていました。
+3日目 3日目はネットワーク構築と，仮想化基盤の構築の演習です。
+このように本番用のネットワーク機器を使って演習用のネットワークを構築しました。
+私はYAMAHAルータの操作経験があったのですが，演習で使用したルータはCisco製で勝手が違って結構苦戦しました。 ネットワーク機器のコンフィグ，独特の難しさがある……。
+ネットワークが完成したら2日目にインストールしたOSにVMを構築し，翌日以降の準備をしました。
+4日目 4日目はこれまでのインフラメインの内容から離れ，ちょっと開発っぽいことをしました。 RabbitMQというミドルウェアを使って，指定された課金サービスを実装しよう！という課題。
+個人的には5日間でここの課題が一番難しかったです。 最初特に何も考えず，経験の浅いGo言語を選んで実装しようとしたら本質から離れた部分で詰まりまくり，慌ててJavaScriptに変更したものの大幅なタイムロス。 ぶっつけ本番で実装を始める前にしっかり計画を練ってスタートすることの重要性を痛感……。 結局，班内の進度が早かった人に全面的に頼ってなんとか最低限の条件をクリアすることができました。
+4日目の午後は監視ソフトZabbixを導入してVMの監視を設定しようという演習です。 Zabbixには前から興味があったので，実践的な設定を触れてかなり面白かったです。 自宅のサーバにも導入してみようと思っています。
+5日目 いよいよ最終日。
+この日はまずカスタマからの問い合わせに対応する演習からスタートしました。 トラブルシューティングの対応が非常にシステマティックに処理されていることが見えて，普段お客様側で使っているサポート窓口の裏側を覗いた気分でした。
+午後から5日間の成果をプレゼンする時間がありました。 発表内容はフリーで，チームで協議して決めていきます。
+色々アイディアはあったのですが，時間の都合もありこれまでの学習内容をまとめつつ，各々の目標達成度合いを振り返るという堅実な面白みのない内容になりました。 もうちょっとユニークな話ができればよかったなとは思っています。
+最後にスタッフさんからのまとめコメント，プレゼンの優秀な班の表彰等のイベントで終了。
+インターン終了後，社内バー(社内にバーカウンターがあるのです)で社員さんとの懇親会に参加しました。
+なんとDJブースもあった。
+ワーク内容について 全体的に非常にボリュームのある内容で満足感は高かったです。 インターンでありがちな「業務の端にちょっと触れて終わる」みたいな感じではありません。 しっかりと作られたカリキュラムに専任のエンジニアの方がサポートでついていただけるという恵まれた環境で，単なるインターンというよりは専門の講習会に来ている感じで，終始「これをタダで受けていいのかな(なんなら交通費までもらってる)」という気持ちでした。" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+
+    
+
+    
+
+    
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVXNZTWGXB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KVXNZTWGXB');
+</script>
+
+    
+
+
+    
+
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/layui/css/layui.css">
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/self/css/default.css">
+    <script src=" /layui/layui.js"></script>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" async href="https://www.heiki-hecchara.net/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="https://www.heiki-hecchara.net/self/css/gallery.css">
+
+    
+    
+    <link rel="stylesheet" href="https://www.heiki-hecchara.net/css/custom.css">
+    
+
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js" integrity="sha256-h2tMEmhemR2IN4wbbdNjj9LaDIjzwk2hralQwfJmBOE=" crossorigin="anonymous"></script></head>
+
+<body>
+    
+    <header class="layui-header layui-bg-cyan">
+
+    
+        <a href=""><img src="https://www.heiki-hecchara.net/icon.jpg" class="layui-nav-img" style="margin-left:10px;margin-top:-10px"></a>
+    
+    
+    <a class="nav-self-logo" href="https://www.heiki-hecchara.net/">
+        やぶさ家
+    </a>
+
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/post/">Posts</a></li>
+        
+
+        
+            
+                <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/about/">About</a></li>
+            
+                <li class="layui-nav-item" id="nav_big"><a href="https://www.heiki-hecchara.net/works/">Works</a></li>
+            
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                
+                <dd><a href="https://www.heiki-hecchara.net/post/">Posts</a></dd>
+                
+
+                
+                    
+                        <dd><a href="https://www.heiki-hecchara.net/about/">About</a></dd>
+                    
+                        <dd><a href="https://www.heiki-hecchara.net/works/">Works</a></dd>
+                    
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    
+
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="self-elem-quote  markdown-body single-title" >
+                    <h1>このはちゃんに会いに行こう！ GMOインターネット 夏インターン体験レポート</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2023-12-21</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e3%82%a2%e3%83%89%e3%82%ab%e3%83%ac/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">アドカレ</span>
+        </a>
+    
+    
+</h3>
+
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <p>この記事は<a href="https://qiita.com/advent-calendar/2023/conoha">ConoHa Advent Calender 2023</a>の21日目の記事になります。</p>
+<p>まずはこのはちゃん10周年，おめでとうございます！</p>
+<p>私は今夏，GMOインターネット株式会社 KitaQオフィスにお邪魔してこのはちゃんに会って……
+ではなく，GMOさんのエンジニアインターンに参加させていただきました。</p>
+<p>ということでインターンの内容や様子について簡単に紹介したいと思います。</p>
+<p>今後同様のインターンに行かれる方や，雰囲気を知りたい方の少しでも参考になれば幸いです。</p>
+<p><img src="PXL_20230821_035819318.jpg" alt="Alt text">
+GMO KitaQオフィスの内側から。</p>
+<p><img src="PXL_20230822_101035580.MP%20(Small).jpg" alt="Alt text"></p>
+<p>オフィスエントランスに設置されていたでっかいこのはちゃんパネル。</p>
+<h2 id="インターンについて">インターンについて</h2>
+<p>今回参加したインターンの正式名称は「5daysインターン インフラコース」といい，
+主にインフラエンジニアの業務を体験するコースです。</p>
+<p>同時期に「Webアプリケーションコース」「セキュリティコース」も開催されていましたが，
+私はインフラエンジニアに興味があったのでこちらを選びました。</p>
+<h2 id="ワーク内容">ワーク内容</h2>
+<p>インターンのテーマは「Conohaの開発工程をインフラエンジニアの立場で体験しよう」と設定されていました。
+Conohaを題材にサービスの設計から運用，カスタマ対応まで一気通貫に体験するというストーリーになっています。</p>
+<p>また学生に達成してほしい目的として</p>
+<ol>
+<li>インフラエンジニアの仕事がとても多様であることを踏まえた上で，具体的な業務に触れて「目指したいインフラエンジニア」像をはっきりさせる</li>
+<li>GMOの働く場所やパートナー(社員)，サービスに関心を持ってもらう</li>
+</ol>
+<p>という2点が挙げられていました。</p>
+<h3 id="1日目">1日目</h3>
+<p>1日目はインターンのオープニングということで，参加者同士の交流や概要説明，オフィスツアーなどが中心でした。
+インターン期間中は4人チームでワークに取り組むので，自己紹介をしたり，チームのフラッグ(アイコン)を生成AIで作ったりといったアイスブレイク的な内容が中心です。
+人見知り気味なのでちょっと緊張しましたが，同じ目的で来ている学生ばかりなので結構すぐに打ち解けられました。</p>
+<p>1日目午後からは早速座学です。
+Conohaというサービスをどのように企画し，求められる仕様に落とし込むかという「企画」の仕事を体験しました。
+また，要求仕様が決まった段階でアーキテクチャをどう設定するかという「設計」の仕事についての講義も。</p>
+<p>個人で小さなサービスを開発することはあっても，学生の身ではなかなか商用サービスの設計について考える機会は少ないのでとても興味深い内容でした。</p>
+<p>1日目最後にはハードウェアやデータセンタの選定というより低レイヤな視点での講義もありました。
+これも個人では触れる機会のないお話で面白かったです。</p>
+<h3 id="2日目">2日目</h3>
+<p>2日目は実際に物理サーバを構築してみよう！という実習です。</p>
+<p><img src="PXL_20230822_015018913.jpg" alt="Alt text"></p>
+<p><img src="PXL_20230822_015637673.jpg" alt="Alt text"></p>
+<p><img src="PXL_20230822_021827919.jpg" alt="Alt text"></p>
+<p>こんな感じで，実際のラックマウントサーバのパーツを組み立て(さすがにイチからではないですが)，起動し，OSをインストールするところまで取り組みました。
+できるだけ実務に即した形で，英語のマニュアルと突き合わせながら組み立てました。</p>
+<p>私は自作PCの制作経験があったので，正直それとどう違うんだろう？と思っていたのですが，電源が冗長化されていたり，メモリが通常と異なる指し方をしたりと
+家庭用PCとサーバは全く違っていました。</p>
+<h3 id="3日目">3日目</h3>
+<p>3日目はネットワーク構築と，仮想化基盤の構築の演習です。</p>
+<p><img src="PXL_20230823_082502666.jpg" alt="Alt text"></p>
+<p><img src="PXL_20230823_031001063.jpg" alt="Alt text"></p>
+<p>このように本番用のネットワーク機器を使って演習用のネットワークを構築しました。</p>
+<p>私はYAMAHAルータの操作経験があったのですが，演習で使用したルータはCisco製で勝手が違って結構苦戦しました。
+ネットワーク機器のコンフィグ，独特の難しさがある……。</p>
+<p>ネットワークが完成したら2日目にインストールしたOSにVMを構築し，翌日以降の準備をしました。</p>
+<h3 id="4日目">4日目</h3>
+<p>4日目はこれまでのインフラメインの内容から離れ，ちょっと開発っぽいことをしました。
+RabbitMQというミドルウェアを使って，指定された課金サービスを実装しよう！という課題。</p>
+<p>個人的には5日間でここの課題が一番難しかったです。
+最初特に何も考えず，経験の浅いGo言語を選んで実装しようとしたら本質から離れた部分で詰まりまくり，慌ててJavaScriptに変更したものの大幅なタイムロス。
+ぶっつけ本番で実装を始める前にしっかり計画を練ってスタートすることの重要性を痛感……。
+結局，班内の進度が早かった人に全面的に頼ってなんとか最低限の条件をクリアすることができました。</p>
+<p>4日目の午後は監視ソフトZabbixを導入してVMの監視を設定しようという演習です。
+Zabbixには前から興味があったので，実践的な設定を触れてかなり面白かったです。
+自宅のサーバにも導入してみようと思っています。</p>
+<h3 id="5日目">5日目</h3>
+<p>いよいよ最終日。</p>
+<p>この日はまずカスタマからの問い合わせに対応する演習からスタートしました。
+トラブルシューティングの対応が非常にシステマティックに処理されていることが見えて，普段お客様側で使っているサポート窓口の裏側を覗いた気分でした。</p>
+<p>午後から5日間の成果をプレゼンする時間がありました。
+発表内容はフリーで，チームで協議して決めていきます。</p>
+<p>色々アイディアはあったのですが，時間の都合もありこれまでの学習内容をまとめつつ，各々の目標達成度合いを振り返るという堅実な<del>面白みのない</del>内容になりました。
+もうちょっとユニークな話ができればよかったなとは思っています。</p>
+<p>最後にスタッフさんからのまとめコメント，プレゼンの優秀な班の表彰等のイベントで終了。</p>
+<p>インターン終了後，社内バー(社内にバーカウンターがあるのです)で社員さんとの懇親会に参加しました。</p>
+<p><img src="PXL_20230825_111524549.jpg" alt="Alt text"></p>
+<p>なんとDJブースもあった。</p>
+<h2 id="ワーク内容について">ワーク内容について</h2>
+<p>全体的に非常にボリュームのある内容で満足感は高かったです。
+インターンでありがちな「業務の端にちょっと触れて終わる」みたいな感じではありません。
+しっかりと作られたカリキュラムに専任のエンジニアの方がサポートでついていただけるという恵まれた環境で，単なるインターンというよりは専門の講習会に来ている感じで，終始「これをタダで受けていいのかな(なんなら交通費までもらってる)」という気持ちでした。</p>
+<p>また各日の夕方にエンジニアの方と1on1のフィードバックミーティングをしていただけたのも，気軽に困り事や進捗状況を相談できてありがたかったです。</p>
+<p>最後にワーク全体のレベル感について。インターンの応募画面に「こんな人に来ていただきたい」という条件が書かれています。
+これを見ると「CLIに慣れていてLinuxを扱える」「ネットワークの基礎的な知識がある」等の」という条件が掲載されています。
+個人的にはだいたいこの通りのレベル感かなと思いました。(4日目の開発課題だけかなり難易度高めでしたが……)</p>
+<p>全くインフラの知識がないとちょっと厳しいかと思いますが，基本情報技術者試験の関連分野を勉強した，くらいの前提知識があれば問題なくついていけるのではないでしょうか。</p>
+<p>参加者はかなり幅広く，これからインフラを勉強していきたいという人から，既にネスペまで取得していてプロレベルの知識がありますという人まで色々でした。</p>
+<h2 id="インターン中の生活">インターン中の生活</h2>
+<p>インターン期間中は泊まり込みということで，近くのドミトリーを確保していただきました。</p>
+<p><img src="PXL_20230820_095440589.jpg" alt="Alt text"></p>
+<p>こんな感じのスペースが割り当てられます。
+ドミトリーを使ったことはなかったのですが，秘密基地っぽくて意外と快適でした。</p>
+<p>ただし，二段ベッドということもあり，物音や光は結構はいってくるので，敏感な人はアイマスクや耳栓を用意しておくのがオススメです。
+参加者の中にもあまり寝られなくて大変だった……と言っている人がいました。</p>
+<p>自分はアイマスク＋耳栓＋睡眠薬の最強コンボでぐっすりでした。</p>
+<p>そして期間中のご飯ですが，朝は自分で調達する必要がありますが，昼はGMOさんの社食またはお弁当を，夜はドミトリーで定食を用意していただけます。</p>
+<p><img src="PXL_20230824_033448664.PORTRAIT.jpg" alt="Alt text">
+お昼のお弁当と，</p>
+<p><img src="PXL_20230825_033841883.PORTRAIT.jpg" alt="Alt text">
+社食です。めちゃ美味しかった。</p>
+<p><img src="PXL_20230823_110951345.PORTRAIT.jpg" alt="Alt text">
+<img src="PXL_20230824_110405685.PORTRAIT.jpg" alt="Alt text"></p>
+<p>夜ご飯です。</p>
+<p>実は昨年まで夕食のクオリティがいまいちという声があったようなのですが，フィードバックを受けて今年から改善していただけたようです。ありがたい。</p>
+<p>あとは集団生活なので，結構仲良くなるイベントが発生します。自分たちは3日目か4日目に参加者を募って近所の銭湯に行きおしゃべりするなどしました。
+話してみるとみんなバラバラの地域から来ていて驚きます。</p>
+<h2 id="まとめ">まとめ</h2>
+<p><img src="PXL_20230823_101104491.MP.jpg" alt="Alt text">
+KitaQオフィスから見た小倉駅</p>
+<p>今回のインターンは総じて有意義な時間になりました。</p>
+<p>特に普段触ることのできない業務レベルのインフラに関わることができたのが印象的でした。
+ITインフラに着目したインターンというのは珍し目ですし，興味を持たれた方はぜひ応募してみてください。</p>
+</div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+            <div class="layui-card single-card">
+                <h2 class="single-title">Relevant Topics</h2>
+                
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="https://www.heiki-hecchara.net/post/new-blog-aisatsu/">
+                                <h3 class="">ブログ移転しました</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-09-14</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">お知らせ</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/hugo/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Hugo</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="https://www.heiki-hecchara.net/post/university-examination/">
+                                <h3 class="">【旧ブログ記事】某国立大公募推薦入試を受験した話</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2018-12-15</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e6%97%a7%e3%83%96%e3%83%ad%e3%82%b0%e8%a8%98%e4%ba%8b/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">旧ブログ記事</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e5%a4%a7%e5%ad%a6/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">大学</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="https://www.heiki-hecchara.net/post/2017-birthday/">
+                                <h3 class="">【旧ブログ記事】2017年の誕生日を迎えました</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2017-10-15</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e8%aa%95%e7%94%9f%e6%97%a5/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">誕生日</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                
+                <br />
+            </div>
+            
+
+            <div class="layui-card single-card">
+                <h2 class="single-title">Recent Posts</h2>
+            
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/2023-conoha/">
+                        <h3 class="">このはちゃんに会いに行こう！ GMOインターネット 夏インターン体験レポート</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2023-12-21</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e9%9b%91%e8%a8%98/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">雑記</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e3%82%a2%e3%83%89%e3%82%ab%e3%83%ac/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">アドカレ</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/youtube-community-image/">
+                        <h3 class="">Youtubeコミュニティの画像をオリジナルサイズで保存する</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2023-04-11</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e5%b0%8f%e3%83%8d%e3%82%bf/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">小ネタ</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/obsidian-live-sync/">
+                        <h3 class="">ObsidianのSelf-hosted LiveSyncプラグインをVPSで使う</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-10-03</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/obsidian/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Obsidian</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/github-pages-sync-problem/">
+                        <h3 class="">Github Pagesに変更をpushしても反映されないときの対処法</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-12</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/github-pages/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Github Pages</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/hugo/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">Hugo</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e3%82%b5%e3%82%a4%e3%83%88%e9%81%8b%e5%96%b6/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">サイト運営</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="https://www.heiki-hecchara.net/post/de3fs-mount-dashboard/">
+                        <h3 class="">DEデミオのダッシュボードにスマホホルダーをマウントする</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-10-16</span>
+
+    
+    
+
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="https://www.heiki-hecchara.net/tags/%e8%87%aa%e5%8b%95%e8%bb%8a/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">自動車</span>
+        </a>
+    
+        <a href="https://www.heiki-hecchara.net/tags/de3fs/">
+            <span class="layui-badge layui-bg-red" style="vertical-align: 2px;">DE3FS</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+            
+            <br />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+        </div><footer>
+    
+
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs6">
+
+            </div>
+        </div>
+        <div class="layui-row">
+            
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs12" id="footer">
+                <a href="https://www.heiki-hecchara.net/privacy-policy/"><p class="footer-url">プライバシーポリシー</p></a>
+            </div>
+            
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs12" id="footer">
+                <a href="https://www.heiki-hecchara.net/disclaimer/"><p class="footer-url">免責事項</p></a>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="layui-container">
+        <p class="copyright">&copy; All rights reserved. Powered by <a href='https://gohugo.io' style='color:#FFFFFF'>Hugo</a> and <a href='https://github.com/ertuil/erblog' style='color:#FFFFFF'>Erblog</a>.</p>
+    </div>
+</footer>
+
+</body>
+</html>
