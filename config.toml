@@ -13,11 +13,11 @@ googleAnalytics = ""
   badge = "red"
   index_posts_num = 5
   google_search = true
-  bio = "<p>はやぶさ(@Hayabusa)のブログ兼ホームページです。「やぶさ家」と書いて「やぶさか」と読みます。</p> <p><br>ブログ記事：Posts <br>私について：About<br> 制作物について：Works<br> <br>サイト名の由来：「はやぶさ」→「やぶさか」→「やぶさ家」</p><br> This site is Japanese only, sorry!"
-  logo = "/icon.jpg"
-  portrait = "/icon.jpg"
+  bio = "<p>「やぶさ家」と書いて「やぶさか」と読みます。</p> <p><br>ブログ記事：Posts <br>私について：About<br> 制作物について：Works<br>"
+  logo = "/icon2.png"
+  portrait = "/icon2.png"
   customCSS = ["/css/custom.css"]
-  description = "Undergraduate student on infomatics"
+  description = "見習いｲﾝﾌﾗｴﾝｼﾞﾆｱ"
   amazonJpAffiliate = "heikihecchara-22"
 
 [[menu.main]]

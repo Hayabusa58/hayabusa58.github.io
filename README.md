@@ -19,3 +19,21 @@
 
 ## ポストの削除
 - `post/post-title`以下を削除してhugoコマンドを実行すればOK。
+
+## 環境構築
+このリポジトリをcloneした後，
+
+```
+$ git submodule add https://github.com/ertuil/erblog themes/erblog
+$ git submodule init
+$ git submodule update
+```
+
+でthemesディレクトリに必要なファイルが揃う。
+`fatal: 'themes/erblog' already exists in the index`と怒られたら，
+
+```
+$ git submodule deinit -f themes/erblog
+$ git rm -f themes/erblog
+```
+これで一旦リセット。
