@@ -14,7 +14,6 @@ $ git push
 ```
 
 ## 新しいポストの作成と投稿(手動)
-毎回忘れるので自分用に。
 
 1. `$ hugo new post/post-title/index.md`を実行する。
     - 画像を埋め込まない場合，`/post`直下に`post-title.md`を作っても良い。
